@@ -23,18 +23,31 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'HOME',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
+                      const Row(
+                        children: [
+                          SizedBox(
+                            height: 36.0,
+                            width: 36.0,
+                            child: Image(
+                              image: AssetImage('assets/images/logo.png'),
+                            ),
+                          ),
+                          SizedBox(width: 8.0),
+                          Text(
+                            'HOME',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 6.0),
                         decoration: BoxDecoration(
-                          color: Colors.green[700],
+                          color: const Color(0xFF3CB68F),
+                          // color: Colors.green[700],
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: const Text(

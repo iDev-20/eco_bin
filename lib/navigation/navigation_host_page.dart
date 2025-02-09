@@ -14,124 +14,56 @@ class NavigationHostPage extends StatefulWidget {
 class _NavigationHostPageState extends State<NavigationHostPage> {
   int currentPage = 0;
 
+  final List<Widget> pages = const [
+    HomePage(),
+    BinsPage(),
+    TransactionsPage(),
+    ProfilePage(),
+  ];
+
+  final List<Map<String, dynamic>> navItems = [
+    {'icon': Icons.home, 'text': 'Home'},
+    {'icon': Icons.restore_from_trash_rounded, 'text': 'Bins'},
+    {'icon': Icons.receipt_long_rounded, 'text': 'Transactions'},
+    {'icon': Icons.person_rounded, 'text': 'Profile'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(child: getScreen(currentPage)),
-        ],
-      ),
+      body: pages[currentPage],
       bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
+        // shape: const CircularNotchedRectangle(),
+        // notchMargin: 8.0,
         color: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         height: 89,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            currentPage == 0
-                ? selectedBottomNavIcon(
-                    icon: Icons.home,
-                    text: 'Home',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 0;
-                      });
-                    })
-                : unselectedBottomNavIcon(
-                    icon: Icons.home,
-                    text: 'Home',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 0;
-                      });
-                    }),
-            currentPage == 1
-                ? selectedBottomNavIcon(
-                    icon: Icons.restore_from_trash_rounded,
-                    text: 'Bins',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 1;
-                      });
-                    })
-                : unselectedBottomNavIcon(
-                    icon: Icons.restore_from_trash_rounded,
-                    text: 'Bins',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 1;
-                      });
-                    }),
-            currentPage == 2
-                ? selectedBottomNavIcon(
-                    icon: Icons.receipt_long_rounded,
-                    text: 'Transactions',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 2;
-                      });
-                    })
-                : unselectedBottomNavIcon(
-                    icon: Icons.receipt_long_rounded,
-                    text: 'Transactions',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 2;
-                      });
-                    }),
-            currentPage == 3
-                ? selectedBottomNavIcon(
-                    icon: Icons.person_rounded,
-                    text: 'Profile',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 3;
-                      });
-                    })
-                : unselectedBottomNavIcon(
-                    icon: Icons.person_rounded,
-                    text: 'Profile',
-                    onPressed: () {
-                      setState(() {
-                        currentPage = 3;
-                      });
-                    }),
-          ],
+          children: List.generate(navItems.length, (index) {
+            return buildBottomNavIcon(
+              icon: navItems[index]['icon'],
+              text: navItems[index]['text'],
+              isSelected: currentPage == index,
+              onPressed: () => setState(() => currentPage = index),
+            );
+          }),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.green[700],
         elevation: 0,
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
-  Widget getScreen(int value) {
-    switch (value) {
-      case 0:
-        return const HomePage();
-      case 1:
-        return const BinsPage();
-      case 2:
-        return const TransactionsPage();
-      case 3:
-        return const ProfilePage();
-    }
-    return const SizedBox();
-  }
-
-  Widget selectedBottomNavIcon({
+  Widget buildBottomNavIcon({
     required IconData icon,
     required String text,
+    required bool isSelected,
     required VoidCallback onPressed,
   }) {
     return GestureDetector(
@@ -139,36 +71,25 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: Colors.green[100],
-              borderRadius: BorderRadius.circular(16.0),
-            ),
+            decoration: isSelected
+                ? BoxDecoration(
+                    color: Colors.green[100],
+                    borderRadius: BorderRadius.circular(16.0),
+                  )
+                : null,
             child: IconButton(
-              color: Colors.green[700],
+              color: isSelected ? Colors.green[700] : Colors.grey,
               onPressed: onPressed,
               icon: Icon(icon, size: 30),
             ),
           ),
-          Text(text, style: TextStyle(color: Colors.green[700], fontSize: 13)),
-        ],
-      ),
-    );
-  }
-
-  Widget unselectedBottomNavIcon({
-    required IconData icon,
-    required String text,
-    required VoidCallback onPressed,
-  }) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Column(
-        children: [
-          IconButton(
-            onPressed: onPressed,
-            icon: Icon(icon, size: 30),
+          Text(
+            text,
+            style: TextStyle(
+              color: isSelected ? Colors.green[700] : Colors.grey,
+              fontSize: 13,
+            ),
           ),
-          Text(text, style: const TextStyle(color: Colors.grey, fontSize: 13)),
         ],
       ),
     );

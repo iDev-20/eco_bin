@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
+import 'package:waste_management_app/resources/app_colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 6.0),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF3CB68F),
+                          color: AppColors.primaryGreen,
                           // color: Colors.green[700],
                           borderRadius: BorderRadius.circular(10.0),
                         ),

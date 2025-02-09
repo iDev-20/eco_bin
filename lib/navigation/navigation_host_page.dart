@@ -3,6 +3,7 @@ import 'package:waste_management_app/pages/bins_page.dart';
 import 'package:waste_management_app/pages/home_page.dart';
 import 'package:waste_management_app/pages/profile_page.dart';
 import 'package:waste_management_app/pages/transactions_page.dart';
+import 'package:waste_management_app/resources/app_colors.dart';
 
 class NavigationHostPage extends StatefulWidget {
   const NavigationHostPage({super.key});
@@ -52,7 +53,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Colors.green[700],
+        backgroundColor: AppColors.primaryGreen,
         elevation: 0,
         child: const Icon(Icons.add, color: Colors.white),
       ),
@@ -73,12 +74,12 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           Container(
             decoration: isSelected
                 ? BoxDecoration(
-                    color: Colors.green[100],
+                    color: Colors.teal[50],
                     borderRadius: BorderRadius.circular(16.0),
                   )
                 : null,
             child: IconButton(
-              color: isSelected ? Colors.green[700] : Colors.grey,
+              color: isSelected ? AppColors.primaryGreen : Colors.grey,
               onPressed: onPressed,
               icon: Icon(icon, size: 30),
             ),
@@ -86,7 +87,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           Text(
             text,
             style: TextStyle(
-              color: isSelected ? Colors.green[700] : Colors.grey,
+              color: isSelected ? AppColors.primaryGreen : Colors.grey,
               fontSize: 13,
             ),
           ),

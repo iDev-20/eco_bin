@@ -16,7 +16,7 @@ class PageDivider extends StatelessWidget {
           thickness: 0,
           color: Colors.green,
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 12.0),
       ],
     );
   }

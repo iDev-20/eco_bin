@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             'HOME',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: AppColors.darkBlueText,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -64,15 +64,27 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const PageDivider(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Expanded(
+              child: ListView(
                 children: [
-                  card(),
-                  card(),
-                  card(),
+                  const PageDivider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                        card(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
@@ -88,7 +100,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
         decoration: BoxDecoration(
-          color: Colors.blue[900],
+          color: AppColors.primaryBlue,
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Row(

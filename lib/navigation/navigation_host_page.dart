@@ -63,7 +63,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   Widget buildBottomNavIcon({
     required IconData icon,
-    required String text,
+    required String text, 
     required bool isSelected,
     required VoidCallback onPressed,
   }) {

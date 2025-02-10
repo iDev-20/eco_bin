@@ -100,7 +100,7 @@ class SecondaryButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = AppColors.splashScreenGreen,
     this.foregroundColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.overlayColor,
@@ -138,7 +138,7 @@ class SecondaryButton extends StatelessWidget {
       backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return Colors.blue;
+          return AppColors.splashScreenGreen;
         }
         return backgroundColor; // Defer to the widget's default.
       }),

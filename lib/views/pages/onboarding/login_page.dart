@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/constants.dart';
+import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -68,23 +68,14 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                Container(
-                                  height: 36,
-                                  padding: const EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: AppColors.splashScreenGreen)),
-                                  child: TextField(
-                                    cursorColor: AppColors.splashScreenGreen,
-                                    style: const TextStyle(
-                                        color: AppColors.darkBlueText),
-                                    decoration: kTextFieldInputDecoration,
-                                    onChanged: (value) {},
+                                const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 30.0),
+                                  child: PrimaryTextFormField(
+                                    hintText: 'Enter your phone number',
+                                    keyboardType: TextInputType.phone,
                                   ),
                                 ),
-                                const SizedBox(height: 12.0),
                                 GestureDetector(
                                   onTap: () {
                                     Navigation.navigateToScreen(
@@ -106,12 +97,16 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  PrimaryButton(
-                    onTap: () {
-                      Navigation.navigateToScreen(
-                          context: context, screen: const NavigationHostPage());
-                    },
-                    child: const Text('Login'),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: PrimaryButton(
+                      onTap: () {
+                        Navigation.navigateToScreen(
+                            context: context,
+                            screen: const VerifyPhoneNumberPage(phoneNumber: '',));
+                      },
+                      child: const Text('Login'),
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                   Row(
@@ -121,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         "Don't have an account? ",
                         style: TextStyle(
                             color: AppColors.darkBlueText,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
@@ -132,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           'Sign Up',
                           style: TextStyle(
                               color: AppColors.splashScreenGreen,
+                              fontSize: 15.0,
                               fontWeight: FontWeight.w700),
                         ),
                       ),

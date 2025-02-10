@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/navigation/navigation_host_page.dart';
+// import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,11 +15,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigation.navigateToScreen(
-          context: context, screen: const NavigationHostPage());
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigation.navigateToScreen(
+          context: context,
+          screen: const LoginPage(),
+        );
+      },
+    );
   }
 
   @override
@@ -30,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 172,
+              // height: 172,
               width: 172,
               child: Image(
                 image: AssetImage('assets/images/logo.png'),
@@ -44,37 +49,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(
                       color: AppColors.splashScreenGreen,
                       fontSize: 55,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w900),
                 ),
                 Text(
                   'Bin',
                   style: TextStyle(
                       color: AppColors.darkBlueText,
                       fontSize: 55,
-                      fontWeight: FontWeight.w700),
+                      fontWeight: FontWeight.w900),
                 ),
               ],
             ),
-            // RichText(
-            //   text: const TextSpan(
-            //     style: TextStyle(
-            //         color: AppColors.splashScreenGreen,
-            //         fontFamily: 'Nunito',
-            //         fontSize: 55,
-            //         fontWeight: FontWeight.w600),
-            //     children: <TextSpan>[
-            //       TextSpan(text: 'Eco'),
-            //       TextSpan(
-            //         text: 'Bin',
-            //         style: TextStyle(
-            //             color: AppColors.darkBlueText,
-            //             fontFamily: 'Nunito',
-            //             fontSize: 55,
-            //             fontWeight: FontWeight.w600),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Text(
               'Smart Waste, Clean Future',
               style: TextStyle(

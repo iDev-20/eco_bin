@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/pages/bins_page.dart';
-import 'package:waste_management_app/pages/home_page.dart';
-import 'package:waste_management_app/pages/profile_page.dart';
-import 'package:waste_management_app/pages/transactions_page.dart';
+import 'package:waste_management_app/views/pages/bins_page.dart';
+import 'package:waste_management_app/views/pages/home_page.dart';
+import 'package:waste_management_app/views/pages/profile_page.dart';
+import 'package:waste_management_app/views/pages/transactions_page.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
 class NavigationHostPage extends StatefulWidget {
@@ -34,11 +34,6 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: BottomAppBar(
-        // shape: const CircularNotchedRectangle(),
-        // notchMargin: 8.0,
-        color: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        height: 89,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(navItems.length, (index) {
@@ -53,8 +48,6 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: AppColors.primaryGreen,
-        elevation: 0,
         child: const Icon(Icons.add, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -63,7 +56,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   Widget buildBottomNavIcon({
     required IconData icon,
-    required String text, 
+    required String text,
     required bool isSelected,
     required VoidCallback onPressed,
   }) {

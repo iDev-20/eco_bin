@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/pages/home_page.dart';
+import 'package:waste_management_app/views/pages/home_page.dart';
 
 class Navigation {
   Navigation._();

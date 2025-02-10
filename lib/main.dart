@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/pages/onboarding/splash_screen.dart';
+import 'package:waste_management_app/views/splash_screen.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
 void main() {
@@ -15,16 +15,24 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'EcoBin',
       theme: ThemeData(
-          fontFamily: 'Nunito',
-          useMaterial3: false,
-          primaryColor: AppColors.primaryGreen,
-          primarySwatch: Colors.green,
-          scaffoldBackgroundColor: Colors.white,
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            backgroundColor: AppColors.primaryGreen,
+        fontFamily: 'Nunito',
+        useMaterial3: false,
+        primaryColor: AppColors.primaryGreen,
+        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+          backgroundColor: AppColors.primaryGreen,
+          elevation: 0,
+        ),
+        bottomAppBarTheme: const BottomAppBarTheme(
             elevation: 0,
-          )),
+            padding: EdgeInsets.only(top: 12.0),
+            color: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            height: 89),
+      ),
       home: const SplashScreen(),
     );
   }

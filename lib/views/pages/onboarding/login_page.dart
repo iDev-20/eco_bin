@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/constants.dart';
@@ -107,7 +108,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   PrimaryButton(
                     onTap: () {
-                      Navigation.navigateToHomePage(context: context);
+                      Navigation.navigateToScreen(
+                          context: context, screen: const NavigationHostPage());
                     },
                     child: const Text('Login'),
                   ),

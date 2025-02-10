@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -12,7 +13,33 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Are you proud of yourself for not having account'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Welcome to '),
+                Text(
+                  'Eco',
+                  style: TextStyle(
+                      color: AppColors.splashScreenGreen,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900),
+                ),
+                Text(
+                  'Bin',
+                  style: TextStyle(
+                      color: AppColors.darkBlueText,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.0),
+            Text('Are you proud of yourself for not  an account?'),
+          ],
+        ),
       ),
     );
   }

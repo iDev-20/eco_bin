@@ -3,6 +3,8 @@ import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/constants.dart';
 import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Scaffold(
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -75,9 +77,25 @@ class _LoginPageState extends State<LoginPage> {
                                           color: AppColors.splashScreenGreen)),
                                   child: TextField(
                                     cursorColor: AppColors.splashScreenGreen,
-                                    style: const TextStyle(color: Colors.black),
+                                    style: const TextStyle(
+                                        color: AppColors.darkBlueText),
                                     decoration: kTextFieldInputDecoration,
                                     onChanged: (value) {},
+                                  ),
+                                ),
+                                const SizedBox(height: 12.0),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigation.navigateToScreen(
+                                        context: context,
+                                        screen: const ForgotPasswordPage());
+                                  },
+                                  child: const Text(
+                                    'Forgot password?',
+                                    style: TextStyle(
+                                        color: AppColors.splashScreenGreen,
+                                        fontWeight: FontWeight.w700),
+                                    textAlign: TextAlign.left,
                                   ),
                                 ),
                               ],
@@ -92,6 +110,30 @@ class _LoginPageState extends State<LoginPage> {
                       Navigation.navigateToHomePage(context: context);
                     },
                     child: const Text('Login'),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Don't have an account? ",
+                        style: TextStyle(
+                            color: AppColors.darkBlueText,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigation.navigateToScreen(
+                              context: context, screen: const SignUpPage());
+                        },
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                              color: AppColors.splashScreenGreen,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -1,11 +1,7 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/resources/app_colors.dart';
 
 const kTextFieldInputDecoration = InputDecoration(
-    contentPadding:
-        EdgeInsets.all(8.0),
+    contentPadding: EdgeInsets.all(8.0),
     filled: true,
     fillColor: Color(0x1FFFFFFF),
     // suffixIcon: Padding(
@@ -14,7 +10,7 @@ const kTextFieldInputDecoration = InputDecoration(
     // ),
     // suffixIconColor: const Color(0x99EBEBF5),
     hintText: 'Enter your phone number',
-    hintStyle: TextStyle(color: AppColors.darkBlueText),
+    hintStyle: TextStyle(color: Colors.grey),
     // border: OutlineInputBorder(
     //   borderRadius: BorderRadius.circular(20),
     //   borderSide: const BorderSide(color: Colors.white),

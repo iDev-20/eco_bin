@@ -1,19 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class VerifyPhoneNumberPage extends StatefulWidget {
-//   const VerifyPhoneNumberPage({super.key});
-
-//   @override
-//   State<VerifyPhoneNumberPage> createState() => _VerifyPhoneNumberPageState();
-// }
-
-// class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';

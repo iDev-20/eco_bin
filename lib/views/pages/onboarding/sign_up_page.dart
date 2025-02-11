@@ -52,25 +52,26 @@ class _SignUpPageState extends State<SignUpPage> {
                                 'Welcome to ',
                                 style: TextStyle(
                                     color: AppColors.darkBlueText,
-                                    fontSize: 16.0,
+                                    fontSize: 24.0,
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 'Eco',
                                 style: TextStyle(
                                     color: AppColors.splashScreenGreen,
-                                    fontSize: 16.0,
+                                    fontSize: 24.0,
                                     fontWeight: FontWeight.w900),
                               ),
                               Text(
                                 'Bin',
                                 style: TextStyle(
                                     color: AppColors.darkBlueText,
-                                    fontSize: 16.0,
+                                    fontSize: 24.0,
                                     fontWeight: FontWeight.w900),
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10.0),
                           const Text(
                             'Sign up with your Ghana mobile number',
                             style: TextStyle(
@@ -98,7 +99,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: PrimaryTextFormField(
                               hintText: 'Enter your phone number',
                               keyboardType: TextInputType.phone,
+                              // prefixText: '+233 ',
                               controller: phoneNumberController,
+                              maxLength: 10,
                               onChanged: (c) {
                                 setState(() {});
                               },

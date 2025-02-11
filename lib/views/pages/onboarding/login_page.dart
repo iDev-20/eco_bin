@@ -77,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                                     hintText: 'Enter your phone number',
                                     keyboardType: TextInputType.phone,
                                     controller: phoneNumbercontroller,
+                                    maxLength: 10,
                                     onChanged: (c) {
                                       setState(() {});
                                     },

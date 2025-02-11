@@ -14,6 +14,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController phoneNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,16 +36,16 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: ListView(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
-                        children: const [
-                          SizedBox(
+                        children: [
+                          const SizedBox(
                             height: 100,
                             width: 100,
                             child: Image(
                               image: AssetImage('assets/images/logo.png'),
                             ),
                           ),
-                          SizedBox(height: 5.0),
-                          Row(
+                          const SizedBox(height: 5.0),
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
@@ -69,7 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ],
                           ),
-                          Text(
+                          const Text(
                             'Sign up with your Ghana mobile number',
                             style: TextStyle(
                                 color: AppColors.darkBlueText,
@@ -77,8 +79,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontWeight: FontWeight.w500),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(height: 5.0),
-                          Padding(
+                          const SizedBox(height: 5.0),
+                          const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30),
                             child: Text(
                               'Your mobile number may be verified against your Ghana Card details',
@@ -89,12 +91,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(height: 16.0),
+                          const SizedBox(height: 16.0),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 40),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
                             child: PrimaryTextFormField(
                               hintText: 'Enter your phone number',
                               keyboardType: TextInputType.phone,
+                              controller: phoneNumberController,
+                              onChanged: (c) {
+                                setState(() {});
+                              },
                             ),
                           )
                         ],
@@ -102,8 +109,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: PrimaryButton(
+                      enabled: phoneNumberController.text.length == 10.0,
                       onTap: () {
                         Navigation.navigateToScreen(
                             context: context,

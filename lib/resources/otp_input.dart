@@ -158,7 +158,7 @@ class OtpInput extends StatelessWidget {
         strokeWidth: 1,
         gapSpace: 12,
         //bgColorBuilder: PinListenColorBuilder(AppColors.greyInputBackground, AppColors.greyInputBackground),
-        strokeColorBuilder: PinListenColorBuilder(AppColors.splashScreenGreen, AppColors.darkBlueText),
+        strokeColorBuilder: PinListenColorBuilder(AppColors.splashScreenGreen, Colors.grey.shade400),
         textStyle: const TextStyle(color: AppColors.darkBlueText),
       ),
       onChanged: onChanged,

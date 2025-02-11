@@ -78,13 +78,8 @@ class PrimaryTextFormField extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 36,
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.splashScreenGreen)),
             child: TextFormField(
               autofocus: autofocus,
               obscureText: obscureText,

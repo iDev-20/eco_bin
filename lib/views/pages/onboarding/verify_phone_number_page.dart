@@ -147,7 +147,7 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 28.0),
             child: PrimaryButton(
-              //enabled: otpController.text.length == 4,
+              // enabled: otpController.text.length == 4,
               onTap: () {
                 Navigation.navigateToScreen(
                     context: context, screen: const NavigationHostPage());

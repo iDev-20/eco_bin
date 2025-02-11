@@ -10,6 +10,7 @@ class PrimaryButton extends StatelessWidget {
   final Color? overlayColor;
   final bool enabled;
   final EdgeInsets? contentPadding;
+  final bool expand;
 
   const PrimaryButton({
     super.key,
@@ -21,6 +22,7 @@ class PrimaryButton extends StatelessWidget {
     this.overlayColor,
     this.enabled = true,
     this.contentPadding,
+    this.expand = true,
   });
 
   ButtonStyle getStyle() {
@@ -53,7 +55,7 @@ class PrimaryButton extends StatelessWidget {
       backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return AppColors.splashScreenGreen;
+          return Colors.grey[300];
         }
         return backgroundColor; // Defer to the widget's default.
       }),
@@ -72,16 +74,27 @@ class PrimaryButton extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
+        expand?
+          Expanded(
             child: TextButton(
-          style: getStyle(),
-          onPressed: enabled
+              style: getStyle(),
+              onPressed: enabled
+                ? () {
+                    onTap?.call();
+                  }
+                : null,
+            child: child,
+          ))
+          :
+          TextButton(
+            style: getStyle(),
+            onPressed: enabled
               ? () {
                   onTap?.call();
                 }
               : null,
-          child: child,
-        )),
+            child: child,
+          )
       ],
     );
   }
@@ -105,7 +118,6 @@ class SecondaryButton extends StatelessWidget {
     this.borderColor = Colors.transparent,
     this.overlayColor,
     this.contentPadding,
-
   });
 
   ButtonStyle getStyle() {

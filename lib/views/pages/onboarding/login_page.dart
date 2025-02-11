@@ -15,6 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController phoneNumbercontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -68,12 +70,16 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 30.0),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30.0),
                                   child: PrimaryTextFormField(
                                     hintText: 'Enter your phone number',
                                     keyboardType: TextInputType.phone,
+                                    controller: phoneNumbercontroller,
+                                    onChanged: (c) {
+                                      setState(() {});
+                                    },
                                   ),
                                 ),
                                 GestureDetector(
@@ -100,10 +106,13 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: PrimaryButton(
+                      enabled: phoneNumbercontroller.text.length == 10.0,
                       onTap: () {
                         Navigation.navigateToScreen(
                             context: context,
-                            screen: const VerifyPhoneNumberPage(phoneNumber: '',));
+                            screen: const VerifyPhoneNumberPage(
+                              phoneNumber: '',
+                            ));
                       },
                       child: const Text('Login'),
                     ),

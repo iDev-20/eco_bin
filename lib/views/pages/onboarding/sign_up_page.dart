@@ -15,6 +15,15 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool isPasswordVisible = false;
+
+  void togglePasswordVisibility() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,15 +105,39 @@ class _SignUpPageState extends State<SignUpPage> {
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 30.0),
-                            child: PrimaryTextFormField(
-                              hintText: 'Enter your phone number',
-                              keyboardType: TextInputType.phone,
-                              // prefixText: '+233 ',
-                              controller: phoneNumberController,
-                              maxLength: 10,
-                              onChanged: (c) {
-                                setState(() {});
-                              },
+                            child: Column(
+                              children: [
+                                PrimaryTextFormField(
+                                  hintText: 'Enter your phone number',
+                                  keyboardType: TextInputType.phone,
+                                  // prefixText: '+233 ',
+                                  controller: phoneNumberController,
+                                  maxLength: 10,
+                                  onChanged: (c) {
+                                    setState(() {});
+                                  },
+                                ),
+                                PrimaryTextFormField(
+                                  height: 36.0,
+                                  hintText: 'Enter password',
+                                  keyboardType: TextInputType.visiblePassword,
+                                  textInputAction: TextInputAction.done,
+                                  controller: passwordController,
+                                  obscureText: !isPasswordVisible,
+                                  suffixWidget: IconButton(
+                                    onPressed: togglePasswordVisibility,
+                                    icon: Icon(
+                                      isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  onChanged: (c) {
+                                    setState(() {});
+                                  },
+                                ),
+                              ],
                             ),
                           )
                         ],
@@ -114,7 +147,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: PrimaryButton(
-                      enabled: phoneNumberController.text.length == 10.0,
+                      enabled: phoneNumberController.text.length == 10.0 &&
+                          passwordController.text.isNotEmpty,
                       onTap: () {
                         Navigation.navigateToScreen(
                             context: context,

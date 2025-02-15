@@ -23,6 +23,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final bool enabled;
   final void Function(String?)? onSaved;
   final String? prefixText;
+  final double? height;
 
   const PrimaryTextFormField(
       {super.key,
@@ -44,7 +45,8 @@ class PrimaryTextFormField extends StatelessWidget {
       this.enabled = true,
       this.required = false,
       this.onSaved,
-      this.prefixText});
+      this.prefixText,
+      this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +83,7 @@ class PrimaryTextFormField extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 55,
+            height: height ?? 55,
             child: TextFormField(
               autofocus: autofocus,
               obscureText: obscureText,
@@ -91,8 +93,10 @@ class PrimaryTextFormField extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               cursorColor: AppColors.splashScreenGreen,
-              decoration:
-                  kTextFieldInputDecoration.copyWith(prefixText: prefixText),
+              decoration: kTextFieldInputDecoration.copyWith(
+                  prefixText: prefixText,
+                  hintText: hintText,
+                  suffixIcon: suffixWidget),
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
               validator: validator,

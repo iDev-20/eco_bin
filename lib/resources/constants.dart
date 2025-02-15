@@ -15,7 +15,6 @@ final kTextFieldInputDecoration = InputDecoration(
   //   child: AppImages.svgSearchIcon,
   // ),
   // suffixIconColor: const Color(0x99EBEBF5),
-  hintText: 'Enter your phone number',
   hintStyle: const TextStyle(color: Colors.grey),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),

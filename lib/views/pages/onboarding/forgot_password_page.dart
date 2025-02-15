@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_buttons.dart';
+import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/form_fields.dart';
+import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_for_password_reset_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -8,11 +13,100 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  TextEditingController phoneNumbercontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Clap for yourself'),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: AbsorbPointer(
+        absorbing: false,
+        child: Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: ListView(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: Image(
+                                    image: AssetImage('assets/images/logo.png'),
+                                  ),
+                                ),
+                                const Text(
+                                  'Forgot Pasword?',
+                                  style: TextStyle(
+                                      color: AppColors.darkBlueText,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.w700),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 5.0),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 30),
+                                  child: Text(
+                                    "No worries, we'll send you reset instructions",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13.0,
+                                        fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30.0),
+                                  child: PrimaryTextFormField(
+                                    hintText: 'Enter your phone number',
+                                    keyboardType: TextInputType.phone,
+                                    controller: phoneNumbercontroller,
+                                    maxLength: 10,
+                                    onChanged: (c) {
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: PrimaryButton(
+                      enabled: phoneNumbercontroller.text.length == 10.0,
+                      onTap: () {
+                        Navigation.navigateToScreen(
+                            context: context,
+                            screen: const VerifyPhoneNumberForPasswordResetPage(
+                              phoneNumber: '',
+                            ));
+                      },
+                      child: const Text('Reset Password'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

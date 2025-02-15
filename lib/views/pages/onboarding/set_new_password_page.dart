@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
-import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
-import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/reset_password_successful_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SetNewPasswordPage extends StatefulWidget {
+  const SetNewPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SetNewPasswordPage> createState() => _SetNewPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController phoneNumbercontroller = TextEditingController();
+class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
 
   void togglePasswordVisibility() {
     setState(() {
       isPasswordVisible = !isPasswordVisible;
+    });
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    setState(() {
+      isConfirmPasswordVisible = !isConfirmPasswordVisible;
     });
   }
 
@@ -59,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 const Text(
-                                  'Login with your Ghana mobile number',
+                                  'Set new password',
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
                                       fontSize: 16.0,
@@ -70,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 30),
                                   child: Text(
-                                    'Your mobile number may be verified against your Ghana Card details',
+                                    "Set a password you won't lose this time",
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 13.0,
@@ -85,20 +90,11 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Column(
                                     children: [
                                       PrimaryTextFormField(
-                                        hintText: 'Enter your phone number',
-                                        keyboardType: TextInputType.phone,
-                                        controller: phoneNumbercontroller,
-                                        maxLength: 10,
-                                        onChanged: (c) {
-                                          setState(() {});
-                                        },
-                                      ),
-                                      PrimaryTextFormField(
                                         height: 36.0,
-                                        hintText: 'Enter your password',
+                                        hintText: 'Enter new password',
                                         keyboardType:
                                             TextInputType.visiblePassword,
-                                        textInputAction: TextInputAction.done,
+                                            textInputAction: TextInputAction.done,
                                         controller: passwordController,
                                         obscureText: !isPasswordVisible,
                                         suffixWidget: IconButton(
@@ -114,21 +110,28 @@ class _LoginPageState extends State<LoginPage> {
                                           setState(() {});
                                         },
                                       ),
+                                      PrimaryTextFormField(
+                                        height: 36.0,
+                                        hintText: 'Confirm password',
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
+                                            textInputAction: TextInputAction.done,
+                                        controller: confirmPasswordController,
+                                        obscureText: !isConfirmPasswordVisible,
+                                        suffixWidget: IconButton(
+                                          onPressed: toggleConfirmPasswordVisibility,
+                                          icon: Icon(
+                                            isConfirmPasswordVisible
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        onChanged: (c) {
+                                          setState(() {});
+                                        },
+                                      ),
                                     ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigation.navigateToScreen(
-                                        context: context,
-                                        screen: const ForgotPasswordPage());
-                                  },
-                                  child: const Text(
-                                    'Forgot password?',
-                                    style: TextStyle(
-                                        color: AppColors.splashScreenGreen,
-                                        fontWeight: FontWeight.w700),
-                                    textAlign: TextAlign.left,
                                   ),
                                 ),
                               ],
@@ -141,42 +144,14 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: PrimaryButton(
-                      enabled: phoneNumbercontroller.text.length == 10.0 &&
-                          passwordController.text.isNotEmpty,
+                      enabled: passwordController.text.isNotEmpty &&
+                          confirmPasswordController.text.isNotEmpty,
                       onTap: () {
                         Navigation.navigateToScreen(
-                            context: context,
-                            screen: const NavigationHostPage(
-                            ));
+                            context: context, screen: const ResetPasswordSucceddfulPage());
                       },
-                      child: const Text('Login'),
+                      child: const Text('Reset Password'),
                     ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Don't have an account? ",
-                        style: TextStyle(
-                            color: AppColors.darkBlueText,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigation.navigateToScreen(
-                              context: context, screen: const SignUpPage());
-                        },
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              color: AppColors.splashScreenGreen,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),

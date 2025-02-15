@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
@@ -82,7 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           const SizedBox(height: 10.0),
                           const Text(
-                            'Sign up with your Ghana mobile number',
+                            AppStrings.signUpWithYourGhanaMobileNumber,
                             style: TextStyle(
                                 color: AppColors.darkBlueText,
                                 fontSize: 16.0,
@@ -93,7 +94,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 30),
                             child: Text(
-                              'Your mobile number may be verified against your Ghana Card details',
+                              AppStrings
+                                  .yourMobileNumberMayBeVerifiedAgainstGHCard,
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 13.0,
@@ -108,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Column(
                               children: [
                                 PrimaryTextFormField(
-                                  hintText: 'Enter your phone number',
+                                  hintText: AppStrings.enterYourPhoneNumber,
                                   keyboardType: TextInputType.phone,
                                   // prefixText: '+233 ',
                                   controller: phoneNumberController,
@@ -119,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 PrimaryTextFormField(
                                   height: 36.0,
-                                  hintText: 'Enter password',
+                                  hintText: AppStrings.enterPassword,
                                   keyboardType: TextInputType.visiblePassword,
                                   textInputAction: TextInputAction.done,
                                   controller: passwordController,
@@ -156,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               phoneNumber: '',
                             ));
                       },
-                      child: const Text('Sign up'),
+                      child: const Text(AppStrings.signUp),
                     ),
                   ),
                   const SizedBox(height: 16.0),
@@ -176,7 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               context: context, screen: const LoginPage());
                         },
                         child: const Text(
-                          'Login',
+                          AppStrings.login,
                           style: TextStyle(
                               color: AppColors.splashScreenGreen,
                               fontSize: 15.0,

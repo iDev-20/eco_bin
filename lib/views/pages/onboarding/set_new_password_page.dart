@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/reset_password_successful_page.dart';
@@ -64,7 +65,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                   ),
                                 ),
                                 const Text(
-                                  'Set new password',
+                                  AppStrings.setNewPassword,
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
                                       fontSize: 16.0,
@@ -91,10 +92,10 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                     children: [
                                       PrimaryTextFormField(
                                         height: 36.0,
-                                        hintText: 'Enter new password',
+                                        hintText: AppStrings.enterNewPassword,
                                         keyboardType:
                                             TextInputType.visiblePassword,
-                                            textInputAction: TextInputAction.done,
+                                        textInputAction: TextInputAction.done,
                                         controller: passwordController,
                                         obscureText: !isPasswordVisible,
                                         suffixWidget: IconButton(
@@ -112,14 +113,15 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                       ),
                                       PrimaryTextFormField(
                                         height: 36.0,
-                                        hintText: 'Confirm password',
+                                        hintText: AppStrings.confirmPassword,
                                         keyboardType:
                                             TextInputType.visiblePassword,
-                                            textInputAction: TextInputAction.done,
+                                        textInputAction: TextInputAction.done,
                                         controller: confirmPasswordController,
                                         obscureText: !isConfirmPasswordVisible,
                                         suffixWidget: IconButton(
-                                          onPressed: toggleConfirmPasswordVisibility,
+                                          onPressed:
+                                              toggleConfirmPasswordVisibility,
                                           icon: Icon(
                                             isConfirmPasswordVisible
                                                 ? Icons.visibility
@@ -148,9 +150,10 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                           confirmPasswordController.text.isNotEmpty,
                       onTap: () {
                         Navigation.navigateToScreen(
-                            context: context, screen: const ResetPasswordSucceddfulPage());
+                            context: context,
+                            screen: const ResetPasswordSucceddfulPage());
                       },
-                      child: const Text('Reset Password'),
+                      child: const Text(AppStrings.resetPassword),
                     ),
                   ),
                 ],

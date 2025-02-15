@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/bins_page.dart';
 import 'package:waste_management_app/views/pages/home_page.dart';
 import 'package:waste_management_app/views/pages/profile_page.dart';
@@ -23,10 +24,10 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
   ];
 
   final List<Map<String, dynamic>> navItems = [
-    {'icon': Icons.home, 'text': 'Home'},
-    {'icon': Icons.restore_from_trash_rounded, 'text': 'Bins'},
-    {'icon': Icons.receipt_long_rounded, 'text': 'Transactions'},
-    {'icon': Icons.person_rounded, 'text': 'Profile'},
+    {'icon': Icons.home, 'text': AppStrings.home},
+    {'icon': Icons.restore_from_trash_rounded, 'text': AppStrings.bins},
+    {'icon': Icons.receipt_long_rounded, 'text': AppStrings.transactions},
+    {'icon': Icons.person_rounded, 'text': AppStrings.profile},
   ];
 
   @override

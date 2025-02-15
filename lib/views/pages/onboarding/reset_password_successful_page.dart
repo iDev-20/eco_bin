@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
@@ -24,7 +25,7 @@ class ResetPasswordSucceddfulPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Password Reset Successful!',
+                AppStrings.passwordResetSuccessful,
                 style: TextStyle(
                     color: AppColors.darkBlueText,
                     fontSize: 20.0,
@@ -32,7 +33,7 @@ class ResetPasswordSucceddfulPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Hooray🥳, your password has been reset \nsuccessfully',
+                AppStrings.hoorayYourPasswordHasBeenReset,
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 16.0,

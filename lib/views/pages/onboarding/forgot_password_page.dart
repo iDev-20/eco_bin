@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_for_password_reset_page.dart';
@@ -48,7 +49,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   ),
                                 ),
                                 const Text(
-                                  'Forgot Pasword?',
+                                  AppStrings.forgotPassword,
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
                                       fontSize: 16.0,
@@ -72,7 +73,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30.0),
                                   child: PrimaryTextFormField(
-                                    hintText: 'Enter your phone number',
+                                    hintText: AppStrings.enterYourPhoneNumber,
                                     keyboardType: TextInputType.phone,
                                     controller: phoneNumbercontroller,
                                     maxLength: 10,
@@ -99,7 +100,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               phoneNumber: '',
                             ));
                       },
-                      child: const Text('Reset Password'),
+                      child: const Text(AppStrings.resetPassword),
                     ),
                   ),
                 ],

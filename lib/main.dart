@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/splash_screen.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'EcoBin',
+      title: AppStrings.appName,
       theme: ThemeData(
         fontFamily: 'Nunito',
         useMaterial3: false,

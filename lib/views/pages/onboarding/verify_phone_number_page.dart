@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/resources/otp_input.dart';
 
@@ -102,7 +103,7 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
-                        'Resend code',
+                        AppStrings.resendCode,
                         style: TextStyle(
                           color: AppColors.splashScreenGreen,
                           fontSize: 15.0,
@@ -152,7 +153,7 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                 Navigation.navigateToScreen(
                     context: context, screen: const NavigationHostPage());
               },
-              child: const Text('Submit'),
+              child: const Text(AppStrings.submit ),
             ),
           ),
         ],

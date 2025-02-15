@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
@@ -59,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 const Text(
-                                  'Login with your Ghana mobile number',
+                                  AppStrings.loginWithYourGhanaMobileNumber,
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
                                       fontSize: 16.0,
@@ -70,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                                 const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 30),
                                   child: Text(
-                                    'Your mobile number may be verified against your Ghana Card details',
+                                    AppStrings
+                                        .yourMobileNumberMayBeVerifiedAgainstGHCard,
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 13.0,
@@ -85,7 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Column(
                                     children: [
                                       PrimaryTextFormField(
-                                        hintText: 'Enter your phone number',
+                                        hintText:
+                                            AppStrings.enterYourPhoneNumber,
                                         keyboardType: TextInputType.phone,
                                         controller: phoneNumbercontroller,
                                         maxLength: 10,
@@ -95,7 +98,8 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       PrimaryTextFormField(
                                         height: 36.0,
-                                        hintText: 'Enter your password',
+                                        hintText:
+                                            AppStrings.enterYourPhonePassword,
                                         keyboardType:
                                             TextInputType.visiblePassword,
                                         textInputAction: TextInputAction.done,
@@ -124,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                                         screen: const ForgotPasswordPage());
                                   },
                                   child: const Text(
-                                    'Forgot password?',
+                                    AppStrings.forgotPassword,
                                     style: TextStyle(
                                         color: AppColors.splashScreenGreen,
                                         fontWeight: FontWeight.w700),
@@ -146,10 +150,9 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         Navigation.navigateToScreen(
                             context: context,
-                            screen: const NavigationHostPage(
-                            ));
+                            screen: const NavigationHostPage());
                       },
-                      child: const Text('Login'),
+                      child: const Text(AppStrings.login),
                     ),
                   ),
                   const SizedBox(height: 16.0),
@@ -169,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                               context: context, screen: const SignUpPage());
                         },
                         child: const Text(
-                          'Sign Up',
+                          AppStrings.signUp,
                           style: TextStyle(
                               color: AppColors.splashScreenGreen,
                               fontSize: 15.0,

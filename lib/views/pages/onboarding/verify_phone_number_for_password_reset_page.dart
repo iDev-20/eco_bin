@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/resources/otp_input.dart';
 import 'package:waste_management_app/views/pages/onboarding/set_new_password_page.dart';
@@ -40,7 +41,7 @@ class _VerifyPhoneNumbeForrPasswordResetPageState extends State<VerifyPhoneNumbe
                     ),
                     const SizedBox(height: 8.0),
                     const Text(
-                      'Password Reset',
+                      AppStrings.passwordReset,
                       style: TextStyle(
                         color: AppColors.darkBlueText,
                         fontSize: 16.0,
@@ -102,7 +103,7 @@ class _VerifyPhoneNumbeForrPasswordResetPageState extends State<VerifyPhoneNumbe
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
-                        'Resend code',
+                        AppStrings.resendCode,
                         style: TextStyle(
                           color: AppColors.splashScreenGreen,
                           fontSize: 15.0,
@@ -152,7 +153,7 @@ class _VerifyPhoneNumbeForrPasswordResetPageState extends State<VerifyPhoneNumbe
                 Navigation.navigateToScreen(
                     context: context, screen: const SetNewPasswordPage());
               },
-              child: const Text('Submit'),
+              child: const Text(AppStrings.submit),
             ),
           ),
         ],

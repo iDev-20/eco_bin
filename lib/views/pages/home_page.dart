@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(width: 8.0),
                           Text(
-                            'HOME',
+                            AppStrings.homeCaps,
                             style: TextStyle(
                                 color: AppColors.darkBlueText,
                                 fontSize: 20.0,
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: const Text(
-                          'Get Help',
+                          AppStrings.gethelp,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,

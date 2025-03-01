@@ -3,7 +3,7 @@ import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/components/otp_input.dart';
 import 'package:waste_management_app/views/pages/onboarding/set_new_password_page.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
-import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
 class SplashScreen extends StatefulWidget {

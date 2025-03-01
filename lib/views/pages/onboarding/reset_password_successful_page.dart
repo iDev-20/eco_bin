@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
 class ResetPasswordSucceddfulPage extends StatelessWidget {

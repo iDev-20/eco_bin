@@ -4,7 +4,7 @@ import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/components/form_fields.dart';
-import 'package:waste_management_app/resources/navigation.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/reset_password_successful_page.dart';
 
 class SetNewPasswordPage extends StatefulWidget {

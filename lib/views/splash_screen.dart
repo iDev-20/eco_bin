@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
@@ -31,17 +32,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.sizeOf(context).width,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               // height: 172,
               width: 172,
               child: Image(
-                image: AssetImage('assets/images/logo.png'),
+                image: AppImages.appLogo,
               ),
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -60,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ],
             ),
-            Text(
+            const Text(
               'Smart Waste, Clean Future',
               style: TextStyle(
                   color: AppColors.darkBlueText,

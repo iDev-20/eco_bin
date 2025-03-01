@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/resources/form_fields.dart';
+import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_for_password_reset_page.dart';
+
+import '../../../resources/app_images.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -41,11 +43,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             alignment: Alignment.center,
                             child: Column(
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   height: 100,
                                   width: 100,
                                   child: Image(
-                                    image: AssetImage('assets/images/logo.png'),
+                                    image: AppImages.appLogo,
                                   ),
                                 ),
                                 const Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/constants.dart';
+import 'package:waste_management_app/resources/app_constants.dart';
 
 class PrimaryTextFormField extends StatelessWidget {
   final TextEditingController? controller;

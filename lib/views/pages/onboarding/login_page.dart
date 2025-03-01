@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/resources/form_fields.dart';
+import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/resources/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
@@ -52,11 +53,11 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.center,
                             child: Column(
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   height: 100,
                                   width: 100,
                                   child: Image(
-                                    image: AssetImage('assets/images/logo.png'),
+                                    image: AppImages.appLogo,
                                   ),
                                 ),
                                 const Text(

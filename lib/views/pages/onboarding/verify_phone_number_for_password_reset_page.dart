@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/navigation.dart';
-import 'package:waste_management_app/resources/otp_input.dart';
+import 'package:waste_management_app/components/otp_input.dart';
 import 'package:waste_management_app/views/pages/onboarding/set_new_password_page.dart';
 
 class VerifyPhoneNumberForPasswordResetPage extends StatefulWidget {
@@ -35,11 +36,11 @@ class _VerifyPhoneNumbeForrPasswordResetPageState
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 100,
                       width: 100,
                       child: Image(
-                        image: AssetImage('assets/images/logo.png'),
+                        image: AppImages.appLogo,
                       ),
                     ),
                     const SizedBox(height: 8.0),

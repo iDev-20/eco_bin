@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/navigation.dart';
-import 'package:waste_management_app/resources/otp_input.dart';
+import 'package:waste_management_app/components/otp_input.dart';
 
 class VerifyPhoneNumberPage extends StatefulWidget {
   const VerifyPhoneNumberPage({super.key, required this.phoneNumber});
@@ -32,11 +33,11 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 100,
                       width: 100,
                       child: Image(
-                        image: AssetImage('assets/images/logo.png'),
+                        image: AppImages.appLogo,
                       ),
                     ),
                     const SizedBox(height: 8.0),

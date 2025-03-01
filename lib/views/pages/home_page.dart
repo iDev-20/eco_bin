@@ -3,6 +3,8 @@ import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
+import '../../resources/app_images.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -25,17 +27,17 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                       Row(
                         children: [
                           SizedBox(
                             height: 36.0,
                             width: 36.0,
                             child: Image(
-                              image: AssetImage('assets/images/logo.png'),
+                              image: AppImages.appLogo,
                             ),
                           ),
-                          SizedBox(width: 8.0),
-                          Text(
+                          const SizedBox(width: 8.0),
+                          const Text(
                             AppStrings.homeCaps,
                             style: TextStyle(
                                 color: AppColors.darkBlueText,

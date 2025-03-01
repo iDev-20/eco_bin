@@ -16,7 +16,7 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.backgroundColor = AppColors.splashScreenGreen,
+    this.backgroundColor = AppColors.primaryColor,
     this.foregroundColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.overlayColor,
@@ -74,27 +74,26 @@ class PrimaryButton extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        expand?
-          Expanded(
-            child: TextButton(
-              style: getStyle(),
-              onPressed: enabled
-                ? () {
-                    onTap?.call();
-                  }
-                : null,
-            child: child,
-          ))
-          :
-          TextButton(
-            style: getStyle(),
-            onPressed: enabled
-              ? () {
-                  onTap?.call();
-                }
-              : null,
-            child: child,
-          )
+        expand
+            ? Expanded(
+                child: TextButton(
+                style: getStyle(),
+                onPressed: enabled
+                    ? () {
+                        onTap?.call();
+                      }
+                    : null,
+                child: child,
+              ))
+            : TextButton(
+                style: getStyle(),
+                onPressed: enabled
+                    ? () {
+                        onTap?.call();
+                      }
+                    : null,
+                child: child,
+              )
       ],
     );
   }
@@ -113,7 +112,7 @@ class SecondaryButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.backgroundColor = AppColors.splashScreenGreen,
+    this.backgroundColor = AppColors.primaryColor,
     this.foregroundColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.overlayColor,
@@ -150,7 +149,7 @@ class SecondaryButton extends StatelessWidget {
       backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return AppColors.splashScreenGreen;
+          return AppColors.primaryColor;
         }
         return backgroundColor; // Defer to the widget's default.
       }),

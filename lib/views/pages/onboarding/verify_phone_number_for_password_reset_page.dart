@@ -7,15 +7,18 @@ import 'package:waste_management_app/resources/otp_input.dart';
 import 'package:waste_management_app/views/pages/onboarding/set_new_password_page.dart';
 
 class VerifyPhoneNumberForPasswordResetPage extends StatefulWidget {
-  const VerifyPhoneNumberForPasswordResetPage({super.key, required this.phoneNumber});
+  const VerifyPhoneNumberForPasswordResetPage(
+      {super.key, required this.phoneNumber});
 
   final String phoneNumber;
 
   @override
-  State<VerifyPhoneNumberForPasswordResetPage> createState() => _VerifyPhoneNumbeForrPasswordResetPageState();
+  State<VerifyPhoneNumberForPasswordResetPage> createState() =>
+      _VerifyPhoneNumbeForrPasswordResetPageState();
 }
 
-class _VerifyPhoneNumbeForrPasswordResetPageState extends State<VerifyPhoneNumberForPasswordResetPage> {
+class _VerifyPhoneNumbeForrPasswordResetPageState
+    extends State<VerifyPhoneNumberForPasswordResetPage> {
   bool wrongOtp = false;
 
   TextEditingController otpController = TextEditingController();
@@ -105,7 +108,7 @@ class _VerifyPhoneNumbeForrPasswordResetPageState extends State<VerifyPhoneNumbe
                       child: const Text(
                         AppStrings.resendCode,
                         style: TextStyle(
-                          color: AppColors.splashScreenGreen,
+                          color: AppColors.primaryColor,
                           fontSize: 15.0,
                           fontWeight: FontWeight.w600,
                         ),

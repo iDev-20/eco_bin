@@ -21,7 +21,7 @@ class ResetPasswordSucceddfulPage extends StatelessWidget {
               const Icon(
                 Icons.check_circle_outline_rounded,
                 size: 150,
-                color: AppColors.splashScreenGreen,
+                color: AppColors.primaryColor,
               ),
               const SizedBox(height: 16),
               const Text(

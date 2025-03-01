@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
         useMaterial3: false,
-        primaryColor: AppColors.primaryGreen,
+        primaryColor: AppColors.primaryColor,
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.white,
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16.0))),
-          backgroundColor: AppColors.primaryGreen,
+          backgroundColor: AppColors.primaryColor,
           elevation: 0,
         ),
         bottomAppBarTheme: const BottomAppBarTheme(

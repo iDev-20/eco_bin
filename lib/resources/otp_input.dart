@@ -86,16 +86,15 @@ class OtpInput extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
 
-  const OtpInput({
-    this.otpInput = _emptyOtp,
-    this.onSubmit,
-    this.onChanged,
-    required this.wrongOtp,
-    this.controller,
-    this.validator,
-    this.autoFocus,
-    super.key
-  });
+  const OtpInput(
+      {this.otpInput = _emptyOtp,
+      this.onSubmit,
+      this.onChanged,
+      required this.wrongOtp,
+      this.controller,
+      this.validator,
+      this.autoFocus,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +157,8 @@ class OtpInput extends StatelessWidget {
         strokeWidth: 1,
         gapSpace: 12,
         //bgColorBuilder: PinListenColorBuilder(AppColors.greyInputBackground, AppColors.greyInputBackground),
-        strokeColorBuilder: PinListenColorBuilder(AppColors.splashScreenGreen, Colors.grey.shade400),
+        strokeColorBuilder:
+            PinListenColorBuilder(AppColors.primaryColor, Colors.grey.shade400),
         textStyle: const TextStyle(color: AppColors.darkBlueText),
       ),
       onChanged: onChanged,
@@ -167,7 +167,7 @@ class OtpInput extends StatelessWidget {
         enabled: true,
         width: 2,
         height: 25,
-        color: AppColors.splashScreenGreen,
+        color: AppColors.primaryColor,
       ),
     );
   }

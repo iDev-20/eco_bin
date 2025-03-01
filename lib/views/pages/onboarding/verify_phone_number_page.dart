@@ -105,7 +105,7 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                       child: const Text(
                         AppStrings.resendCode,
                         style: TextStyle(
-                          color: AppColors.splashScreenGreen,
+                          color: AppColors.primaryColor,
                           fontSize: 15.0,
                           fontWeight: FontWeight.w600,
                         ),
@@ -153,7 +153,7 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                 Navigation.navigateToScreen(
                     context: context, screen: const NavigationHostPage());
               },
-              child: const Text(AppStrings.submit ),
+              child: const Text(AppStrings.submit),
             ),
           ),
         ],

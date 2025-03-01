@@ -68,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               Text(
                                 'Eco',
                                 style: TextStyle(
-                                    color: AppColors.splashScreenGreen,
+                                    color: AppColors.primaryColor,
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w900),
                               ),
@@ -180,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: const Text(
                           AppStrings.login,
                           style: TextStyle(
-                              color: AppColors.splashScreenGreen,
+                              color: AppColors.primaryColor,
                               fontSize: 15.0,
                               fontWeight: FontWeight.w700),
                         ),

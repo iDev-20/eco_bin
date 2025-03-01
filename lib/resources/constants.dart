@@ -6,10 +6,9 @@ final kTextFieldInputDecoration = InputDecoration(
   filled: true,
   fillColor: const Color(0x1FFFFFFF),
   prefixStyle: const TextStyle(
-    color: AppColors.darkBlueText,
-    fontSize: 15.0,
-    fontWeight: FontWeight.w500
-  ),
+      color: AppColors.darkBlueText,
+      fontSize: 15.0,
+      fontWeight: FontWeight.w500),
   // suffixIcon: Padding(
   //   padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
   //   child: AppImages.svgSearchIcon,
@@ -22,7 +21,7 @@ final kTextFieldInputDecoration = InputDecoration(
   ),
   focusedBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
-    borderSide: const BorderSide(color: AppColors.splashScreenGreen),
+    borderSide: const BorderSide(color: AppColors.primaryColor),
   ),
   enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),

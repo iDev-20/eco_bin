@@ -92,7 +92,7 @@ class PrimaryTextFormField extends StatelessWidget {
                 // fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
-              cursorColor: AppColors.splashScreenGreen,
+              cursorColor: AppColors.primaryColor,
               decoration: kTextFieldInputDecoration.copyWith(
                   prefixText: prefixText,
                   hintText: hintText,

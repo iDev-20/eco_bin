@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 6.0),
                         decoration: BoxDecoration(
-                          color: AppColors.primaryGreen,
+                          color: AppColors.primaryColor,
                           // color: Colors.green[700],
                           borderRadius: BorderRadius.circular(10.0),
                         ),

@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: const Text(
                                     AppStrings.forgotPassword,
                                     style: TextStyle(
-                                        color: AppColors.splashScreenGreen,
+                                        color: AppColors.primaryColor,
                                         fontWeight: FontWeight.w700),
                                     textAlign: TextAlign.left,
                                   ),
@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           AppStrings.signUp,
                           style: TextStyle(
-                              color: AppColors.splashScreenGreen,
+                              color: AppColors.primaryColor,
                               fontSize: 15.0,
                               fontWeight: FontWeight.w700),
                         ),

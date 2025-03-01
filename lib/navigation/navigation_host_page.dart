@@ -73,7 +73,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
                   )
                 : null,
             child: IconButton(
-              color: isSelected ? AppColors.primaryGreen : Colors.grey,
+              color: isSelected ? AppColors.primaryColor : Colors.grey,
               onPressed: onPressed,
               icon: Icon(icon, size: 30),
             ),
@@ -81,7 +81,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           Text(
             text,
             style: TextStyle(
-              color: isSelected ? AppColors.primaryGreen : Colors.grey,
+              color: isSelected ? AppColors.primaryColor : Colors.grey,
               fontSize: 13,
             ),
           ),

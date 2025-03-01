@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-       Duration(seconds: 1.9.toInt()),
+      Duration(seconds: 1.9.toInt()),
       () {
         Navigation.navigateToScreen(
           context: context,
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Text(
                   'Eco',
                   style: TextStyle(
-                      color: AppColors.splashScreenGreen,
+                      color: AppColors.primaryColor,
                       fontSize: 55,
                       fontWeight: FontWeight.w900),
                 ),

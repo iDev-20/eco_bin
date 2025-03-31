@@ -12,6 +12,6 @@ class TransactionsPage extends StatefulWidget {
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
   Widget build(BuildContext context) {
-    return AppPage(title: AppStrings.transactionsCaps, body: Column());
+    return const AppPage(title: AppStrings.transactionsCaps, body: Column());
   }
 }

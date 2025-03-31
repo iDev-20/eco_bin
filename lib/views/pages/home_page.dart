@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:waste_management_app/extensions/date_time_extensions.dart';
+import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
@@ -12,40 +14,60 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<LatestUpdates> updates = [
+    LatestUpdates(
+        icon: Iconsax.trash,
+        heading: AppStrings.scheduledWasteCollection,
+        time: DateTime.now().fullFriendlyDate(),
+        update: AppStrings.sampleScheduledWasteUpdate),
+    LatestUpdates(
+        icon: Iconsax.cloud_cross,
+        heading: AppStrings.serviceDelayWeather,
+        time: DateTime.now().fullFriendlyDate(),
+        update: AppStrings.sampleServiceDelayUpdate),
+    LatestUpdates(
+        icon: Iconsax.close_circle,
+        heading: AppStrings.missedCollection,
+        time: DateTime.now().fullFriendlyDate(),
+        update: AppStrings.sampleMissedCollectionDelay),
+    LatestUpdates(
+        icon: Iconsax.calendar_remove,
+        heading: AppStrings.noCollectionPublicHoliday,
+        time: DateTime.now().fullFriendlyDate(),
+        update: AppStrings.sampleNoCollectionUpdate),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return AppPage(
       title: AppStrings.homeCaps,
       body: Expanded(
-        child: ListView(
-          padding: const EdgeInsets.only(top: 8.0),
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                  card(),
-                ],
+        child: RefreshIndicator(
+          onRefresh: () async {},
+          child: ListView(
+            padding: const EdgeInsets.only(top: 8.0),
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ...updates.map(
+                      (e) => updateCard(e),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget card() {
+  Widget updateCard(LatestUpdates update) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
         decoration: BoxDecoration(
@@ -65,28 +87,28 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(color: AppColors.darkBlueText),
               ),
-              child: const Icon(Iconsax.trash),
+              child: Icon(update.icon),
             ),
             const SizedBox(width: 10),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Scheduled waste collection',
-                    style: TextStyle(
+                    update.heading,
+                    style: const TextStyle(
                         color: AppColors.darkBlueText,
                         fontSize: 16,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    'February 7th, 2025',
-                    style: TextStyle(color: Colors.grey),
+                    update.time,
+                    style: const TextStyle(color: Colors.grey),
                   ),
+                  const SizedBox(height: 5),
                   Text(
-                    'Regular waste collection is on schedule. '
-                    'Please ensure your bins are placed outside by 6AM',
-                    style: TextStyle(color: AppColors.darkBlueText),
+                    update.update,
+                    style: const TextStyle(color: AppColors.darkBlueText),
                   ),
                 ],
               ),

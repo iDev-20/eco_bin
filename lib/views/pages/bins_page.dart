@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 
@@ -12,6 +13,26 @@ class BinsPage extends StatefulWidget {
 class _BinsPageState extends State<BinsPage> {
   @override
   Widget build(BuildContext context) {
-    return AppPage(title: AppStrings.binsCaps, body: Column());
+    return AppPage(
+        title: AppStrings.binsCaps,
+        body: Column(
+          children: [
+            Container(
+              height: 100,
+              width: 100,
+              child: Image(image: AppImages.binImage1),
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              child: Image(image: AppImages.binImage2),
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              child: Image(image: AppImages.binImage3),
+            ),
+          ],
+        ));
   }
 }

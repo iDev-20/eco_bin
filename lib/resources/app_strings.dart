@@ -41,4 +41,21 @@ class AppStrings {
   static const transactionsCaps = 'TRANSACTIONS';
   static const profileCaps = 'PROFILE';
   static const gethelp = 'Get Help';
+
+  //Home
+  static const scheduledWasteCollection = 'Scheduled Waste Collection';
+  static const serviceDelayWeather = 'Service Delay Due to Weather';
+  static const missedCollection = 'Missed Collection';
+  static const noCollectionPublicHoliday = 'No Collection - Public Holiday';
+  static const sampleScheduledWasteUpdate =
+      'Regular waste collection is on schedule. '
+      'Please ensure your bins are placed outside by 6AM';
+  static const sampleServiceDelayUpdate =
+      'Heavy rainfall has delayed waste collection. '
+      'Pickup is rescheduled for tomorrow';
+  static const sampleMissedCollectionDelay =
+      'Waste collection was missed due to  unforeseen circumstances. '
+      'We apologize for the incovenience';
+  static const sampleNoCollectionUpdate =
+      'There will  be no waste collection today due to the public holiday';
 }

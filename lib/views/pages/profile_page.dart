@@ -12,6 +12,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return AppPage(title: AppStrings.profileCaps, body: Column());
+    return const AppPage(title: AppStrings.profileCaps, body: Column());
   }
 }

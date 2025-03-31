@@ -25,10 +25,14 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
   ];
 
   final List<Map<String, dynamic>> navItems = [
-    {'icon': Iconsax.home_1, 'text': AppStrings.home},
-    {'icon': Iconsax.trash, 'text': AppStrings.bins},
-    {'icon': Iconsax.receipt, 'text': AppStrings.transactions},
-    {'icon': Iconsax.profile_circle, 'text': AppStrings.profile},
+    {'icon': Iconsax.home5, 'text': AppStrings.home},
+    {
+      'icon': Icons.restore_from_trash_rounded,
+      'size': 27.0,
+      'text': AppStrings.bins
+    },
+    {'icon': Iconsax.receipt_2_15, 'text': AppStrings.transactions},
+    {'icon': Icons.person_rounded, 'size': 27.0, 'text': AppStrings.profile},
   ];
 
   @override
@@ -40,18 +44,20 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(navItems.length, (index) {
             return buildBottomNavIcon(
-              icon: navItems[index]['icon'],
-              text: navItems[index]['text'],
-              isSelected: currentPage == index,
-              onPressed: () => setState(() => currentPage = index),
-            );
+                icon: navItems[index]['icon'],
+                text: navItems[index]['text'],
+                isSelected: currentPage == index,
+                onPressed: () => setState(() => currentPage = index),
+                iconSize: navItems[index]['size']);
           }),
         ),
       ),
-      floatingActionButton: currentPage == 1 ? FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add, color: Colors.white),
-      ) : null,
+      floatingActionButton: currentPage == 1
+          ? FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(Icons.add, color: Colors.white),
+            )
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -61,6 +67,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
     required String text,
     required bool isSelected,
     required VoidCallback onPressed,
+    double? iconSize,
   }) {
     return GestureDetector(
       onTap: onPressed,
@@ -76,15 +83,15 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
             child: IconButton(
               color: isSelected ? AppColors.primaryColor : Colors.grey,
               onPressed: onPressed,
-              icon: Icon(icon, size: 27),
+              icon: Icon(icon, size: iconSize ?? 24),
             ),
           ),
           Text(
             text,
             style: TextStyle(
-              color: isSelected ? AppColors.primaryColor : Colors.grey,
-              fontSize: 13,
-            ),
+                color: isSelected ? AppColors.primaryColor : Colors.grey,
+                fontSize: 13,
+                fontWeight: FontWeight.w600),
           ),
         ],
       ),

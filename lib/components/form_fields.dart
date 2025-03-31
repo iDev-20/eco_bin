@@ -24,6 +24,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final String? prefixText;
   final double? height;
+  final double? bottomPadding;
 
   const PrimaryTextFormField(
       {super.key,
@@ -46,12 +47,13 @@ class PrimaryTextFormField extends StatelessWidget {
       this.required = false,
       this.onSaved,
       this.prefixText,
-      this.height});
+      this.height,
+      this.bottomPadding});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
+      padding: EdgeInsets.only(bottom: bottomPadding ?? 15),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

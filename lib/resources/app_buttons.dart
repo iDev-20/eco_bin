@@ -99,6 +99,104 @@ class PrimaryButton extends StatelessWidget {
   }
 }
 
+class PrimaryOutlinedButton extends StatelessWidget {
+  final Widget child;
+  final VoidCallback? onTap;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final Color borderColor;
+  final Color? overlayColor;
+  final bool enabled;
+  final EdgeInsets? contentPadding;
+  final bool expand;
+
+  const PrimaryOutlinedButton({
+    super.key,
+    required this.child,
+    this.onTap,
+    this.backgroundColor = Colors.white,
+    this.foregroundColor = AppColors.primaryColor,
+    this.borderColor = AppColors.primaryColor,
+    this.overlayColor,
+    this.enabled = true,
+    this.contentPadding,
+    this.expand = true,
+  });
+
+  ButtonStyle getStyle() {
+    return ButtonStyle(
+      enableFeedback: true,
+      overlayColor: MaterialStateColor.resolveWith(
+          (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.2)),
+      padding: MaterialStateProperty.all(
+        contentPadding ??
+            const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 14,
+            ),
+      ),
+      textStyle: MaterialStateProperty.all(
+        const TextStyle(
+          fontFamily: 'Lato',
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: borderColor,
+          ),
+        ),
+      ),
+      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey[300];
+        }
+        return backgroundColor; // Defer to the widget's default.
+      }),
+      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return AppColors.primaryColor;
+        }
+        return foregroundColor; // Defer to the widget's default.
+      }),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        expand
+            ? Expanded(
+                child: TextButton(
+                style: getStyle(),
+                onPressed: enabled
+                    ? () {
+                        onTap?.call();
+                      }
+                    : null,
+                child: child,
+              ))
+            : TextButton(
+                style: getStyle(),
+                onPressed: enabled
+                    ? () {
+                        onTap?.call();
+                      }
+                    : null,
+                child: child,
+              )
+      ],
+    );
+  }
+}
+
 class SecondaryButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;

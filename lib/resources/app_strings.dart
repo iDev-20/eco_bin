@@ -37,5 +37,8 @@ class AppStrings {
   static const profile = 'Profile';
 
   static const homeCaps = 'HOME';
+  static const binsCaps = 'BINS';
+  static const transactionsCaps = 'TRANSACTIONS';
+  static const profileCaps = 'PROFILE';
   static const gethelp = 'Get Help';
 }

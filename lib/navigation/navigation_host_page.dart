@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/bins_page.dart';
 import 'package:waste_management_app/views/pages/home_page.dart';
@@ -24,10 +25,10 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
   ];
 
   final List<Map<String, dynamic>> navItems = [
-    {'icon': Icons.home, 'text': AppStrings.home},
-    {'icon': Icons.restore_from_trash_rounded, 'text': AppStrings.bins},
-    {'icon': Icons.receipt_long_rounded, 'text': AppStrings.transactions},
-    {'icon': Icons.person_rounded, 'text': AppStrings.profile},
+    {'icon': Iconsax.home_1, 'text': AppStrings.home},
+    {'icon': Iconsax.trash, 'text': AppStrings.bins},
+    {'icon': Iconsax.receipt, 'text': AppStrings.transactions},
+    {'icon': Iconsax.profile_circle, 'text': AppStrings.profile},
   ];
 
   @override
@@ -47,10 +48,10 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           }),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: currentPage == 1 ? FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add, color: Colors.white),
-      ),
+      ) : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -75,7 +76,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
             child: IconButton(
               color: isSelected ? AppColors.primaryColor : Colors.grey,
               onPressed: onPressed,
-              icon: Icon(icon, size: 30),
+              icon: Icon(icon, size: 27),
             ),
           ),
           Text(

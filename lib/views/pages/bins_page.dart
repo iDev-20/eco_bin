@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/resources/app_page.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
 
 class BinsPage extends StatefulWidget {
   const BinsPage({super.key});
@@ -10,13 +12,6 @@ class BinsPage extends StatefulWidget {
 class _BinsPageState extends State<BinsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Bins page',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-    );
+    return AppPage(title: AppStrings.binsCaps, body: Column());
   }
 }

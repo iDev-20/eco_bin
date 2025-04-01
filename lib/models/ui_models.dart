@@ -16,12 +16,12 @@ class LatestUpdates {
 class RegisteredBins {
   final String binName;
   final String binNumber;
-  final String userName;
+  final String binOwner;
   final String outstandingBill;
 
   RegisteredBins(
       {required this.binName,
       required this.binNumber,
-      required this.userName,
+      required this.binOwner,
       required this.outstandingBill});
 }

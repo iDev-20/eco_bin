@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:waste_management_app/components/form_fields.dart';
-import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
@@ -11,7 +9,9 @@ import 'package:waste_management_app/widgets/page_divider.dart';
 class AppPage extends StatelessWidget {
   final String title;
   final Widget body;
-  const AppPage({super.key, required this.title, required this.body});
+  final Function(String, String, String)? addBin;
+  const AppPage(
+      {super.key, required this.title, required this.body, this.addBin});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class AppPage extends StatelessWidget {
             ? await showAdaptiveDialog(
                 context: context,
                 builder: (context) {
-                  return buildAlertDialog(context);
+                  return AddBinAlertDialog(addBin: addBin, context: context);
                 },
               )
             : Container();
@@ -91,69 +91,6 @@ class AppPage extends StatelessWidget {
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildAlertDialog(BuildContext context) {
-    TextEditingController binNumberController = TextEditingController();
-    TextEditingController binNameController = TextEditingController();
-    TextEditingController binOwnerController = TextEditingController();
-    return AlertDialog.adaptive(
-      content: Material(
-        elevation: 0,
-        color: Colors.transparent,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'New Bin',
-              style: TextStyle(
-                  color: AppColors.darkBlueText,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-            ),
-            const Text(
-              'This process takes less than a minute',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
-            ),
-            const SizedBox(height: 8),
-            PrimaryTextFormField(
-              bottomPadding: 3.0,
-              labelText: 'Please enter your bin number',
-              controller: binNumberController,
-              keyboardType: TextInputType.visiblePassword,
-            ),
-            PrimaryTextFormField(
-              bottomPadding: 3.0,
-              labelText: 'Unique name to identify your bin',
-              controller: binNameController,
-            ),
-            PrimaryTextFormField(
-              labelText: 'Owner of bin',
-              controller: binOwnerController,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: PrimaryOutlinedButton(
-                    onTap: () {
-                      Navigation.back(context: context);
-                    },
-                    child: const Text('Cancel'),
-                  ),
-                ),
-                const SizedBox(width: 15),
-                const Expanded(
-                  child: PrimaryButton(
-                    child: Text('Add'),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

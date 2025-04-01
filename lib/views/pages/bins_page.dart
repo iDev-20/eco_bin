@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
@@ -13,45 +14,70 @@ class BinsPage extends StatefulWidget {
 }
 
 class _BinsPageState extends State<BinsPage> {
-  List<RegisteredBins> bins = [
-    RegisteredBins(
-        binName: 'Home Bin',
-        binNumber: 'ECB123456',
-        userName: 'Jermaine Lamar',
-        outstandingBill: 'GHC 100.00'),
-    RegisteredBins(
-        binName: 'Office Bin',
-        binNumber: 'EBN265464',
-        userName: 'Buju Benson',
-        outstandingBill: 'GHC 50.00'),
-    RegisteredBins(
-        binName: 'Street Bin',
-        binNumber: 'ECB254545',
-        userName: 'Kendrick Lamar Duckworth',
-        outstandingBill: 'GHC 10.00'),
-  ];
+  List<RegisteredBins> bins = [];
+
+  // final Function(String, String, String)? addBin;
+
+  void createBin(String binName, String binNumber, String binOwner) {
+    setState(() {
+      bins.add(RegisteredBins(
+          binName: binName,
+          binNumber: binNumber,
+          binOwner: binOwner,
+          outstandingBill: '0.00'));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return AppPage(
       title: AppStrings.binsCaps,
       body: Expanded(
-        child: ListView(
-          padding: const EdgeInsets.only(top: 8.0),
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  ...bins.map(
-                    (bin) => singleBin(bin),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: bins.isEmpty
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'No bins registered yet ',
+                      style: TextStyle(
+                          color: AppColors.darkBlueText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        // await showAdaptiveDialog(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return AddBinAlertDialog(
+                        //         context: context,
+                        //         addBin: addBin,
+                        //       );
+                        //     });
+                      },
+                      child: const Text(
+                        'Add one Now',
+                        style: TextStyle(
+                            color: AppColors.primaryColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                )
+              : ListView(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  children: [
+                    ...bins.map(
+                      (bin) => singleBin(bin),
+                    ),
+                  ],
+                ),
         ),
       ),
+      addBin: createBin,
     );
   }
 
@@ -59,7 +85,8 @@ class _BinsPageState extends State<BinsPage> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
-        padding: const EdgeInsets.only(left: 8, top: 12, right: 16, bottom: 12),
+        padding: const EdgeInsets.only(
+            left: 8, top: 12, right: 16, bottom: 12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16.0),
@@ -102,7 +129,7 @@ class _BinsPageState extends State<BinsPage> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        registeredBins.userName,
+                        registeredBins.binOwner,
                         style: const TextStyle(
                             color: AppColors.darkBlueText,
                             fontSize: 14,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/app_dialogs.dart';
+// import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';

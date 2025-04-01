@@ -8,4 +8,6 @@ class AppColors {
   static const Color trialGreen = Color(0xFF2EA794);
   static const Color primaryBlue = Color(0xFF2071A3);
   static const Color darkBlueText = Color(0xFF122135);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color transparent = Color(0x00000000);
 }

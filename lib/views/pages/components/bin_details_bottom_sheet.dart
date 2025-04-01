@@ -51,8 +51,8 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          binDetail('Bin Number: ', registeredBins.binNumber),
           binDetail('Bin Name: ', registeredBins.binName),
+          binDetail('Bin Number: ', registeredBins.binNumber),
           binDetail('Bin Owner: ', registeredBins.binOwner),
           binDetail('Outstanding Bill: ', registeredBins.outstandingBill),
         ],

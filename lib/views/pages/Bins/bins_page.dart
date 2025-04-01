@@ -92,7 +92,7 @@ class _BinsPageState extends State<BinsPage> {
               context: context,
               title: AppStrings.binDetails,
               showCloseButton: true,
-              child: const BinDetailsBottomSheet());
+              child: BinDetailsBottomSheet(bin: registeredBins));
         },
         child: Container(
           padding:

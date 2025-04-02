@@ -10,6 +10,7 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/components/bin_details_bottom_sheet.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class BinsPage extends StatefulWidget {
   const BinsPage({super.key});
@@ -82,7 +83,7 @@ class _BinsPageState extends State<BinsPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'No bins registered yet ',
+                      'Start managing your bins—',
                       style: TextStyle(
                           color: AppColors.darkBlueText,
                           fontSize: 16,
@@ -90,14 +91,15 @@ class _BinsPageState extends State<BinsPage> {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        // await showAdaptiveDialog(
-                        //     context: context,
-                        //     builder: (context) {
-                        //       return AddBinAlertDialog(
-                        //         context: context,
-                        //         addBin: addBin,
-                        //       );
-                        //     });
+                        await showAdaptiveDialog(
+                            context: context,
+                            builder: (context) {
+                              return AddBinAlertDialog(
+                                context: context,
+                                addBin: (name, number, owner) =>
+                                    createBin(context, name, number, owner),
+                              );
+                            });
                       },
                       child: const Text(
                         AppStrings.addOneNow,

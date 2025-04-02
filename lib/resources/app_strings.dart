@@ -68,6 +68,6 @@ class AppStrings {
   static const confirmRemoval = 'Confirm Removal';
   static const payBill = 'Pay Bill';
   static const removeBin = 'Remove Bin';
-  static const addOneNow = 'Add one Now';
+  static const addOneNow = 'add one now!';
   static const outstandingBin = 'Outstanding bill';
 }

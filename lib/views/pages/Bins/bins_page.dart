@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
@@ -31,18 +33,28 @@ class _BinsPageState extends State<BinsPage> {
     setState(() {});
   }
 
-  void createBin(String binName, String binNumber, String binOwner) async {
-    setState(() {
-      bins.add(RegisteredBins(
-          binName: binName,
-          binNumber: binNumber,
-          binOwner: binOwner,
-          outstandingBill: '0.00'));
-    });
-    await SharedPrefs.saveBins(bins);
+  void createBin(BuildContext context, String binName, String binNumber,
+      String binOwner) async {
+    final binProvider = context.read<BinProvider>();
+    binProvider.addBin(RegisteredBins(
+        binName: binName,
+        binNumber: binNumber,
+        binOwner: binOwner,
+        outstandingBill: '0.00'));
+    // setState(() {
+    //   bins.add(RegisteredBins(
+    //       binName: binName,
+    //       binNumber: binNumber,
+    //       binOwner: binOwner,
+    //       outstandingBill: '0.00'));
+    // });
+    // await SharedPrefs.saveBins(bins);
   }
 
-  void openBinDetails({required RegisteredBins bin}) async {
+  void openBinDetails(
+      {required BuildContext context, required RegisteredBins bin}) async {
+    final binProviderr = context.read<BinProvider>();
+
     bool? removed = await showAppBottomSheet(
         context: context,
         title: AppStrings.binDetails,
@@ -51,12 +63,15 @@ class _BinsPageState extends State<BinsPage> {
     print("Bin removed? $removed");
 
     if (removed == true) {
-      _loadBins();
+      binProviderr.removeBin(bin.binNumber);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    var binProvider = context.watch<BinProvider>();
+    var bins = binProvider.bins;
+
     return AppPage(
       title: AppStrings.binsCaps,
       body: Expanded(
@@ -97,14 +112,16 @@ class _BinsPageState extends State<BinsPage> {
               : ListView(
                   padding: const EdgeInsets.only(top: 8.0),
                   children: [
-                    ...bins.map(
-                      (bin) => singleBin(bin),
-                    ),
+                    ...bins
+                        .map(
+                          (bin) => singleBin(bin),
+                        )
+                        .toList(),
                   ],
                 ),
         ),
       ),
-      addBin: createBin,
+      addBin: (name, number, owner) => createBin(context, name, number, owner),
     );
   }
 
@@ -113,7 +130,7 @@ class _BinsPageState extends State<BinsPage> {
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
         onTap: () {
-          openBinDetails(bin: registeredBins);
+          openBinDetails(context: context, bin: registeredBins);
           // showAppBottomSheet(
           //     context: context,
           //     title: AppStrings.binDetails,

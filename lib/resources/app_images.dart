@@ -15,4 +15,6 @@ class AppImages {
   static SvgPicture svgCloseBottomSheetIcon = SvgPicture.asset(
     'assets/svgs/close_bottom_sheet_icon.svg',
   );
+  static SvgPicture svgSuccessDialogIcon =
+      SvgPicture.asset('assets/svgs/success_dialog_icon.svg');
 }

@@ -27,6 +27,7 @@ class _BinsPageState extends State<BinsPage> {
 
   void _loadBins() async {
     bins = await SharedPrefs.loadBins();
+    print("Bins loaded: ${bins.length}");
     setState(() {});
   }
 
@@ -39,6 +40,19 @@ class _BinsPageState extends State<BinsPage> {
           outstandingBill: '0.00'));
     });
     await SharedPrefs.saveBins(bins);
+  }
+
+  void openBinDetails({required RegisteredBins bin}) async {
+    bool? removed = await showAppBottomSheet(
+        context: context,
+        title: AppStrings.binDetails,
+        child: BinDetailsBottomSheet(bin: bin));
+
+    print("Bin removed? $removed");
+
+    if (removed == true) {
+      _loadBins();
+    }
   }
 
   @override
@@ -99,11 +113,12 @@ class _BinsPageState extends State<BinsPage> {
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
         onTap: () {
-          showAppBottomSheet(
-              context: context,
-              title: AppStrings.binDetails,
-              showCloseButton: true,
-              child: BinDetailsBottomSheet(bin: registeredBins));
+          openBinDetails(bin: registeredBins);
+          // showAppBottomSheet(
+          //     context: context,
+          //     title: AppStrings.binDetails,
+          //     showCloseButton: true,
+          //     child: BinDetailsBottomSheet(bin: registeredBins));
         },
         child: Container(
           padding:

@@ -28,7 +28,10 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
                 child: PrimaryOutlinedButton(
                   onTap: () async {
                     await SharedPrefs.removeBin(widget.bin.binNumber);
+                    List<RegisteredBins> bins = await SharedPrefs.loadBins();
+                    print("Bins after removal: ${bins.length}");
                     if (mounted) {
+                      print("Removing bin: ${widget.bin.binNumber}");
                       Navigation.back(context: context, result: true);
                     }
                   },

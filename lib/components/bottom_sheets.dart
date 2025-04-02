@@ -12,7 +12,7 @@ Future showAppBottomSheet({
   bool isDismissible = true,
   bool isScrollControlled = true,
 }) async {
-  var res = await showModalBottomSheet(
+  var res = await showModalBottomSheet<bool>(
     context: context,
     useSafeArea: true,
     isDismissible: isDismissible,
@@ -38,37 +38,29 @@ Future showAppBottomSheet({
                   decoration: const BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft:
-                          Radius.circular(30),
-                      topRight:
-                          Radius.circular(30),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
                       // title and close button
                       Visibility(
                         visible: title != null || showCloseButton,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                           top: 16,
-                           left: 16,
-                           right: 8,
-                           bottom: 8
-                          ),
+                              top: 16, left: 16, right: 8, bottom: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                 child: Text(
-                                  title?? '',
+                                  title ?? '',
                                   style: const TextStyle(
-                                    color: AppColors.darkBlueText,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700
-                                  ),
+                                      color: AppColors.darkBlueText,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700),
                                 ),
                               ),
                               Visibility(
@@ -78,15 +70,16 @@ Future showAppBottomSheet({
                                   child: Ink(
                                     color: AppColors.transparent,
                                     child: InkWell(
-                                      borderRadius: BorderRadius.circular(100),
-                                      onTap: (){
-                                        Navigation.back(context: context);
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: AppImages.svgCloseBottomSheetIcon,
-                                      )
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        onTap: () {
+                                          Navigation.back(context: context);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child:
+                                              AppImages.svgCloseBottomSheetIcon,
+                                        )),
                                   ),
                                 ),
                               ),

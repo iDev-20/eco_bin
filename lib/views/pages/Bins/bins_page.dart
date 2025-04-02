@@ -100,7 +100,7 @@ class _BinsPageState extends State<BinsPage> {
                         //     });
                       },
                       child: const Text(
-                        'Add one Now',
+                        AppStrings.addOneNow,
                         style: TextStyle(
                             color: AppColors.primaryColor,
                             fontSize: 16,
@@ -194,7 +194,7 @@ class _BinsPageState extends State<BinsPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Text(
-                          'Outstanding bill',
+                          AppStrings.outstandingBin,
                           style: TextStyle(
                               color: AppColors.darkBlueText,
                               fontSize: 16,

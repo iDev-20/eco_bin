@@ -15,6 +15,7 @@ class PrimaryTextFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
+  final TextCapitalization? textCapitalization;
   final int maxLines;
   final int? maxLength;
   final bool obscureText;
@@ -26,29 +27,31 @@ class PrimaryTextFormField extends StatelessWidget {
   final double? height;
   final double? bottomPadding;
 
-  const PrimaryTextFormField(
-      {super.key,
-      this.controller,
-      this.labelText,
-      this.hintText,
-      this.prefixWidget,
-      this.suffixWidget,
-      this.onChanged,
-      this.validator,
-      this.inputFormatters,
-      this.keyboardType,
-      this.textInputAction,
-      this.maxLines = 1,
-      this.autofocus = false,
-      this.maxLength,
-      this.obscureText = false,
-      this.onTap,
-      this.enabled = true,
-      this.required = false,
-      this.onSaved,
-      this.prefixText,
-      this.height,
-      this.bottomPadding});
+  const PrimaryTextFormField({
+    super.key,
+    this.controller,
+    this.labelText,
+    this.hintText,
+    this.prefixWidget,
+    this.suffixWidget,
+    this.onChanged,
+    this.validator,
+    this.inputFormatters,
+    this.keyboardType,
+    this.textInputAction,
+    this.textCapitalization,
+    this.maxLines = 1,
+    this.autofocus = false,
+    this.maxLength,
+    this.obscureText = false,
+    this.onTap,
+    this.enabled = true,
+    this.required = false,
+    this.onSaved,
+    this.prefixText,
+    this.height,
+    this.bottomPadding,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +109,8 @@ class PrimaryTextFormField extends StatelessWidget {
               onChanged: onChanged,
               onSaved: onSaved,
               maxLength: maxLength,
-              textCapitalization: TextCapitalization.sentences,
+              textInputAction: textInputAction,
+              textCapitalization: textCapitalization ?? TextCapitalization.none,
             ),
           ),
         ],

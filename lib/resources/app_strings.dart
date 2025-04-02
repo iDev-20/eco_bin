@@ -61,4 +61,13 @@ class AppStrings {
 
   //Bins
   static const binDetails = 'Bin details';
+  static const youCannotRemoveThisBin =
+      'You cannot remove this bin because it has an '
+      'outstanding bill. Please settle the bill first';
+  static const cancel = 'Cancel';
+  static const confirmRemoval = 'Confirm Removal';
+  static const payBill = 'Pay Bill';
+  static const removeBin = 'Remove Bin';
+  static const addOneNow = 'Add one Now';
+  static const outstandingBin = 'Outstanding bill';
 }

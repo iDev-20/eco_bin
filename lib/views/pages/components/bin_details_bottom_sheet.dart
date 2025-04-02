@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:waste_management_app/models/shared_prefs.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class BinDetailsBottomSheet extends StatefulWidget {
   final RegisteredBins bin;
@@ -26,23 +31,93 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
             children: [
               Expanded(
                 child: PrimaryOutlinedButton(
+                  // enabled: widget.bin.outstandingBill == '0.00',
                   onTap: () async {
-                    await SharedPrefs.removeBin(widget.bin.binNumber);
-                    List<RegisteredBins> bins = await SharedPrefs.loadBins();
-                    print("Bins after removal: ${bins.length}");
-                    if (mounted) {
-                      print("Removing bin: ${widget.bin.binNumber}");
+                    bool? confirmDelete = await showAdaptiveDialog(
+                      context: context,
+                      builder: (context) {
+                        return AppAlertDialog(
+                          bin: widget.bin,
+                          title: AppStrings.confirmRemoval,
+                          desc:
+                              'Are you sure you want to remove your ${widget.bin.binName}?',
+                          firstOption: 'No',
+                          onFirstOptionTap: () {
+                            Navigation.back(context: context, result: false);
+                          },
+                          secondOption: 'Yes',
+                          onSecondOptionTap: () async {
+                            if (double.tryParse(widget.bin.outstandingBill) !=
+                                    null &&
+                                double.parse(widget.bin.outstandingBill) >
+                                    0.00) {
+                              bool? outStandingBillResponse =
+                                  await showAdaptiveDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AppAlertDialog(
+                                    bin: widget.bin,
+                                    title:
+                                        'Unable to Remove Bin ${widget.bin.binName}',
+                                    desc: AppStrings.youCannotRemoveThisBin,
+                                    firstOption: AppStrings.cancel,
+                                    onFirstOptionTap: () {
+                                      //closes the current dialog
+                                      Navigation.back(
+                                          context: context, result: false);
+                                      //closes confirm removal dialog
+                                      Navigation.back(
+                                          context: context, result: false);
+                                    },
+                                    secondOption: AppStrings.payBill,
+                                    onSecondOptionTap: () {
+                                      //uncomment when ready to implement
+                                      // Navigation.back(
+                                      //     context: context, result: false);
+                                    },
+                                  );
+                                },
+                              );
+                              if (outStandingBillResponse == false) {
+                                // Navigation.back(
+                                //     context: context, result: false);
+                                return;
+                              }
+                            }
+                            Navigation.back(context: context, result: true);
+                          },
+                        );
+                      },
+                    );
+
+                    if (confirmDelete == true) {
+                      context
+                          .read<BinProvider>()
+                          .removeBin(widget.bin.binNumber);
                       Navigation.back(context: context, result: true);
                     }
+
+                    if (confirmDelete == false &&
+                        widget.bin.outstandingBill == '0.00') {
+                      Navigation.back(context: context, result: false);
+                    }
+                    // await SharedPrefs.removeBin(widget.bin.binNumber);
+                    // List<RegisteredBins> bins = await SharedPrefs.loadBins();
+                    // print("Bins after removal: ${bins.length}");
+                    // if (mounted) {
+                    //   print("Removing bin: ${widget.bin.binNumber}");
+                    //   Navigation.back(context: context, result: true);
+                    // }
                   },
-                  child: const Text('Remove Bin'),
+                  child: const Text(AppStrings.removeBin),
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: PrimaryButton(
+                  enabled: widget.bin.outstandingBill != '0.00',
                   onTap: () {},
-                  child: const Text('Pay Bill'),
+                  child: const Text(AppStrings.payBill),
                 ),
               ),
             ],

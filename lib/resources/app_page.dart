@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
 class AppPage extends StatelessWidget {

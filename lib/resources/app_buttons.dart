@@ -160,7 +160,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
       foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.disabled)) {
-          return AppColors.primaryColor;
+          return AppColors.white;
         }
         return foregroundColor; // Defer to the widget's default.
       }),

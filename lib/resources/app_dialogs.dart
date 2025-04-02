@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
@@ -82,17 +81,8 @@ class AddBinAlertDialog extends StatelessWidget {
                           binNumberController.text,
                           binOwnerController.text,
                         );
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        prefs.setString('binNumber', binNameController.text);
-                        prefs.setString('binNumber', binNumberController.text);
-                        prefs.setString('binNumber', binOwnerController.text);
-                        prefs.setBool('isBinCreated', true);
-                        
+
                         Navigation.back(context: context);
-                        // binNumberController.clear();
-                        // binNameController.clear();
-                        // binOwnerController.clear();
                       }
                     },
                     child: const Text('Add'),

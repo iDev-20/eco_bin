@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 bool isBinCreated = false;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isBinCreated = prefs.getBool('isBinCreated') ?? false;
 

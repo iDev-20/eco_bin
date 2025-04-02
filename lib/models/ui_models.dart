@@ -24,4 +24,23 @@ class RegisteredBins {
       required this.binNumber,
       required this.binOwner,
       required this.outstandingBill});
+
+// Convert object to Map for SharedPreferences
+  Map<String, dynamic> toMap() {
+    return {
+      'binName': binName,
+      'binNumber': binNumber,
+      'binOwner': binOwner,
+      'outstandingBill': outstandingBill,
+    };
+  }
+
+ // Convert Map back to RegisteredBins object
+  factory RegisteredBins.fromMap(Map<String, dynamic> map) {
+    return RegisteredBins(
+        binName: map['binName'],
+        binNumber: map['binNumber'],
+        binOwner: map['binOwner'],
+        outstandingBill: map['outstandingBill']);
+  }
 }

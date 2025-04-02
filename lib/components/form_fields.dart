@@ -106,6 +106,7 @@ class PrimaryTextFormField extends StatelessWidget {
               onChanged: onChanged,
               onSaved: onSaved,
               maxLength: maxLength,
+              textCapitalization: TextCapitalization.sentences,
             ),
           ),
         ],

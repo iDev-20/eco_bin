@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
+import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_dialogs.dart';
@@ -18,9 +19,18 @@ class BinsPage extends StatefulWidget {
 class _BinsPageState extends State<BinsPage> {
   List<RegisteredBins> bins = [];
 
-  // final Function(String, String, String)? addBin;
+  @override
+  void initState() {
+    super.initState();
+    _loadBins();
+  }
 
-  void createBin(String binName, String binNumber, String binOwner) {
+  void _loadBins() async {
+    bins = await SharedPrefs.loadBins();
+    setState(() {});
+  }
+
+  void createBin(String binName, String binNumber, String binOwner) async {
     setState(() {
       bins.add(RegisteredBins(
           binName: binName,
@@ -28,6 +38,7 @@ class _BinsPageState extends State<BinsPage> {
           binOwner: binOwner,
           outstandingBill: '0.00'));
     });
+    await SharedPrefs.saveBins(bins);
   }
 
   @override

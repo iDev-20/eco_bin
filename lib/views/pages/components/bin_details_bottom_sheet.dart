@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
@@ -25,8 +26,11 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
             children: [
               Expanded(
                 child: PrimaryOutlinedButton(
-                  onTap: () {
-                    Navigation.back(context: context);
+                  onTap: () async {
+                    await SharedPrefs.removeBin(widget.bin.binNumber);
+                    if (mounted) {
+                      Navigation.back(context: context, result: true);
+                    }
                   },
                   child: const Text('Remove Bin'),
                 ),

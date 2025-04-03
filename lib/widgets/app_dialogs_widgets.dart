@@ -299,6 +299,7 @@ class AppAlertDialog extends StatelessWidget {
           children: [
             Text(
               title,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColors.darkBlueText,
                   fontSize: 20,

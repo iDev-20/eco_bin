@@ -244,7 +244,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       GestureDetector(
                         onTap: () {
                           Navigation.navigateToScreen(
-                              context: context, screen: const LoginPage());
+                              context: context, screen: LoginPage(role: widget.role,));
                         },
                         child: const Text(
                           AppStrings.login,

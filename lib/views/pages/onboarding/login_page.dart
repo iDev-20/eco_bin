@@ -10,7 +10,8 @@ import 'package:waste_management_app/views/pages/onboarding/forgot_password_page
 import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final String? role;
+  const LoginPage({super.key, this.role});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -169,8 +170,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Navigation.navigateToScreen(
-                          //     context: context, screen: const SignUpPage());
+                          Navigation.navigateToScreen(
+                              context: context,
+                              screen: SignUpPage(
+                                role: widget.role ?? '',
+                              ));
                         },
                         child: const Text(
                           AppStrings.signUp,

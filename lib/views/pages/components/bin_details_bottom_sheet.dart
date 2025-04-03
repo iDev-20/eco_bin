@@ -8,6 +8,7 @@ import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/transactions_page.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class BinDetailsBottomSheet extends StatefulWidget {
@@ -71,9 +72,15 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
                                     },
                                     secondOption: AppStrings.payBill,
                                     onSecondOptionTap: () {
-                                      //uncomment when ready to implement
-                                      // Navigation.back(
-                                      //     context: context, result: false);
+                                      Navigation.back(
+                                          context: context, result: false);
+                                      Navigation.back(
+                                          context: context, result: false);
+                                      Navigation.back(
+                                          context: context, result: false);
+                                      Navigation.navigateToScreen(
+                                          context: context,
+                                          screen: const TransactionsPage());
                                     },
                                   );
                                 },
@@ -116,7 +123,11 @@ class _BinDetailsBottomSheetState extends State<BinDetailsBottomSheet> {
               Expanded(
                 child: PrimaryButton(
                   enabled: widget.bin.outstandingBill != '0.00',
-                  onTap: () {},
+                  onTap: () {
+                    Navigation.back(context: context, result: false);
+                    Navigation.navigateToScreen(
+                        context: context, screen: const TransactionsPage());
+                  },
                   child: const Text(AppStrings.payBill),
                 ),
               ),

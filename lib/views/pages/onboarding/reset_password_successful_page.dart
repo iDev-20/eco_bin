@@ -3,7 +3,7 @@ import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_login_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 
 class ResetPasswordSucceddfulPage extends StatelessWidget {
   const ResetPasswordSucceddfulPage({super.key});
@@ -44,7 +44,7 @@ class ResetPasswordSucceddfulPage extends StatelessWidget {
               PrimaryButton(
                 onTap: () {
                   Navigation.navigateToScreen(
-                      context: context, screen: const HouseholdLoginPage());
+                      context: context, screen: const LoginPage());
                 },
                 child: const Text('Back to Login'),
               ),

@@ -5,20 +5,24 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_login_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_page.dart';
 
-class HouseholdSignUpPage extends StatefulWidget {
-  const HouseholdSignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  final String role;
+  const SignUpPage({super.key, required this.role});
 
   @override
-  State<HouseholdSignUpPage> createState() => _HouseholdSignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _HouseholdSignUpPageState extends State<HouseholdSignUpPage> {
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController businessNameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController vehicleIDController = TextEditingController();
 
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
@@ -91,9 +95,10 @@ class _HouseholdSignUpPageState extends State<HouseholdSignUpPage> {
                             ],
                           ),
                           const SizedBox(height: 10.0),
-                          const Text(
-                            AppStrings.signUpWithYourGhanaMobileNumber,
-                            style: TextStyle(
+                          Text(
+                            'Sign up as ${widget.role}',
+                            // AppStrings.signUpWithYourGhanaMobileNumber,
+                            style: const TextStyle(
                                 color: AppColors.darkBlueText,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500),
@@ -168,6 +173,41 @@ class _HouseholdSignUpPageState extends State<HouseholdSignUpPage> {
                                     setState(() {});
                                   },
                                 ),
+                                //Coming later
+                                // if (widget.role == 'Business') ...[
+                                //   PrimaryTextFormField(
+                                //     hintText: 'Business Name',
+                                //     keyboardType: TextInputType.phone,
+                                //     controller: businessNameController,
+                                //     maxLength: 10,
+                                //     onChanged: (c) {
+                                //       setState(() {});
+                                //     },
+                                //   ),
+                                //   PrimaryTextFormField(
+                                //     hintText: 'Business Address',
+                                //     keyboardType: TextInputType.phone,
+                                //     controller: addressController,
+                                //     maxLength: 10,
+                                //     onChanged: (c) {
+                                //       setState(() {});
+                                //     },
+                                //   ),
+                                // ],
+                                if (widget.role == 'Collector') ...[
+                                  PrimaryTextFormField(
+                                    height: 36.0,
+                                    hintText: 'Vehicle ID',
+                                    keyboardType: TextInputType.visiblePassword,
+                                    controller: vehicleIDController,
+                                    textCapitalization:
+                                        TextCapitalization.characters,
+                                    // maxLength: 10,
+                                    onChanged: (c) {
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
                               ],
                             ),
                           )
@@ -204,8 +244,7 @@ class _HouseholdSignUpPageState extends State<HouseholdSignUpPage> {
                       GestureDetector(
                         onTap: () {
                           Navigation.navigateToScreen(
-                              context: context,
-                              screen: const HouseholdLoginPage());
+                              context: context, screen: const LoginPage());
                         },
                         child: const Text(
                           AppStrings.login,

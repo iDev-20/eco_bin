@@ -7,16 +7,16 @@ import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
-import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_sign_up_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
 
-class HouseholdLoginPage extends StatefulWidget {
-  const HouseholdLoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<HouseholdLoginPage> createState() => _HouseholdLoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _HouseholdLoginPageState extends State<HouseholdLoginPage> {
+class _LoginPageState extends State<LoginPage> {
   TextEditingController phoneNumbercontroller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -169,9 +169,8 @@ class _HouseholdLoginPageState extends State<HouseholdLoginPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigation.navigateToScreen(
-                              context: context,
-                              screen: const HouseholdSignUpPage());
+                          // Navigation.navigateToScreen(
+                          //     context: context, screen: const SignUpPage());
                         },
                         child: const Text(
                           AppStrings.signUp,

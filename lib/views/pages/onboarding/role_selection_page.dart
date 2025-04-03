@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/views/pages/onboarding/business%20onboarding/business_sign_up_page.dart';
-import 'package:waste_management_app/views/pages/onboarding/collector%20onboarding/collector_sign_up_page.dart';
-import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_sign_up_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
 
 class RoleSelectionPage extends StatelessWidget {
   const RoleSelectionPage({super.key});
@@ -13,13 +11,26 @@ class RoleSelectionPage extends StatelessWidget {
   void navigateToNextScreen(BuildContext context, String role) {
     // Navigate based on role
     if (role == 'Household') {
-      Navigation.navigateToScreen(context: context, screen: const HouseholdSignUpPage());
-    } else if (role == 'Business') {
       Navigation.navigateToScreen(
-          context: context, screen: const BusinessSignUpPage());
-    } else if (role == 'Collector') {
+          context: context,
+          screen: SignUpPage(
+            role: role,
+          ));
+    } 
+    //Coming later
+    // else if (role == 'Business') {
+    //   Navigation.navigateToScreen(
+    //       context: context,
+    //       screen: SignUpPage(
+    //         role: role,
+    //       ));
+    // } 
+    else if (role == 'Collector') {
       Navigation.navigateToScreen(
-          context: context, screen: const CollectorSignUpPage());
+          context: context,
+          screen: SignUpPage(
+            role: role,
+          ));
     }
     print("Selected Role: $role");
     // Use Navigator.push to take the user to the next page
@@ -48,12 +59,13 @@ class RoleSelectionPage extends StatelessWidget {
               description: "Manage your waste pickups easily.",
               onTap: () => navigateToNextScreen(context, "Household"),
             ),
-            RoleCard(
-              icon: Icons.business,
-              title: "Business",
-              description: "Keep your workplace waste-free.",
-              onTap: () => navigateToNextScreen(context, "Business"),
-            ),
+            //Coming later
+            // RoleCard(
+            //   icon: Icons.business,
+            //   title: "Business",
+            //   description: "Keep your workplace waste-free.",
+            //   onTap: () => navigateToNextScreen(context, "Business"),
+            // ),
             RoleCard(
               icon: Icons.local_shipping,
               title: "Collector",

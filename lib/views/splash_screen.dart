@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_sign_up_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/role_selection_page.dart';
+// import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () {
         Navigation.navigateToScreen(
           context: context,
-          screen: const HouseholdSignUpPage(),
+          screen: const RoleSelectionPage(),
         );
       },
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/profile/report_issue_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -51,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
             profileCard(
               title: 'Account',
               icon: AppImages.svgProfileIcon,
-              action: const Text(
+              trailingWidget: const Text(
                 'Set your email',
                 style: TextStyle(
                     color: AppColors.primaryColor, fontWeight: FontWeight.w500),
@@ -66,7 +68,10 @@ class _ProfilePageState extends State<ProfilePage> {
             profileCard(
               title: 'Report an Isuue',
               icon: AppImages.svgChatIcon,
-              onTap: () {},
+              onTap: () {
+                Navigation.navigateToScreen(
+                    context: context, screen: const ReportIssuePage());
+              },
             ),
             profileCard(
               title: 'Log out',
@@ -84,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
       {required String title,
       required SvgPicture icon,
       required VoidCallback onTap,
-      Widget? action,
+      Widget? trailingWidget,
       Color? titleColor}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
@@ -122,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Row(
                       children: [
-                        action ?? const SizedBox(),
+                        trailingWidget ?? const SizedBox(),
                         const Icon(Icons.chevron_right_rounded,
                             color: AppColors.darkBlueText, size: 20)
                       ],

@@ -5,25 +5,33 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
+import 'package:waste_management_app/views/pages/onboarding/household%20onboarding/household_login_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_page.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class HouseholdSignUpPage extends StatefulWidget {
+  const HouseholdSignUpPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<HouseholdSignUpPage> createState() => _HouseholdSignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _HouseholdSignUpPageState extends State<HouseholdSignUpPage> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
 
   void togglePasswordVisibility() {
     setState(() {
       isPasswordVisible = !isPasswordVisible;
+    });
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    setState(() {
+      isConfirmPasswordVisible = !isConfirmPasswordVisible;
     });
   }
 
@@ -122,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 PrimaryTextFormField(
                                   height: 36.0,
-                                  hintText: AppStrings.enterPassword,
+                                  hintText: AppStrings.createPassword,
                                   keyboardType: TextInputType.visiblePassword,
                                   textInputAction: TextInputAction.done,
                                   controller: passwordController,
@@ -131,6 +139,26 @@ class _SignUpPageState extends State<SignUpPage> {
                                     onPressed: togglePasswordVisibility,
                                     icon: Icon(
                                       isPasswordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  onChanged: (c) {
+                                    setState(() {});
+                                  },
+                                ),
+                                PrimaryTextFormField(
+                                  height: 36.0,
+                                  hintText: AppStrings.confirmPassword,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  textInputAction: TextInputAction.done,
+                                  controller: confirmPasswordController,
+                                  obscureText: !isConfirmPasswordVisible,
+                                  suffixWidget: IconButton(
+                                    onPressed: toggleConfirmPasswordVisibility,
+                                    icon: Icon(
+                                      isConfirmPasswordVisible
                                           ? Icons.visibility
                                           : Icons.visibility_off,
                                       color: Colors.grey,
@@ -176,7 +204,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       GestureDetector(
                         onTap: () {
                           Navigation.navigateToScreen(
-                              context: context, screen: const LoginPage());
+                              context: context,
+                              screen: const HouseholdLoginPage());
                         },
                         child: const Text(
                           AppStrings.login,

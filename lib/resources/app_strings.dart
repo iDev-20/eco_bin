@@ -9,13 +9,14 @@ class AppStrings {
   static const yourMobileNumberMayBeVerifiedAgainstGHCard =
       'Your mobile number may be verified against your Ghana Card details';
   static const enterYourPhoneNumber = 'Enter your phone number';
-  static const enterYourPhonePassword = 'Enter your phone Password';
+  static const enterYourPhonePassword = 'Enter your Password';
   static const forgotPassword = 'Forgot password?';
   static const dontHaveAnAccount = "Don't have an account? ";
   static const signUp = 'Sign Up';
   static const signUpWithYourGhanaMobileNumber =
       'Sign Up with your Ghana mobile number';
   static const enterPassword = 'Enter password';
+  static const createPassword = 'Create password';
   static const login = 'Login';
   static const resetPassword = 'Reset Password';
   static const submit = 'Submit';

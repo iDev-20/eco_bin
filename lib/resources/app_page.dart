@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
@@ -5,6 +7,7 @@ import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/home/faq_page.dart';
+import 'package:waste_management_app/views/pages/home/notifications_page.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
@@ -72,6 +75,7 @@ class AppPage extends StatelessWidget {
 
   Widget actionButton(String title, BuildContext context) {
     final bool isBinsPage = title == AppStrings.binsCaps;
+    final bool isHomePage = title == AppStrings.homeCaps;
     return GestureDetector(
       onTap: () async {
         isBinsPage
@@ -83,34 +87,44 @@ class AppPage extends StatelessWidget {
               )
             : Navigation.navigateToScreen(
                 context: context, screen: const FAQPage());
-        // showAppBottomSheet(
-        //     context: context,
-        //     title: 'FAQ',
-        //     child: const FAQ(),
-        //   );
+        isHomePage
+            ? Navigation.navigateToScreen(
+                context: context, screen: const NotificationsPage())
+            : const SizedBox();
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Row(
-          children: [
-            Icon(isBinsPage ? Icons.add : Iconsax.message,
-                color: Colors.white, size: 20),
-            const SizedBox(width: 4),
-            Text(
-              isBinsPage ? 'Add Bin' : AppStrings.gethelp,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
+      child: isHomePage
+          ? const SizedBox(
+              height: 36,
+              width: 36,
+              child: Icon(
+                Icons.notifications_rounded,
+                color: AppColors.primaryColor,
+                size: 25,
+              ),
+            )
+          : Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Row(
+                children: [
+                  Icon(isBinsPage ? Icons.add : Iconsax.message,
+                      color: Colors.white, size: 20),
+                  const SizedBox(width: 4),
+                  Text(
+                    isBinsPage ? 'Add Bin' : AppStrings.gethelp,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

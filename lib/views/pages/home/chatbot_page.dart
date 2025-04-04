@@ -19,7 +19,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
   @override
   void initState() {
     super.initState();
-    messages.add({'bot': "Hi, I'm EcoBot 🤖. How can i assist you today?"});
+    messages.add({'bot': "Hi, I'm EcoBot 🤖. How can I assist you today?"});
   }
 
   void sendMessage(String message) {

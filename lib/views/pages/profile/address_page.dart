@@ -12,7 +12,7 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
-    return AppPageSecondary(
+    return const AppPageSecondary(
       title: AppStrings.savedAddresses,
       body: Column(
         children: [],

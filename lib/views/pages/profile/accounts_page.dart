@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/app_images.dart';
+// import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 

@@ -4,6 +4,7 @@ import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
@@ -80,7 +81,13 @@ class AppPage extends StatelessWidget {
                   return AddBinAlertDialog(addBin: addBin, context: context);
                 },
               )
-            : Container();
+            : Navigation.navigateToScreen(
+                context: context, screen: const FAQPage());
+        // showAppBottomSheet(
+        //     context: context,
+        //     title: 'FAQ',
+        //     child: const FAQ(),
+        //   );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
@@ -111,7 +118,14 @@ class AppPage extends StatelessWidget {
 class AppPageSecondary extends StatelessWidget {
   final String title;
   final Widget body;
-  const AppPageSecondary({super.key, required this.title, required this.body});
+  final FloatingActionButton? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  const AppPageSecondary(
+      {super.key,
+      required this.title,
+      required this.body,
+      this.floatingActionButton,
+      this.floatingActionButtonLocation});
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +134,8 @@ class AppPageSecondary extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
+        floatingActionButton: floatingActionButton,
+        floatingActionButtonLocation: floatingActionButtonLocation,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.white,

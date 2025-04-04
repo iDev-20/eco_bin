@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-import 'package:waste_management_app/resources/app_constants.dart';
 
 class PrimaryTextFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -26,32 +25,37 @@ class PrimaryTextFormField extends StatelessWidget {
   final String? prefixText;
   final double? height;
   final double? bottomPadding;
+  final double? borderRadius;
+  final double? focusedBorderRadius;
+  final double? enabledBorderRadius;
 
-  const PrimaryTextFormField({
-    super.key,
-    this.controller,
-    this.labelText,
-    this.hintText,
-    this.prefixWidget,
-    this.suffixWidget,
-    this.onChanged,
-    this.validator,
-    this.inputFormatters,
-    this.keyboardType,
-    this.textInputAction,
-    this.textCapitalization,
-    this.maxLines = 1,
-    this.autofocus = false,
-    this.maxLength,
-    this.obscureText = false,
-    this.onTap,
-    this.enabled = true,
-    this.required = false,
-    this.onSaved,
-    this.prefixText,
-    this.height,
-    this.bottomPadding,
-  });
+  const PrimaryTextFormField(
+      {super.key,
+      this.controller,
+      this.labelText,
+      this.hintText,
+      this.prefixWidget,
+      this.suffixWidget,
+      this.onChanged,
+      this.validator,
+      this.inputFormatters,
+      this.keyboardType,
+      this.textInputAction,
+      this.textCapitalization,
+      this.maxLines = 1,
+      this.autofocus = false,
+      this.maxLength,
+      this.obscureText = false,
+      this.onTap,
+      this.enabled = true,
+      this.required = false,
+      this.onSaved,
+      this.prefixText,
+      this.height,
+      this.bottomPadding,
+      this.borderRadius,
+      this.focusedBorderRadius,
+      this.enabledBorderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -98,10 +102,42 @@ class PrimaryTextFormField extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               cursorColor: AppColors.primaryColor,
-              decoration: kTextFieldInputDecoration.copyWith(
-                  prefixText: prefixText,
-                  hintText: hintText,
-                  suffixIcon: suffixWidget),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.all(8.0),
+                filled: true,
+                fillColor: const Color(0x1FFFFFFF),
+                prefixStyle: const TextStyle(
+                    color: AppColors.darkBlueText,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500),
+                // suffixIcon: Padding(
+                //   padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                //   child: AppImages.svgSearchIcon,
+                // ),
+                // suffixIconColor: const Color(0x99EBEBF5),
+                prefixText: prefixText,
+                hintText: hintText,
+                suffixIcon: suffixWidget,
+                hintStyle: const TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(borderRadius ?? 10),
+                  borderSide: BorderSide(color: Colors.grey.shade400),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(focusedBorderRadius ?? 10),
+                  borderSide: const BorderSide(color: AppColors.primaryColor),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(enabledBorderRadius ?? 10),
+                  borderSide: BorderSide(color: Colors.grey.shade400),
+                ),
+              ),
+              // kTextFieldInputDecoration.copyWith(
+              //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius ?? 10)),
+              //     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(focusedBorderRadius ?? 10)),
+              //     enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(enabledBorderRadius ?? 10)),),
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
               validator: validator,

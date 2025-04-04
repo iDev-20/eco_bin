@@ -59,7 +59,8 @@ class AppStrings {
       'We apologize for the incovenience';
   static const sampleNoCollectionUpdate =
       'There will  be no waste collection today due to the public holiday';
-
+  static const chatWithSupport = 'Chat with Support';
+  
   //Bins
   static const binDetails = 'Bin details';
   static const youCannotRemoveThisBin =

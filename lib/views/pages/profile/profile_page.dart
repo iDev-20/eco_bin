@@ -25,14 +25,14 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 CircleAvatar(
                   radius: 25,
-                  backgroundImage: AppImages.profileImage,
+                  // backgroundImage: AppImages.profileImage,
                 ),
-                const SizedBox(width: 8),
-                const Column(
+                SizedBox(width: 8),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(

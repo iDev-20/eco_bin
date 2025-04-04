@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
@@ -15,46 +16,54 @@ class AppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: AbsorbPointer(
+        absorbing: false,
+        child: Scaffold(
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            height: 36.0,
-                            width: 36.0,
-                            child: Image(
-                              image: AppImages.appLogo,
-                            ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 36.0,
+                                width: 36.0,
+                                child: Image(
+                                  image: AppImages.appLogo,
+                                ),
+                              ),
+                              const SizedBox(width: 6.0),
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                    color: AppColors.darkBlueText,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 6.0),
-                          Text(
-                            title,
-                            style: const TextStyle(
-                                color: AppColors.darkBlueText,
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          actionButton(title, context),
                         ],
                       ),
-                      actionButton(title, context),
                     ],
                   ),
-                ],
-              ),
+                ),
+                const PageDivider(),
+                body
+              ],
             ),
-            const PageDivider(),
-            body
-          ],
+          ),
         ),
       ),
     );
@@ -94,6 +103,43 @@ class AppPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AppPageSecondary extends StatelessWidget {
+  final String title;
+  final Widget body;
+  const AppPageSecondary({super.key, required this.title, required this.body});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColors.white,
+          leading: IconButton(
+            onPressed: () {
+              Navigation.back(context: context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.black,
+            ),
+          ),
+          title: Text(title),
+          titleTextStyle: const TextStyle(
+              color: AppColors.darkBlueText,
+              fontSize: 18,
+              fontWeight: FontWeight.w700),
+          centerTitle: true,
+        ),
+        body: body,
       ),
     );
   }

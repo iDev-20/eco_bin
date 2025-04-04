@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/profile/accounts_page.dart';
+import 'package:waste_management_app/views/pages/profile/address_page.dart';
 import 'package:waste_management_app/views/pages/profile/report_issue_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -52,22 +54,28 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 24),
             profileCard(
               title: 'Account',
-              icon: AppImages.svgProfileIcon,
+              icon: Iconsax.profile_circle,
               trailingWidget: const Text(
                 'Set your email',
                 style: TextStyle(
                     color: AppColors.primaryColor, fontWeight: FontWeight.w500),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigation.navigateToScreen(
+                    context: context, screen: const AccountsPage());
+              },
             ),
             profileCard(
               title: 'Addresses',
-              icon: AppImages.svgAddressIcon,
-              onTap: () {},
+              icon: Iconsax.location,
+              onTap: () {
+                Navigation.navigateToScreen(
+                    context: context, screen: const AddressPage());
+              },
             ),
             profileCard(
               title: 'Report an Isuue',
-              icon: AppImages.svgChatIcon,
+              icon: Iconsax.message,
               onTap: () {
                 Navigation.navigateToScreen(
                     context: context, screen: const ReportIssuePage());
@@ -75,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             profileCard(
               title: 'Log out',
-              icon: AppImages.svgLogoutIcon,
+              icon: Iconsax.logout,
               titleColor: Colors.red,
               onTap: () {},
             ),
@@ -87,7 +95,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget profileCard(
       {required String title,
-      required SvgPicture icon,
+      required IconData icon,
       required VoidCallback onTap,
       Widget? trailingWidget,
       Color? titleColor}) {
@@ -112,7 +120,15 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           child: Row(
             children: [
-              SizedBox(height: 18, width: 18, child: icon),
+              SizedBox(
+                height: 18,
+                width: 18,
+                child: Icon(
+                  icon,
+                  size: 19,
+                  color: titleColor == Colors.red ? Colors.red : Colors.black,
+                ),
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Row(
@@ -139,14 +155,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget iconBox(SvgPicture icon) {
-    return SizedBox(
-      height: 18,
-      width: 18,
-      child: icon,
     );
   }
 }

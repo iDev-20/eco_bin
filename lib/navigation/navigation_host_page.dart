@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/Bins/bins_page.dart';
+import 'package:waste_management_app/views/pages/bins/bins_page.dart';
 import 'package:waste_management_app/views/pages/home_page.dart';
 import 'package:waste_management_app/views/pages/profile/profile_page.dart';
 import 'package:waste_management_app/views/pages/transactions_page.dart';
@@ -42,14 +42,18 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(navItems.length, (index) {
-            return buildBottomNavIcon(
+          children: List.generate(
+            navItems.length,
+            (index) {
+              return buildBottomNavIcon(
                 icon: navItems[index]['icon'],
                 text: navItems[index]['text'],
                 isSelected: currentPage == index,
                 onPressed: () => setState(() => currentPage = index),
-                iconSize: navItems[index]['size']);
-          }),
+                iconSize: navItems[index]['size'],
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: currentPage == 0
@@ -58,7 +62,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
               child: const Icon(Icons.add, color: Colors.white),
             )
           : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 

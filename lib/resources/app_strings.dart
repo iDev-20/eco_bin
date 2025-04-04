@@ -71,4 +71,12 @@ class AppStrings {
   static const removeBin = 'Remove Bin';
   static const addOneNow = 'add one now!';
   static const outstandingBin = 'Outstanding bill';
+
+  //Profile
+  static const reportAnIssue = 'Report an Issue';
+  static const tellUsAboutYourIssue = 'Tell us about your issue';
+  static const enterDescription = 'Enter description';
+  static const accountDetails = 'Account Details';
+  static const editProfilePhoto = 'Edit Profile Photo';
+  static const savedAddresses = 'Saved Addresses';
 }

@@ -7,11 +7,10 @@ import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
-// import 'package:waste_management_app/resources/app_dialogs.dart';
 import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/components/bin_details_bottom_sheet.dart';
+import 'package:waste_management_app/views/pages/bins/components/bin_details_bottom_sheet.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class BinsPage extends StatefulWidget {

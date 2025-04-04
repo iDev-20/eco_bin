@@ -69,7 +69,7 @@ class PrimaryTextFormField extends StatelessWidget {
                   Text(
                     labelText ?? '',
                     style: const TextStyle(
-                        color: Colors.black,
+                        color: AppColors.darkBlueText,
                         fontSize: 14,
                         fontWeight: FontWeight.w400),
                   ),
@@ -246,6 +246,112 @@ class CustomPrimaryTextFormField extends StatelessWidget {
               onChanged: onChanged,
               onSaved: onSaved,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LongTextFormField extends StatelessWidget {
+  final TextEditingController? controller;
+  final String? labelText;
+  final String? hintText;
+  final Widget? prefixWidget;
+  final Widget? suffixWidget;
+  final void Function(String)? onChanged;
+  final void Function()? onTap;
+  final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final int? minLines;
+  final int? maxLines;
+  final int? maxLength;
+  final bool? obscureText;
+  final bool autofocus;
+  final bool enabled;
+  final TextCapitalization? textCapitalization;
+
+  const LongTextFormField({
+    super.key,
+    this.controller,
+    this.labelText,
+    this.hintText,
+    this.prefixWidget,
+    this.suffixWidget,
+    this.onChanged,
+    this.validator,
+    this.inputFormatters,
+    this.keyboardType,
+    this.minLines = 5,
+    this.maxLines,
+    this.autofocus = false,
+    this.maxLength,
+    this.obscureText,
+    this.onTap,
+    this.enabled = true,
+    this.textCapitalization,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Visibility(
+            visible: labelText != null,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                labelText ?? '',
+                style: const TextStyle(
+                    color: AppColors.darkBlueText,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+          TextFormField(
+            autofocus: autofocus,
+            minLines: minLines,
+            maxLines: maxLines,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
+            cursorColor: AppColors.primaryColor,
+            decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              hintText: hintText ?? '',
+              hintMaxLines: 3,
+              hintStyle: const TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+            ),
+            inputFormatters: inputFormatters,
+            keyboardType: keyboardType,
+            validator: validator,
+            controller: controller,
+            onChanged: onChanged,
+            textCapitalization: textCapitalization ?? TextCapitalization.none,
           ),
         ],
       ),

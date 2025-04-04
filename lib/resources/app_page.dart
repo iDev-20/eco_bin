@@ -78,19 +78,20 @@ class AppPage extends StatelessWidget {
     final bool isHomePage = title == AppStrings.homeCaps;
     return GestureDetector(
       onTap: () async {
-        isBinsPage
-            ? await showAdaptiveDialog(
-                context: context,
-                builder: (context) {
-                  return AddBinAlertDialog(addBin: addBin, context: context);
-                },
-              )
-            : Navigation.navigateToScreen(
-                context: context, screen: const FAQPage());
-        isHomePage
-            ? Navigation.navigateToScreen(
-                context: context, screen: const NotificationsPage())
-            : const SizedBox();
+        if (isHomePage) {
+          Navigation.navigateToScreen(
+              context: context, screen: const NotificationsPage());
+        } else if (isBinsPage) {
+          await showAdaptiveDialog(
+            context: context,
+            builder: (context) {
+              return AddBinAlertDialog(addBin: addBin, context: context);
+            },
+          );
+        } else {
+          Navigation.navigateToScreen(
+              context: context, screen: const FAQPage());
+        }
       },
       child: isHomePage
           ? const SizedBox(
@@ -169,7 +170,7 @@ class AppPageSecondary extends StatelessWidget {
               fontWeight: FontWeight.w700),
           centerTitle: true,
         ),
-        body: body,
+        body: SafeArea(child: body),
       ),
     );
   }

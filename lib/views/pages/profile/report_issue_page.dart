@@ -30,10 +30,16 @@ class _ReportIssuePageState extends State<ReportIssuePage> {
                 controller: descriptionController,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.sentences,
+                onChanged: (c) {
+                  setState(() {
+                    c;
+                  });
+                },
               ),
             ),
-            const PrimaryButton(
-              child: Text('Report Issue'),
+            PrimaryButton(
+              enabled: descriptionController.text.isNotEmpty,
+              child: const Text('Report Issue'),
             ),
           ],
         ),

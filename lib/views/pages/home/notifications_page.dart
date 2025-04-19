@@ -77,12 +77,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
         decoration: BoxDecoration(
-            // color: AppColors.primaryBlue,
-            borderRadius: BorderRadius.circular(16.0),
-            border: const Border(
-                bottom: BorderSide(
-              color: AppColors.darkBlueText,
-            ))),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+          // border: const Border(
+          //   bottom: BorderSide(
+          //     color: AppColors.darkBlueText,
+          //   ),
+          // ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 4,
+              offset: const Offset(2, 3),
+            ),
+          ],
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

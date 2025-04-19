@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
@@ -132,6 +133,9 @@ class _BinsPageState extends State<BinsPage> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
+        onLongPress: () {
+          
+        },
         onTap: () {
           openBinDetails(context: context, bin: registeredBins);
           // showAppBottomSheet(

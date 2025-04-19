@@ -204,7 +204,7 @@ class _BinsPageState extends State<BinsPage> {
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          'GHC ${registeredBins.outstandingBill}',
+                          'GH₵ ${registeredBins.outstandingBill}',
                           style: const TextStyle(
                               color: AppColors.primaryColor,
                               fontSize: 16,

@@ -81,18 +81,30 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  singleButton(title: 'Request Pickup'),
+                  singleButton(
+                    title: 'Request Pickup',
+                    onTap: () {},
+                  ),
                   const SizedBox(width: 10),
-                  singleButton(title: 'Find Bin'),
+                  singleButton(
+                    title: 'Find Bin',
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  singleButton(title: 'Pickup History'),
+                  singleButton(
+                    title: 'Pickup History',
+                    onTap: () {},
+                  ),
                   const SizedBox(width: 10),
-                  singleButton(title: 'Get Help'),
+                  singleButton(
+                    title: 'Get Help',
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
@@ -166,11 +178,20 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  singleTip(title: '♻️ Recyclables'),
+                  singleTip(
+                    title: '♻️ Recyclables',
+                    onTap: () {},
+                  ),
                   const SizedBox(width: 8),
-                  singleTip(title: '🍃 Organic'),
+                  singleTip(
+                    title: '🍃 Organic',
+                    onTap: () {},
+                  ),
                   const SizedBox(width: 8),
-                  singleTip(title: '🗑️ General'),
+                  singleTip(
+                    title: '🗑️ General',
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
@@ -247,27 +268,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget singleButton({required String title}) {
+  Widget singleButton({required String title, required VoidCallback onTap}) {
     return Expanded(
       child: Material(
         elevation: 2,
+        color: AppColors.transparent,
         borderRadius: BorderRadius.circular(15),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(15),
-            border: const Border(
-              top: BorderSide(color: AppColors.primaryColor, width: 0.8),
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: const Border(
+                top: BorderSide(color: AppColors.primaryColor, width: 0.8),
+              ),
             ),
-          ),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: AppColors.darkBlueText,
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: AppColors.darkBlueText,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),
@@ -300,27 +325,30 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget singleTip({required String title}) {
+  Widget singleTip({required String title, required VoidCallback onTap}) {
     return Expanded(
       child: Material(
         elevation: 2,
         borderRadius: BorderRadius.circular(15),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(15),
-            border: const Border(
-              top: BorderSide(color: AppColors.primaryColor, width: 0.8),
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: const Border(
+                top: BorderSide(color: AppColors.primaryColor, width: 0.8),
+              ),
             ),
-          ),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: AppColors.darkBlueText,
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: AppColors.darkBlueText,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),

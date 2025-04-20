@@ -56,13 +56,13 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
           ),
         ),
       ),
-      floatingActionButton: currentPage == 0
-          ? FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add, color: Colors.white),
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      // floatingActionButton: currentPage == 0
+      //     ? FloatingActionButton(
+      //         onPressed: () {},
+      //         child: const Icon(Icons.add, color: Colors.white),
+      //       )
+      //     : null,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 

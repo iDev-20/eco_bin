@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 
 class SharedPrefs {
+  //Bins
   static const String _binsKey = 'registeredBins';
 
   static Future<void> saveBins(List<RegisteredBins> bins) async {
@@ -34,5 +35,37 @@ class SharedPrefs {
 
     //save the updated list back to Shared preferences
     await saveBins(bins);
+  }
+
+  //Addresses
+  static const String _addressKey = 'savedPickupAddresses';
+
+  static Future<void> savedAddresses(List<SavedAddress> addresses) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> addressJson =
+        addresses.map((addr) => jsonEncode(addr.toMap())).toList();
+    await prefs.setStringList(_addressKey, addressJson);
+  }
+
+  static Future<List<SavedAddress>> loadAddresses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? addressJson = prefs.getStringList(_addressKey);
+
+    if (addressJson == null) return [];
+
+    return addressJson
+        .map((json) => SavedAddress.fromMap(jsonDecode(json)))
+        .toList();
+  }
+
+  static Future<void> removeAddress(String address) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<SavedAddress> addresses = await loadAddresses();
+
+    //Remove address with matching address
+    addresses.removeWhere((addr) => addr.address == address);
+
+    //Save updated lis back
+    await savedAddresses(addresses);
   }
 }

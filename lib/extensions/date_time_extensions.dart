@@ -49,6 +49,12 @@ extension DateTimeExtensions on DateTime {
     var format = DateFormat.yMMMMd();
     return format.format(this);
   }
+  
+   String fullFriendlyDateWithWeekDay() {
+    var format = DateFormat.yMMMMEEEEd();
+    return format.format(this);
+  }
+
 
   String friendlyDateMonth() {
     var format = DateFormat.yMMM();

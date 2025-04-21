@@ -80,4 +80,8 @@ class AppStrings {
   static const accountDetails = 'Account Details';
   static const editProfilePhoto = 'Edit Profile Photo';
   static const savedAddresses = 'Saved Addresses';
+
+  //Pickup
+  static const wasteType = 'Waste Type';
+  static const youHaveNoSavedAddressesATM = 'You have no saved addresses at the moment';
 }

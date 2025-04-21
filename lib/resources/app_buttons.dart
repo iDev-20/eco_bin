@@ -46,7 +46,7 @@ class PrimaryButton extends StatelessWidget {
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           side: BorderSide(
             color: borderColor,
           ),
@@ -144,7 +144,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           side: BorderSide(
             color: borderColor,
           ),

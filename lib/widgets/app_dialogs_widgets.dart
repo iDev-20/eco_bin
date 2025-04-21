@@ -268,6 +268,89 @@ class AddBinAlertDialog extends StatelessWidget {
   }
 }
 
+class AddAddressDialog extends StatelessWidget {
+  const AddAddressDialog({
+    super.key,
+    // required this.addBin,
+    required this.context,
+  });
+
+  // final Function(String, String, String)? addBin;
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController addressController = TextEditingController();
+    TextEditingController locationNameController = TextEditingController();
+    return AlertDialog.adaptive(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      content: Material(
+        elevation: 0,
+        color: AppColors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'New Address',
+              style: TextStyle(
+                  color: AppColors.darkBlueText,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700),
+            ),
+            const Text(
+              'This process takes less than a minute',
+              style: TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+            const SizedBox(height: 8),
+            PrimaryTextFormField(
+              bottomPadding: 3.0,
+              labelText: 'Address',
+              controller: addressController,
+              keyboardType: TextInputType.streetAddress,
+              textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.words,
+            ),
+            PrimaryTextFormField(
+              bottomPadding: 3.0,
+              labelText: 'Name of Location(Optional)',
+              controller: locationNameController,
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.done,
+              textCapitalization: TextCapitalization.words,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: PrimaryOutlinedButton(
+                    onTap: () {
+                      Navigation.back(context: context);
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: PrimaryButton(
+                    onTap: () async {
+                      if (addressController.text.isNotEmpty &&
+                          locationNameController.text.isNotEmpty) {
+
+                        Navigation.back(context: context);
+                      }
+                    },
+                    child: const Text('Add'),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class AppAlertDialog extends StatelessWidget {
   final RegisteredBins bin;
   final String title;

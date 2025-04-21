@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/splash_screen.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             height: 89),
       ),
-      home: const SplashScreen(),
+      home: const NavigationHostPage(),
     );
   }
 }

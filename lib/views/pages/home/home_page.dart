@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waste_management_app/extensions/date_time_extensions.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/home/components/tips_data.dart';
+import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -83,7 +85,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   singleButton(
                     title: 'Request Pickup',
-                    onTap: () {},
+                    onTap: () {
+                      Navigation.navigateToScreen(
+                          context: context, screen: const RequestPickupPage());
+                    },
                   ),
                   const SizedBox(width: 10),
                   singleButton(

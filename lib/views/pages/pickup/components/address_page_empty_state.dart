@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
+import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
@@ -13,6 +16,12 @@ class AddressPageEmptyState extends StatefulWidget {
 }
 
 class _AddressPageEmptyStateState extends State<AddressPageEmptyState> {
+  void createAddress(String address, String addressDetail) {
+    final addressProvider = context.read<AddressProvider>();
+    addressProvider.addAddress(
+        SavedAddress(address: address, addressDetail: addressDetail));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -45,10 +54,14 @@ class _AddressPageEmptyStateState extends State<AddressPageEmptyState> {
                 child: PrimaryButton(
                   onTap: () async {
                     await showAdaptiveDialog(
-                        context: context,
-                        builder: (context) {
-                          return AddAddressDialog(context: context);
-                        });
+                      context: context,
+                      builder: (context) {
+                        return AddAddressDialog(
+                          context: context,
+                          addAddress: createAddress,
+                        );
+                      },
+                    );
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,

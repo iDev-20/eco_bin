@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
@@ -271,11 +273,11 @@ class AddBinAlertDialog extends StatelessWidget {
 class AddAddressDialog extends StatelessWidget {
   const AddAddressDialog({
     super.key,
-    // required this.addBin,
+    required this.addAddress,
     required this.context,
   });
 
-  // final Function(String, String, String)? addBin;
+  final Function(String, String)? addAddress;
   final BuildContext context;
 
   @override
@@ -333,8 +335,18 @@ class AddAddressDialog extends StatelessWidget {
                 Expanded(
                   child: PrimaryButton(
                     onTap: () async {
-                      if (addressController.text.isNotEmpty &&
-                          locationNameController.text.isNotEmpty) {
+                      if (addressController.text.isNotEmpty) {
+                        final provider = context.read<AddressProvider>();
+
+                        final newAddress = SavedAddress(
+                            address: addressController.text.trim(),
+                            addressDetail: locationNameController.text.trim());
+
+                        await provider.addAddress(newAddress);
+                        addAddress?.call(
+                          addressController.text,
+                          locationNameController.text,
+                        );
 
                         Navigation.back(context: context);
                       }

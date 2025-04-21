@@ -43,14 +43,6 @@ class _BinsPageState extends State<BinsPage> {
         binNumber: binNumber,
         binOwner: binOwner,
         outstandingBill: '0.00'));
-    // setState(() {
-    //   bins.add(RegisteredBins(
-    //       binName: binName,
-    //       binNumber: binNumber,
-    //       binOwner: binOwner,
-    //       outstandingBill: '0.00'));
-    // });
-    // await SharedPrefs.saveBins(bins);
   }
 
   void openBinDetails(

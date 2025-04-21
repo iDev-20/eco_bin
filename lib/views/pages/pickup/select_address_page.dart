@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/page_indicator.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/views/pages/pickup/components/address_page_empty_state.dart';
 import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
 
 class SelectAddressPage extends StatefulWidget {
@@ -16,17 +19,19 @@ class SelectAddressPage extends StatefulWidget {
 }
 
 class _SelectAddressPageState extends State<SelectAddressPage> {
-  List<SavedAddress> savedAddresses = [
-    SavedAddress(address: 'East Legon Police Station'),
-    SavedAddress(address: 'Home', addressDetail: 'Sowutuom School Junction'),
-    SavedAddress(address: 'Aplaku M/A Basic School, Weija'),
-    SavedAddress(address: 'Office', addressDetail: 'West Hills Mall, Weija'),
-  ];
-
   SavedAddress? selectedAddress;
+
+  void addNewAddress(String address, String addressDetail) {
+    final addressProvider = context.read<AddressProvider>();
+    addressProvider.addAddress(
+        SavedAddress(address: address, addressDetail: addressDetail));
+  }
 
   @override
   Widget build(BuildContext context) {
+    final addressProvider = context.watch<AddressProvider>();
+    final addresses = addressProvider.addresses;
+
     return AppPageSecondary(
       title: 'Address',
       body: Column(
@@ -49,30 +54,67 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
             ),
           ),
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: [
-                AddressPageEmptyState(),
-                // const SizedBox(height: 16),
-                // ...savedAddresses.map(
-                //   (option) => singleAddress(
-                //     savedAddress: option,
-                //     selected: option == selectedAddress,
-                //     onTap: () {
-                //       if (selectedAddress == option) {
-                //         setState(() {
-                //           selectedAddress = null;
-                //         });
-                //       } else {
-                //         setState(() {
-                //           selectedAddress = option;
-                //         });
-                //       }
-                //     },
-                //   ),
-                // ),
-              ],
-            ),
+            child: addresses.isEmpty
+                ? const AddressPageEmptyState()
+                : ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    children: [
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Saved Addresses',
+                            style: TextStyle(
+                                color: AppColors.darkBlueText,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await showAdaptiveDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AddAddressDialog(
+                                    context: context,
+                                    addAddress: createAddress,
+                                  );
+                                },
+                              );
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.edit_location_alt_outlined,
+                                  color: AppColors.primaryColor,
+                                  size: 18,
+                                ),
+                                Text(
+                                  'Add new address',
+                                  style: TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      ...addresses.map(
+                        (option) => singleAddress(
+                          savedAddress: option,
+                          selected: option == selectedAddress,
+                          onTap: () {
+                            setState(() {
+                              selectedAddress =
+                                  selectedAddress == option ? null : option;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
           ),
           BackAndNextButton(
             onNextButtonTap: () {},

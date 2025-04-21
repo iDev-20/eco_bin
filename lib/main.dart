@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
+import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/splash_screen.dart';
@@ -15,10 +16,12 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isBinCreated = prefs.getBool('isBinCreated') ?? false;
 
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => BinProvider()..loadBins())
+        ChangeNotifierProvider(create: (context) => BinProvider()..loadBins()),
+        ChangeNotifierProvider(create: (context) => AddressProvider()..loadAddresses())
       ],
       child: const MyApp(),
     ),

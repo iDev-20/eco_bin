@@ -32,7 +32,7 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PageIndicator(index: 1, length: 3),
+                PageIndicator(index: 1, length: 4),
                 SizedBox(height: 16),
                 Text(
                   'Choose Date and Time',

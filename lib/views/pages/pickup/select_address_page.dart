@@ -38,7 +38,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PageIndicator(index: 2, length: 3),
+                PageIndicator(index: 2, length: 4),
                 SizedBox(height: 16),
                 Text(
                   'Where should we pick up from?',

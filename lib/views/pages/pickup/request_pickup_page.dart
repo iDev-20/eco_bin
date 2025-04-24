@@ -36,7 +36,7 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PageIndicator(index: 0, length: 3),
+                PageIndicator(index: 0, length: 4),
                 SizedBox(height: 16),
                 Text(
                   'What type of waste?',

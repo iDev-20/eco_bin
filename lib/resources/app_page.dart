@@ -131,16 +131,18 @@ class AppPage extends StatelessWidget {
 }
 
 class AppPageSecondary extends StatelessWidget {
-  final String title;
+  final String? title;
   final Widget body;
   final FloatingActionButton? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final bool? hideAppBar;
   const AppPageSecondary(
       {super.key,
-      required this.title,
+      this.title,
       required this.body,
       this.floatingActionButton,
-      this.floatingActionButtonLocation});
+      this.floatingActionButtonLocation,
+      this.hideAppBar});
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +153,7 @@ class AppPageSecondary extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
-        appBar: AppBar(
+        appBar: (hideAppBar ?? false) ? null :  AppBar(
           elevation: 0,
           backgroundColor: AppColors.white,
           leading: IconButton(
@@ -163,7 +165,7 @@ class AppPageSecondary extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          title: Text(title),
+          title: Text(title ?? ''),
           titleTextStyle: const TextStyle(
               color: AppColors.darkBlueText,
               fontSize: 18,

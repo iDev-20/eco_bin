@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/components/page_indicator.dart';
+import 'package:waste_management_app/extensions/date_time_extensions.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:waste_management_app/views/pages/pickup/request_pickup_success_page.dart';
+import 'package:waste_management_app/widgets/back_and_next_button.dart';
 
 class RequestPickupSummaryPage extends StatefulWidget {
   const RequestPickupSummaryPage({super.key});
@@ -15,112 +21,133 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
   Widget build(BuildContext context) {
     return AppPageSecondary(
       title: 'Pickup Summary',
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Please review your pickup request',
-              style: TextStyle(
-                color: AppColors.darkBlueText,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              padding: const EdgeInsets.fromLTRB(12, 16, 12, 4),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PageIndicator(index: 3, length: 4),
+                SizedBox(height: 16),
+                Text(
+                  'Please review your pickup request',
+                  style: TextStyle(
+                    color: AppColors.darkBlueText,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              child: Column(
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              children: [
+                Container(
+                  padding: const EdgeInsets.fromLTRB(12, 16, 12, 4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                  ),
+                  child: Column(
                     children: [
-                      Text(
-                        'Pickup Details',
-                        style: TextStyle(
-                            color: AppColors.darkBlueText,
-                            // fontSize: 13,
-                            fontWeight: FontWeight.w600),
-                      ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            Icons.edit,
-                            color: AppColors.primaryColor,
-                            size: 16,
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            'Edit details',
+                          const Text(
+                            'Pickup Details',
                             style: TextStyle(
-                                color: AppColors.primaryColor,
-                                // fontSize: 13,
-                                fontWeight: FontWeight.w600),
+                                color: AppColors.darkBlueText,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Row(
+                              children: [
+                                Icon(
+                                  Icons.edit,
+                                  color: AppColors.primaryColor,
+                                  size: 16,
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Edit details',
+                                  style: TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 12),
+                      singleDetail(
+                          icon: Iconsax.profile_circle, detail: 'Joseph Boyce'),
+                      singleDetail(icon: Iconsax.call, detail: '0539424541'),
+                      singleDetail(
+                          icon: Iconsax.calendar,
+                          detail: DateTime.now().fullFriendlyDate()),
+                      singleDetail(icon: Iconsax.clock, detail: '8:30 PM'),
+                      singleDetail(
+                          icon: Iconsax.location,
+                          detail: 'East Legon Police Station'),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  singleDetail(icon: Icons.location_on, detail: 'data'),
-                  singleDetail(icon: Icons.location_on, detail: 'data'),
-                  singleDetail(icon: Icons.location_on, detail: 'data'),
-                  singleDetail(icon: Icons.location_on, detail: 'data'),
-                  singleDetail(icon: Icons.location_on, detail: 'data'),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
                 ),
-                border: Border(
-                  top: BorderSide(color: Colors.grey.shade300),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Pickup Amount',
-                      style: TextStyle(
-                          color: Colors.grey.shade600,
-                          // fontSize: 13,
-                          fontWeight: FontWeight.w500)),
-                  RichText(
-                    text: const TextSpan(
-                      text: 'GHC ',
-                      style: TextStyle(
-                          color: AppColors.darkBlueText,
-                          // fontSize: 13,
-                          fontWeight: FontWeight.w600),
-                      children: [
-                        TextSpan(
-                          text: '2000',
-                          style: TextStyle(
-                              color: AppColors.darkBlueText,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ],
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8),
+                    ),
+                    border: Border(
+                      top: BorderSide(color: Colors.grey.shade300),
                     ),
                   ),
-                ],
-              ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Pickup Amount',
+                          style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w500)),
+                      RichText(
+                        text: const TextSpan(
+                          text: 'GH₵ ',
+                          style: TextStyle(
+                              color: AppColors.darkBlueText,
+                              fontWeight: FontWeight.w600),
+                          children: [
+                            TextSpan(
+                              text: '20.00',
+                              style: TextStyle(
+                                  color: AppColors.darkBlueText,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          BackAndNextButton(onNextButtonTap: () {
+            Navigation.navigateToScreen(
+                context: context, screen: const RequestPickupSuccessPage());
+          })
+        ],
       ),
     );
   }
@@ -130,14 +157,14 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Row(
         children: [
-          Icon(icon),
+          Icon(icon, color: Colors.grey.shade700, size: 18),
           const SizedBox(width: 4),
           Text(
             detail,
-            style: const TextStyle(
-              color: AppColors.darkBlueText,
-              // fontSize: 13,
-            ),
+            style: TextStyle(
+                color: Colors.grey.shade700, fontWeight: FontWeight.w600
+                // fontSize: 13,
+                ),
           ),
         ],
       ),

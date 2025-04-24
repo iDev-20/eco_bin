@@ -25,6 +25,10 @@ class PageIndicator extends StatelessWidget {
             visible: length > 2,
             child: singleIndicator(enabled: index > 1)
           ),
+          Visibility(
+            visible: length > 3,
+            child: singleIndicator(enabled: index > 2)
+          ),
         ],
       ),
     );

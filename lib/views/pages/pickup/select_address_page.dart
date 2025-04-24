@@ -3,10 +3,12 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/page_indicator.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/views/pages/pickup/components/address_page_empty_state.dart';
+import 'package:waste_management_app/views/pages/pickup/request_pickup_summary_page.dart';
 import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
@@ -111,7 +113,10 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                   ),
           ),
           BackAndNextButton(
-            onNextButtonTap: () {},
+            onNextButtonTap: () {
+              Navigation.navigateToScreen(
+                context: context, screen: const RequestPickupSummaryPage());
+            },
             onNextButtonEnabled: selectedAddress != null,
           )
         ],

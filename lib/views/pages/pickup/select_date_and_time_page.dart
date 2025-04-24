@@ -53,27 +53,6 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
                   labelText: 'What day is convenient for you?',
                   hintText: 'Select date',
                   value: selectedDate?.fullFriendlyDateWithWeekDay(),
-                  // onTap: () async {
-                  //   try {
-                  //     DateTime? res = await showAppBottomSheet(
-                  //       context: context,
-                  //       showCloseButton: false,
-                  //       child: const SelectDateBottomSheet(),
-                  //     );
-
-                  //     // Print the result type to verify if it's a DateTime
-                  //     print('Result type: ${res.runtimeType}');
-
-                  //     if (res != null) {
-                  //       setState(() {
-                  //         selectedDate = res;
-                  //       });
-                  //     }
-                  //   } catch (e) {
-                  //     // If there's an error, print it out
-                  //     print('Error occurred: $e');
-                  //   }
-                  // },
                   onTap: () async {
                     DateTime? res = await showAppBottomSheet(
                         context: context,
@@ -92,7 +71,7 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
             ),
           ),
           BackAndNextButton(
-            // onNextButtonEnabled: selectedDate != null,
+            onNextButtonEnabled: selectedDate != null,
             onNextButtonTap: () {
             Navigation.navigateToScreen(
                 context: context, screen: const SelectAddressPage());
@@ -115,7 +94,7 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
         Text(
           labelText,
           style: const TextStyle(
-              color: AppColors.darkBlueText, fontWeight: FontWeight.w600),
+              color: AppColors.darkBlueText, fontWeight: FontWeight.w500),
         ),
         labelWidget ?? const SizedBox.shrink(),
         const SizedBox(

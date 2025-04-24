@@ -91,7 +91,7 @@ class _SelectDateBottomSheetState extends State<SelectDateBottomSheet> {
             onTap: () {
               Navigation.back(
                 context: context,
-                // result: selectedDay,
+                result: selectedDay,
               );
             },
             child: const Text('Confirm'),

@@ -12,7 +12,7 @@ Future showAppBottomSheet({
   bool isDismissible = true,
   bool isScrollControlled = true,
 }) async {
-  var res = await showModalBottomSheet<bool>(
+  return await showModalBottomSheet(
     context: context,
     useSafeArea: true,
     isDismissible: isDismissible,
@@ -105,6 +105,4 @@ Future showAppBottomSheet({
       );
     },
   );
-
-  return res;
 }

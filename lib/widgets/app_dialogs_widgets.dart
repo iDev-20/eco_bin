@@ -273,11 +273,9 @@ class AddBinAlertDialog extends StatelessWidget {
 class AddAddressDialog extends StatelessWidget {
   const AddAddressDialog({
     super.key,
-    required this.addAddress,
     required this.context,
   });
 
-  final Function(String, String)? addAddress;
   final BuildContext context;
 
   @override
@@ -343,11 +341,6 @@ class AddAddressDialog extends StatelessWidget {
                             addressDetail: locationNameController.text.trim());
 
                         await provider.addAddress(newAddress);
-                        addAddress?.call(
-                          addressController.text,
-                          locationNameController.text,
-                        );
-
                         Navigation.back(context: context);
                       }
                     },

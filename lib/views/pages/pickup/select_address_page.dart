@@ -20,12 +20,7 @@ class SelectAddressPage extends StatefulWidget {
 
 class _SelectAddressPageState extends State<SelectAddressPage> {
   SavedAddress? selectedAddress;
-
-  void addNewAddress(String address, String addressDetail) {
-    final addressProvider = context.read<AddressProvider>();
-    addressProvider.addAddress(
-        SavedAddress(address: address, addressDetail: addressDetail));
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +71,6 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                                 builder: (context) {
                                   return AddAddressDialog(
                                     context: context,
-                                    addAddress: createAddress,
                                   );
                                 },
                               );

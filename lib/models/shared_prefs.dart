@@ -59,7 +59,6 @@ class SharedPrefs {
   }
 
   static Future<void> removeAddress(String address) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     List<SavedAddress> addresses = await loadAddresses();
 
     //Remove address with matching address

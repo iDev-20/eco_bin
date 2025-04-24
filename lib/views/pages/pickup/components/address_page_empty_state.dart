@@ -58,7 +58,6 @@ class _AddressPageEmptyStateState extends State<AddressPageEmptyState> {
                       builder: (context) {
                         return AddAddressDialog(
                           context: context,
-                          addAddress: createAddress,
                         );
                       },
                     );

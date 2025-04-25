@@ -20,9 +20,6 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
     {'icon': '♻️', 'title': 'Recyclables'},
     {'icon': '🌿', 'title': 'Organic Waste'},
     {'icon': '🗑️', 'title': 'General Waste'},
-    // '♻️  Recyclables',
-    // '🌿  Organic Waste',
-    // '🗑️  General Waste'
   ];
 
   List<String> selectedItems = [];

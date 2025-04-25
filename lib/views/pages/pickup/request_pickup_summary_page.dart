@@ -99,7 +99,8 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                       ),
                       const SizedBox(height: 12),
                       singleDetail(
-                          icon: Iconsax.profile_circle, detail: 'Jermaine Lamar'),
+                          icon: Iconsax.profile_circle,
+                          detail: 'Jermaine Lamar'),
                       singleDetail(icon: Iconsax.call, detail: '0539424541'),
                       singleDetail(
                           icon: Iconsax.trash,

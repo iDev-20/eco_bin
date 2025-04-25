@@ -11,7 +11,9 @@ import 'package:waste_management_app/views/pages/pickup/select_address_page.dart
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
 
 class SelectTimeAndDatePage extends StatefulWidget {
-  const SelectTimeAndDatePage({super.key});
+  const SelectTimeAndDatePage({super.key, this.selectedItems});
+
+  final List? selectedItems;
 
   @override
   State<SelectTimeAndDatePage> createState() => _SelectTimeAndDatePageState();
@@ -19,6 +21,15 @@ class SelectTimeAndDatePage extends StatefulWidget {
 
 class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
   DateTime? selectedDate;
+  String? selectedPeriod;
+  String? selectedTime;
+
+  void onTimeSelectionChanged(String period, String? time) {
+    setState(() {
+      selectedPeriod = period;
+      selectedTime = time;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +77,25 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
                   },
                 ),
                 const SizedBox(height: 16),
-                const SelectTimeWidget()
+                SelectTimeWidget(
+                  onSelectionChange: onTimeSelectionChanged,
+                )
               ],
             ),
           ),
           BackAndNextButton(
-            onNextButtonEnabled: selectedDate != null,
+            onNextButtonEnabled: selectedDate != null && selectedTime != null,
             onNextButtonTap: () {
-            Navigation.navigateToScreen(
-                context: context, screen: const SelectAddressPage());
-          })
+              Navigation.navigateToScreen(
+                context: context,
+                screen: SelectAddressPage(
+                  selectedItems: widget.selectedItems,
+                  selectedDate: selectedDate,
+                  selectedTime: selectedTime,
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

@@ -3,7 +3,9 @@ import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 
 class SelectTimeWidget extends StatefulWidget {
-  const SelectTimeWidget({super.key});
+  const SelectTimeWidget({super.key, required this.onSelectionChange});
+
+  final Function(String selectedPeriod, String? selectedTime) onSelectionChange;
 
   @override
   State<SelectTimeWidget> createState() => _SelectTimeWidgetState();
@@ -25,9 +27,7 @@ class _SelectTimeWidgetState extends State<SelectTimeWidget> {
         const Text(
           'Select a time',
           style: TextStyle(
-            color: AppColors.darkBlueText,
-            fontWeight: FontWeight.w600
-          ),
+              color: AppColors.darkBlueText, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 16),
         Container(
@@ -93,6 +93,7 @@ class _SelectTimeWidgetState extends State<SelectTimeWidget> {
           setState(() {
             selectedTime = time;
           });
+          widget.onSelectionChange(selectedPeriod, selectedTime);
         },
         borderRadius: BorderRadius.circular(8),
         child: Ink(

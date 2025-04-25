@@ -7,9 +7,20 @@ import 'package:waste_management_app/resources/app_page.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_success_page.dart';
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
+import 'package:waste_management_app/models/ui_models.dart';
 
 class RequestPickupSummaryPage extends StatefulWidget {
-  const RequestPickupSummaryPage({super.key});
+  const RequestPickupSummaryPage(
+      {super.key,
+      this.selectedItems,
+      this.selectedDate,
+      this.selectedTime,
+      this.selectedAddress});
+
+  final List? selectedItems;
+  final DateTime? selectedDate;
+  final String? selectedTime;
+  final SavedAddress? selectedAddress;
 
   @override
   State<RequestPickupSummaryPage> createState() =>
@@ -91,12 +102,21 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                           icon: Iconsax.profile_circle, detail: 'Joseph Boyce'),
                       singleDetail(icon: Iconsax.call, detail: '0539424541'),
                       singleDetail(
+                          // icon: Iconsax.trash,
+                          detail: widget.selectedItems?.isNotEmpty == true
+                              ? (widget.selectedItems?.join(', ')) ?? ''
+                              : 'No item selected'),
+                      singleDetail(
                           icon: Iconsax.calendar,
-                          detail: DateTime.now().fullFriendlyDate()),
-                      singleDetail(icon: Iconsax.clock, detail: '8:30 PM'),
+                          detail: widget.selectedDate?.fullFriendlyDate() ??
+                              'No date selected'),
+                      singleDetail(
+                          icon: Iconsax.clock,
+                          detail: widget.selectedTime ?? 'No time selected'),
                       singleDetail(
                           icon: Iconsax.location,
-                          detail: 'East Legon Police Station'),
+                          detail: widget.selectedAddress?.address ??
+                              'No address selected'),
                     ],
                   ),
                 ),
@@ -152,12 +172,14 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
     );
   }
 
-  Widget singleDetail({required IconData icon, required String detail}) {
+  Widget singleDetail({IconData? icon, required String detail}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Row(
         children: [
-          Icon(icon, color: Colors.grey.shade700, size: 18),
+          Visibility(
+              visible: icon != null,
+              child: Icon(icon, color: Colors.grey.shade700, size: 18)),
           const SizedBox(width: 4),
           Text(
             detail,

@@ -75,7 +75,10 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
               enabled: selectedItems.isNotEmpty,
               onTap: () {
                 Navigation.navigateToScreen(
-                    context: context, screen: const SelectTimeAndDatePage());
+                    context: context,
+                    screen: SelectTimeAndDatePage(
+                      selectedItems: selectedItems,
+                    ));
               },
               child: const Text('Next'),
             ),

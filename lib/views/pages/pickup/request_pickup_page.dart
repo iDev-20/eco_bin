@@ -16,13 +16,16 @@ class RequestPickupPage extends StatefulWidget {
 }
 
 class _RequestPickupPageState extends State<RequestPickupPage> {
-  List<String> wasteTypes = [
-    '♻️   Recyclables',
-    '🌿   Organic Waste',
-    '🗑️   General Waste'
+  List<Map<String, String>> wasteTypes = [
+    {'icon': '♻️', 'title': 'Recyclables'},
+    {'icon': '🌿', 'title': 'Organic Waste'},
+    {'icon': '🗑️', 'title': 'General Waste'},
+    // '♻️  Recyclables',
+    // '🌿  Organic Waste',
+    // '🗑️  General Waste'
   ];
 
-  List selectedItems = [];
+  List<String> selectedItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +57,14 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
               children: [
                 ...wasteTypes.map(
                   (option) => singleWasteType(
-                    title: option,
-                    selected: selectedItems.contains(option),
+                    icon: option['icon'] ?? '',
+                    title: option['title'] ?? '',
+                    selected: selectedItems.contains(option['title']),
                     onTap: () {
-                      if (selectedItems.contains(option)) {
-                        selectedItems.remove(option);
+                      if (selectedItems.contains(option['title'])) {
+                        selectedItems.remove(option['title']);
                       } else {
-                        selectedItems.add(option);
+                        selectedItems.add(option['title'] ?? '');
                       }
                       setState(() {});
                     },
@@ -89,6 +93,7 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
   }
 
   Widget singleWasteType({
+    required String icon,
     required String title,
     required bool selected,
     required VoidCallback onTap,
@@ -111,13 +116,19 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: AppColors.darkBlueText,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    Text(icon),
+                    const SizedBox(width: 8),
+                    Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppColors.darkBlueText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
                 AppCheckBoxWidget(selected: selected),
               ],

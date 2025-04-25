@@ -99,10 +99,10 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                       ),
                       const SizedBox(height: 12),
                       singleDetail(
-                          icon: Iconsax.profile_circle, detail: 'Joseph Boyce'),
+                          icon: Iconsax.profile_circle, detail: 'Jermaine Lamar'),
                       singleDetail(icon: Iconsax.call, detail: '0539424541'),
                       singleDetail(
-                          // icon: Iconsax.trash,
+                          icon: Iconsax.trash,
                           detail: widget.selectedItems?.isNotEmpty == true
                               ? (widget.selectedItems?.join(', ')) ?? ''
                               : 'No item selected'),

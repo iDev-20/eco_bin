@@ -427,20 +427,20 @@ class AppAlertDialog extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: AppColors.darkBlueText,
-                // fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Text(
-              subDesc ?? '',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.grey,
-                // fontSize: 20,
-                // fontWeight: FontWeight.w700,
+            Visibility(
+              visible: subDesc?.isNotEmpty ?? false,
+              child: Text(
+                subDesc ?? '',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.grey,
+                ),
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(

@@ -81,8 +81,18 @@ class _AddressPageState extends State<AddressPage> {
                               builder: (context) {
                                 return AppAlertDialog(
                                   title: 'Address',
-                                  desc: option.address,
-                                  subDesc: option.addressDetail,
+                                  desc: ((selectedAddress
+                                                  ?.addressDetail?.isEmpty ??
+                                              false)
+                                          ? selectedAddress?.address
+                                          : selectedAddress?.addressDetail ??
+                                              '') ??
+                                      '',
+                                  subDesc: (selectedAddress
+                                              ?.addressDetail?.isNotEmpty ??
+                                          false)
+                                      ? selectedAddress?.address
+                                      : selectedAddress?.addressDetail ?? '',
                                   firstOption: 'Remove',
                                   onFirstOptionTap: () async {
                                     final provider =

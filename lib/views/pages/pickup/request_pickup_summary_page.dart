@@ -47,9 +47,9 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(12, 16, 12, 4),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    color: AppColors.grey100,
+                    borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8),
                     ),
@@ -103,14 +103,14 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    color: AppColors.grey100,
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(8),
                       bottomRight: Radius.circular(8),
                     ),
                     border: Border(
-                      top: BorderSide(color: Colors.grey.shade300),
+                      top: BorderSide(color: AppColors.grey200),
                     ),
                   ),
                   child: Row(

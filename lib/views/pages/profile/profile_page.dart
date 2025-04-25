@@ -5,9 +5,11 @@ import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 import 'package:waste_management_app/views/pages/profile/accounts_page.dart';
 import 'package:waste_management_app/views/pages/profile/address_page.dart';
 import 'package:waste_management_app/views/pages/profile/report_issue_page.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -85,7 +87,29 @@ class _ProfilePageState extends State<ProfilePage> {
               title: 'Log out',
               icon: Iconsax.logout,
               titleColor: Colors.red,
-              onTap: () {},
+              onTap: () async {
+                await showAdaptiveDialog(
+                  context: context,
+                  builder: (context) {
+                    return AppAlertDialog(
+                      title: 'Log Out',
+                      desc: 'Are you sure you want to log out?',
+                      firstOption: 'No',
+                      onFirstOptionTap: () {
+                        Navigation.back(context: context);
+                      },
+                      secondOption: 'Yes, log out',
+                      onSecondOptionTap: () {
+                        Navigation.navigateToScreenAndClearAllPrevious(
+                            context: context, screen: const LoginPage());
+                      },
+                      borderColor: Colors.red,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.red,
+                    );
+                  },
+                );
+              },
             ),
           ],
         ),

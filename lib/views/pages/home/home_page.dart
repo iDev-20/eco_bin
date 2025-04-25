@@ -8,6 +8,7 @@ import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/home/components/tips_data.dart';
+import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(16.0),
             children: [
               const Text(
-                'Hello, Thelma 👋',
+                'Hello, Jermaine 👋',
                 style: TextStyle(
                     color: AppColors.darkBlueText,
                     fontSize: 18,
@@ -108,7 +109,10 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 10),
                   singleButton(
                     title: 'Get Help',
-                    onTap: () {},
+                    onTap: () {
+                      Navigation.navigateToScreen(
+                          context: context, screen: const FAQPage());
+                    },
                   ),
                 ],
               ),

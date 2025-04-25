@@ -136,13 +136,15 @@ class AppPageSecondary extends StatelessWidget {
   final FloatingActionButton? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final bool? hideAppBar;
+  final List<Widget>? actions;
   const AppPageSecondary(
       {super.key,
       this.title,
       required this.body,
       this.floatingActionButton,
       this.floatingActionButtonLocation,
-      this.hideAppBar});
+      this.hideAppBar,
+      this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -153,25 +155,28 @@ class AppPageSecondary extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
-        appBar: (hideAppBar ?? false) ? null :  AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigation.back(context: context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.black,
-            ),
-          ),
-          title: Text(title ?? ''),
-          titleTextStyle: const TextStyle(
-              color: AppColors.darkBlueText,
-              fontSize: 18,
-              fontWeight: FontWeight.w700),
-          centerTitle: true,
-        ),
+        appBar: (hideAppBar ?? false)
+            ? null
+            : AppBar(
+                elevation: 0,
+                backgroundColor: AppColors.white,
+                leading: IconButton(
+                  onPressed: () {
+                    Navigation.back(context: context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.black,
+                  ),
+                ),
+                title: Text(title ?? ''),
+                titleTextStyle: const TextStyle(
+                    color: AppColors.darkBlueText,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700),
+                centerTitle: true,
+                actions: actions,
+              ),
         body: SafeArea(child: body),
       ),
     );

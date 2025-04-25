@@ -9,7 +9,10 @@ import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class AddressPageEmptyState extends StatefulWidget {
-  const AddressPageEmptyState({super.key});
+  const AddressPageEmptyState({super.key, this.iconColor, this.textColor});
+
+  final Color? iconColor;
+  final Color? textColor;
 
   @override
   State<AddressPageEmptyState> createState() => _AddressPageEmptyStateState();
@@ -36,7 +39,7 @@ class _AddressPageEmptyStateState extends State<AddressPageEmptyState> {
             children: [
               Icon(
                 Iconsax.location,
-                color: Colors.grey.shade400,
+                color: widget.iconColor ?? Colors.grey.shade400,
                 size: 35,
               ),
               const SizedBox(height: 12.5),
@@ -44,13 +47,13 @@ class _AddressPageEmptyStateState extends State<AddressPageEmptyState> {
                 AppStrings.youHaveNoSavedAddressesATM,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.grey.shade500,
+                    color: widget.textColor ?? Colors.grey.shade500,
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.25),
+                padding: const EdgeInsets.symmetric(horizontal: 45),
                 child: PrimaryButton(
                   onTap: () async {
                     await showAdaptiveDialog(

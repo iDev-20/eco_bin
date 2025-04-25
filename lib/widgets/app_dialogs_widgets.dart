@@ -357,23 +357,31 @@ class AddAddressDialog extends StatelessWidget {
 }
 
 class AppAlertDialog extends StatelessWidget {
-  final RegisteredBins bin;
+  final RegisteredBins? bin;
   final String title;
   final String desc;
+  final String? subDesc;
   final String firstOption;
   final String secondOption;
   final VoidCallback onFirstOptionTap;
   final VoidCallback onSecondOptionTap;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? textColor;
 
   const AppAlertDialog(
       {super.key,
-      required this.bin,
+      this.bin,
       required this.title,
       required this.desc,
+      this.subDesc,
       required this.firstOption,
       required this.secondOption,
       required this.onSecondOptionTap,
-      required this.onFirstOptionTap});
+      required this.onFirstOptionTap,
+      this.backgroundColor,
+      this.borderColor,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -400,6 +408,15 @@ class AppAlertDialog extends StatelessWidget {
               style: const TextStyle(
                 color: AppColors.darkBlueText,
                 // fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              subDesc ?? '',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.grey,
+                // fontSize: 20,
                 // fontWeight: FontWeight.w700,
               ),
             ),
@@ -408,13 +425,23 @@ class AppAlertDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: PrimaryOutlinedButton(
+                    borderColor: borderColor ?? AppColors.primaryColor,
                     onTap: onFirstOptionTap,
-                    child: Text(firstOption),
+                    child: Text(
+                      firstOption,
+                      style: TextStyle(
+                        color: textColor ?? AppColors.primaryColor,
+                        fontFamily: 'Lato',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
                   child: PrimaryButton(
+                    backgroundColor: backgroundColor ?? AppColors.primaryColor,
                     onTap: onSecondOptionTap,
                     child: Text(secondOption),
                   ),

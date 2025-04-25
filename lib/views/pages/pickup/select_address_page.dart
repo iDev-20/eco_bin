@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/page_indicator.dart';
 import 'package:waste_management_app/models/ui_models.dart';
@@ -9,9 +8,9 @@ import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/views/pages/pickup/components/address_page_empty_state.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_summary_page.dart';
-import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
+import 'package:waste_management_app/widgets/single_address.dart';
 
 class SelectAddressPage extends StatefulWidget {
   const SelectAddressPage({super.key});
@@ -22,7 +21,6 @@ class SelectAddressPage extends StatefulWidget {
 
 class _SelectAddressPageState extends State<SelectAddressPage> {
   SavedAddress? selectedAddress;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +96,15 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                       ),
                       const SizedBox(height: 10),
                       ...addresses.map(
-                        (option) => singleAddress(
-                          savedAddress: option,
-                          selected: option == selectedAddress,
-                          onTap: () {
-                            setState(() {
-                              selectedAddress =
-                                  selectedAddress == option ? null : option;
-                            });
-                          },
-                        ),
+                        (option) => SingleAddress(
+                            savedAddress: option,
+                            selected: option == selectedAddress,
+                            onTap: () {
+                              setState(() {
+                                selectedAddress =
+                                    selectedAddress == option ? null : option;
+                              });
+                            }),
                       ),
                     ],
                   ),
@@ -115,64 +112,11 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
           BackAndNextButton(
             onNextButtonTap: () {
               Navigation.navigateToScreen(
-                context: context, screen: const RequestPickupSummaryPage());
+                  context: context, screen: const RequestPickupSummaryPage());
             },
             onNextButtonEnabled: selectedAddress != null,
           )
         ],
-      ),
-    );
-  }
-
-  Widget singleAddress(
-      {required SavedAddress savedAddress,
-      required bool selected,
-      required VoidCallback onTap}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-          decoration: BoxDecoration(
-            color: selected ? AppColors.primary50 : AppColors.white,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-                color: selected ? AppColors.primary100 : Colors.grey.shade100),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Icon(Iconsax.location),
-                  const SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        savedAddress.address,
-                        style: const TextStyle(
-                            color: AppColors.darkBlueText,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Visibility(
-                        visible:
-                            savedAddress.addressDetail?.isNotEmpty ?? false,
-                        child: Text(
-                          savedAddress.addressDetail ?? '',
-                          style:
-                              const TextStyle(color: Colors.grey, fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              AppCheckBoxWidget(selected: selected)
-            ],
-          ),
-        ),
       ),
     );
   }

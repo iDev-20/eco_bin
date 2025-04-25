@@ -42,7 +42,7 @@ class _BinsPageState extends State<BinsPage> {
         binName: binName,
         binNumber: binNumber,
         binOwner: binOwner,
-        outstandingBill: '0.00'));
+        outstandingBill: '10.00'));
   }
 
   void openBinDetails(

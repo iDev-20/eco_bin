@@ -54,7 +54,7 @@ class _AddressPageState extends State<AddressPage> {
                     ),
                   ),
                 ),
-              ])
+              ]),
       ],
       body: Column(
         children: [
@@ -116,7 +116,24 @@ class _AddressPageState extends State<AddressPage> {
                                     // );
                                   },
                                   secondOption: 'Edit Address',
-                                  onSecondOptionTap: () {},
+                                  onSecondOptionTap: () async {
+                                    final newAddress =
+                                        await showAdaptiveDialog<SavedAddress>(
+                                      context: context,
+                                      builder: (context) {
+                                        return AddAddressDialog(
+                                          context: context,
+                                          existingAddress: option,
+                                        );
+                                      },
+                                    );
+                                    if (newAddress != null) {
+                                      context
+                                          .read<AddressProvider>()
+                                          .updateAddress(option, newAddress);
+                                    }
+                                    Navigation.back(context: context);
+                                  },
                                 );
                               },
                             );

@@ -41,7 +41,9 @@ class SingleAddress extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        savedAddress.address,
+                        (savedAddress.addressDetail?.isEmpty ?? false)
+                            ? savedAddress.address
+                            : savedAddress.addressDetail ?? '',
                         style: const TextStyle(
                             color: AppColors.darkBlueText,
                             fontSize: 14,
@@ -51,7 +53,9 @@ class SingleAddress extends StatelessWidget {
                         visible:
                             savedAddress.addressDetail?.isNotEmpty ?? false,
                         child: Text(
-                          savedAddress.addressDetail ?? '',
+                          (savedAddress.addressDetail?.isNotEmpty ?? false)
+                              ? savedAddress.address
+                              : savedAddress.addressDetail ?? '',
                           style:
                               const TextStyle(color: Colors.grey, fontSize: 12),
                         ),
@@ -60,7 +64,6 @@ class SingleAddress extends StatelessWidget {
                   ),
                 ],
               ),
-              // const Icon(Icons.more_horiz, color: AppColors.primaryColor),
               AppCheckBoxWidget(selected: selected)
             ],
           ),
@@ -69,7 +72,6 @@ class SingleAddress extends StatelessWidget {
     );
   }
 }
-
 
 class SingleEditableAddress extends StatelessWidget {
   const SingleEditableAddress({
@@ -92,8 +94,7 @@ class SingleEditableAddress extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-                color: AppColors.grey200),
+            border: Border.all(color: AppColors.grey200),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +107,9 @@ class SingleEditableAddress extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        savedAddress.address,
+                        (savedAddress.addressDetail?.isEmpty ?? false)
+                            ? savedAddress.address
+                            : savedAddress.addressDetail ?? '',
                         style: const TextStyle(
                             color: AppColors.darkBlueText,
                             fontSize: 14,
@@ -116,7 +119,9 @@ class SingleEditableAddress extends StatelessWidget {
                         visible:
                             savedAddress.addressDetail?.isNotEmpty ?? false,
                         child: Text(
-                          savedAddress.addressDetail ?? '',
+                          (savedAddress.addressDetail?.isNotEmpty ?? false)
+                              ? savedAddress.address
+                              : savedAddress.addressDetail ?? '',
                           style:
                               const TextStyle(color: Colors.grey, fontSize: 12),
                         ),

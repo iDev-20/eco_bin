@@ -274,14 +274,18 @@ class AddAddressDialog extends StatelessWidget {
   const AddAddressDialog({
     super.key,
     required this.context,
+    this.existingAddress,
   });
 
   final BuildContext context;
+  final SavedAddress? existingAddress;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController addressController = TextEditingController();
-    TextEditingController locationNameController = TextEditingController();
+    TextEditingController addressController =
+        TextEditingController(text: existingAddress?.address ?? '');
+    TextEditingController locationNameController =
+        TextEditingController(text: existingAddress?.addressDetail ?? '');
     return AlertDialog.adaptive(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       content: Material(
@@ -291,9 +295,9 @@ class AddAddressDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'New Address',
-              style: TextStyle(
+            Text(
+              existingAddress == null ? 'New Address' : 'Edit Address',
+              style: const TextStyle(
                   color: AppColors.darkBlueText,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
@@ -333,18 +337,34 @@ class AddAddressDialog extends StatelessWidget {
                 Expanded(
                   child: PrimaryButton(
                     onTap: () async {
-                      if (addressController.text.isNotEmpty) {
-                        final provider = context.read<AddressProvider>();
+                      final trimmedAddress = addressController.text.trim();
+                      final trimmedLocation =
+                          locationNameController.text.trim();
 
-                        final newAddress = SavedAddress(
-                            address: addressController.text.trim(),
-                            addressDetail: locationNameController.text.trim());
+                      if (trimmedAddress.isEmpty) return;
 
-                        await provider.addAddress(newAddress);
-                        Navigation.back(context: context);
+                      final updatedAddress = SavedAddress(
+                          address: trimmedAddress,
+                          addressDetail: trimmedLocation);
+
+                      if (existingAddress == null) {
+                        await context
+                            .read<AddressProvider>()
+                            .addAddress(updatedAddress);
                       }
+                      Navigation.back(context: context, result: updatedAddress);
+                      // if (addressController.text.isNotEmpty) {
+                      //   final provider = context.read<AddressProvider>();
+
+                      //   final newAddress = SavedAddress(
+                      //       address: addressController.text.trim(),
+                      //       addressDetail: locationNameController.text.trim());
+
+                      //   await provider.addAddress(newAddress);
+                      //   Navigation.back(context: context);
+                      // }
                     },
-                    child: const Text('Add'),
+                    child: Text(existingAddress == null ? 'Add' : 'Save'),
                   ),
                 ),
               ],

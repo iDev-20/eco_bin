@@ -23,4 +23,14 @@ class AddressProvider extends ChangeNotifier {
     await SharedPrefs.savedAddresses(_address);
     notifyListeners();
   }
+
+  Future<void> updateAddress(
+      SavedAddress oldAddress, SavedAddress newAddress) async {
+    final index = _address.indexOf(oldAddress);
+    if (index != -1) {
+      _address[index] = newAddress;
+      await SharedPrefs.savedAddresses(_address);
+      notifyListeners();
+    }
+  }
 }

@@ -13,9 +13,9 @@ import 'package:waste_management_app/widgets/back_and_next_button.dart';
 import 'package:waste_management_app/widgets/single_address.dart';
 
 class SelectAddressPage extends StatefulWidget {
-  const SelectAddressPage({super.key, this.selectedItems, this.selectedDate, this.selectedTime});
+  const SelectAddressPage({super.key, this.selectedItemsWithQuantity, this.selectedDate, this.selectedTime});
 
-  final List? selectedItems;
+  final Map<String, int>? selectedItemsWithQuantity;
   final DateTime? selectedDate;
   final String? selectedTime;
 
@@ -117,7 +117,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
             onNextButtonTap: () {
               Navigation.navigateToScreen(
                   context: context, screen: RequestPickupSummaryPage(
-                    selectedItems: widget.selectedItems,
+                    selectedItemsWithQuantity: widget.selectedItemsWithQuantity,
                     selectedDate: widget.selectedDate,
                     selectedTime: widget.selectedTime,
                     selectedAddress: selectedAddress

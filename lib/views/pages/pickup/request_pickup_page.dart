@@ -7,6 +7,7 @@ import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/pickup/select_date_and_time_page.dart';
 import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
+import 'package:waste_management_app/widgets/quanity_selector.dart';
 
 class RequestPickupPage extends StatefulWidget {
   const RequestPickupPage({super.key});
@@ -22,7 +23,7 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
     {'icon': '🗑️', 'title': 'General Waste'},
   ];
 
-  List<String> selectedItems = [];
+  Map<String, int> selectedItemsWithQuantity = {};
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +57,74 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
                   (option) => singleWasteType(
                     icon: option['icon'] ?? '',
                     title: option['title'] ?? '',
-                    selected: selectedItems.contains(option['title']),
+                    selected:
+                        selectedItemsWithQuantity.containsKey(option['title']),
                     onTap: () {
-                      if (selectedItems.contains(option['title'])) {
-                        selectedItems.remove(option['title']);
+                      if (selectedItemsWithQuantity
+                          .containsKey(option['title'])) {
+                        selectedItemsWithQuantity.remove(option['title']);
                       } else {
-                        selectedItems.add(option['title'] ?? '');
+                        selectedItemsWithQuantity[option['title'] ?? ''] = 1;
                       }
                       setState(() {});
                     },
+                  ),
+                ),
+                Visibility(
+                  visible: selectedItemsWithQuantity.isNotEmpty,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          showSubHeaderText(text: 'Selected Type(s)'),
+                          showSubHeaderText(text: 'Quantity'),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      ...selectedItemsWithQuantity.entries.map(
+                        (entry) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  entry.key,
+                                  style: const TextStyle(
+                                      color: AppColors.darkBlueText,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                QuantitySelector(
+                                  value: entry.value,
+                                  onAddTap: () {
+                                    setState(() {
+                                      selectedItemsWithQuantity[entry.key] =
+                                          entry.value + 1;
+                                    });
+                                  },
+                                  onMinusTap: () {
+                                    setState(() {
+                                      if (entry.value - 1 < 0) {
+                                        return;
+                                      } else if (entry.value - 1 == 0) {
+                                        selectedItemsWithQuantity
+                                            .remove(entry.key);
+                                      } else {
+                                        selectedItemsWithQuantity[entry.key] =
+                                            entry.value - 1;
+                                      }
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ).toList()
+                    ],
                   ),
                 ),
               ],
@@ -73,12 +133,12 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
           Padding(
             padding: const EdgeInsets.all(16),
             child: PrimaryButton(
-              enabled: selectedItems.isNotEmpty,
+              enabled: selectedItemsWithQuantity.isNotEmpty,
               onTap: () {
                 Navigation.navigateToScreen(
                     context: context,
                     screen: SelectTimeAndDatePage(
-                      selectedItems: selectedItems,
+                      selectedItemsWithQuantity: selectedItemsWithQuantity,
                     ));
               },
               child: const Text('Next'),
@@ -133,6 +193,17 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget showSubHeaderText(
+      {required String text, bool hasBottomPadding = true}) {
+    return Text(
+      text,
+      style: const TextStyle(
+          color: AppColors.darkBlueText,
+          fontSize: 16,
+          fontWeight: FontWeight.w600),
     );
   }
 }

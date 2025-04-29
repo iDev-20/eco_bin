@@ -12,12 +12,12 @@ import 'package:waste_management_app/models/ui_models.dart';
 class RequestPickupSummaryPage extends StatefulWidget {
   const RequestPickupSummaryPage(
       {super.key,
-      this.selectedItems,
+      this.selectedItemsWithQuantity,
       this.selectedDate,
       this.selectedTime,
       this.selectedAddress});
 
-  final List? selectedItems;
+  final Map<String, int>? selectedItemsWithQuantity;
   final DateTime? selectedDate;
   final String? selectedTime;
   final SavedAddress? selectedAddress;
@@ -104,9 +104,17 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                       singleDetail(icon: Iconsax.call, detail: '0539424541'),
                       singleDetail(
                           icon: Iconsax.trash,
-                          detail: widget.selectedItems?.isNotEmpty == true
-                              ? (widget.selectedItems?.join(', ')) ?? ''
-                              : 'No item selected'),
+                          detail: 'Waste Type(s):',
+                          bottomPadding: 5),
+                      singleDetail(
+                          detail:
+                              widget.selectedItemsWithQuantity?.isNotEmpty ==
+                                      true
+                                  ? (widget.selectedItemsWithQuantity?.entries
+                                          .map((e) => '${e.key} (${e.value})')
+                                          .join(', ')) ??
+                                      ''
+                                  : 'No item selected'),
                       singleDetail(
                           icon: Iconsax.calendar,
                           detail: widget.selectedDate?.fullFriendlyDate() ??
@@ -173,24 +181,58 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
     );
   }
 
-  Widget singleDetail({IconData? icon, required String detail}) {
+  Widget singleDetail(
+      {IconData? icon, required String detail, double? bottomPadding}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
+      padding: EdgeInsets.only(bottom: bottomPadding ?? 12.0),
       child: Row(
         children: [
           Visibility(
               visible: icon != null,
               child: Icon(icon, color: Colors.grey.shade700, size: 18)),
           const SizedBox(width: 4),
-          Text(
-            detail,
-            style: TextStyle(
-                color: Colors.grey.shade700, fontWeight: FontWeight.w600
-                // fontSize: 13,
-                ),
+          Expanded(
+            child: Text(
+              detail,
+              style: TextStyle(
+                  color: Colors.grey.shade700, fontWeight: FontWeight.w600),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+
+
+//   Widget singleDetail({IconData? icon, required String detail}) {
+//     return Padding(
+//       padding: const EdgeInsets.only(bottom: 12.0),
+//       child: Row(
+//         children: [
+//           if (icon != null) Icon(icon, color: Colors.grey.shade700, size: 18),
+//           const SizedBox(width: 4),
+//           Expanded(
+//             child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: detail
+//                     .split('\n')
+//                     .map(
+//                       (line) => Padding(
+//                         padding: const EdgeInsets.only(bottom: 2.0),
+//                         child: Text(
+//                           line,
+//                           style: TextStyle(
+//                               color: Colors.grey.shade700,
+//                               fontWeight: FontWeight.w600),
+//                         ),
+//                       ),
+//                     )
+//                     .toList()),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

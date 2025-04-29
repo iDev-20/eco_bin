@@ -11,9 +11,9 @@ import 'package:waste_management_app/views/pages/pickup/select_address_page.dart
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
 
 class SelectTimeAndDatePage extends StatefulWidget {
-  const SelectTimeAndDatePage({super.key, this.selectedItems});
+  const SelectTimeAndDatePage({super.key, this.selectedItemsWithQuantity});
 
-  final List? selectedItems;
+  final Map<String, int>? selectedItemsWithQuantity;
 
   @override
   State<SelectTimeAndDatePage> createState() => _SelectTimeAndDatePageState();
@@ -89,7 +89,7 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
               Navigation.navigateToScreen(
                 context: context,
                 screen: SelectAddressPage(
-                  selectedItems: widget.selectedItems,
+                  selectedItemsWithQuantity: widget.selectedItemsWithQuantity,
                   selectedDate: selectedDate,
                   selectedTime: selectedTime,
                 ),

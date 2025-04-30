@@ -49,7 +49,7 @@ class _SelectMobileMoneyProviderBottomSheetState
               widget.onButtonTap(selectedProvider);
             },
             enabled: selectedProvider != null,
-            child: const Text('Save'),
+            child: const Text('Select'),
           ),
         ],
       ),

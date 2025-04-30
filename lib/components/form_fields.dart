@@ -134,10 +134,6 @@ class PrimaryTextFormField extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.grey.shade400),
                 ),
               ),
-              // kTextFieldInputDecoration.copyWith(
-              //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius ?? 10)),
-              //     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(focusedBorderRadius ?? 10)),
-              //     enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(enabledBorderRadius ?? 10)),),
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
               validator: validator,
@@ -145,6 +141,13 @@ class PrimaryTextFormField extends StatelessWidget {
               onChanged: onChanged,
               onSaved: onSaved,
               maxLength: maxLength,
+              buildCounter: (
+                context, {
+                required int currentLength,
+                required bool isFocused,
+                required int? maxLength,
+              }) =>
+                  null,
               textInputAction: textInputAction,
               textCapitalization: textCapitalization ?? TextCapitalization.none,
             ),

@@ -124,6 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Column(
                               children: [
                                 PrimaryTextFormField(
+                                  height: 36.0,
                                   hintText: AppStrings.enterYourPhoneNumber,
                                   keyboardType: TextInputType.phone,
                                   // prefixText: '+233 ',
@@ -244,7 +245,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       GestureDetector(
                         onTap: () {
                           Navigation.navigateToScreen(
-                              context: context, screen: LoginPage(role: widget.role,));
+                              context: context,
+                              screen: LoginPage(
+                                role: widget.role,
+                              ));
                         },
                         child: const Text(
                           AppStrings.login,

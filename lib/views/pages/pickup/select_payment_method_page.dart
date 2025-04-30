@@ -1,16 +1,23 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/views/pages/pickup/mobile_money_provider_bottom_sheet.dart';
-import 'package:waste_management_app/views/pages/pickup/select_bank_bottom_sheet.dart';
+import 'package:waste_management_app/views/pages/pickup/request_pickup_success_page.dart';
+// import 'package:waste_management_app/views/pages/pickup/select_bank_bottom_sheet.dart';
 import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
 
 class SelectPaymentMethodPage extends StatefulWidget {
-  const SelectPaymentMethodPage({super.key});
+  const SelectPaymentMethodPage({super.key, this.totalAmount});
+
+  final String? totalAmount;
 
   @override
   State<SelectPaymentMethodPage> createState() =>
@@ -26,224 +33,261 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   String? selectedPaymentMethod;
 
   TextEditingController cardNumber = TextEditingController();
+  TextEditingController cardName = TextEditingController();
 
   MobileMoneyProvider? selectedMomoProvider;
 
   String? selectedBank;
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return AppPageSecondary(
-      title: 'Select Payment Method',
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  const Text(
-                    'Payment method',
-                    style: TextStyle(
-                        color: AppColors.darkBlueText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'Select your most preferred payment method',
-                    style: TextStyle(
-                        color: AppColors.darkBlueText,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(height: 16),
-                  ...availablePaymentMethods.map(
-                    (option) => paymentType(
-                      paymentMethod: option,
-                      selected: selectedPaymentMethod == option.value,
-                      onTap: () {
-                        setState(() {
-                          selectedPaymentMethod = option.value;
-                          cardNumber.clear();
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Visibility(
-                    visible: selectedPaymentMethod != null,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Account Information',
-                          style: TextStyle(
-                              color: AppColors.darkBlueText,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 16),
-                        InkWell(
+    return Stack(
+      children: [
+        AppPageSecondary(
+          title: 'Select Payment Method',
+          body: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      const Text(
+                        'Payment method',
+                        style: TextStyle(
+                            color: AppColors.darkBlueText,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Select your most preferred payment method',
+                        style: TextStyle(
+                            color: AppColors.darkBlueText,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(height: 16),
+                      ...availablePaymentMethods.map(
+                        (option) => paymentType(
+                          paymentMethod: option,
+                          selected: selectedPaymentMethod == option.value,
                           onTap: () {
-                            if (isMomo()) {
-                              showAppBottomSheet(
-                                context: context,
-                                title: 'Mobile Money Provider',
-                                child: SelectMobileMoneyProviderBottomSheet(
-                                  onButtonTap: (provider) {
-                                    setState(() {
-                                      selectedMomoProvider = provider;
-                                    });
-                                  },
-                                ),
-                              );
-                            } else {
-                              showAppBottomSheet(
-                                context: context,
-                                title: 'Bank name',
-                                child: SelectBankBottomSheet(
-                                  onButtonTap: (bank) {
-                                    setState(() {
-                                      selectedBank = bank;
-                                    });
-                                  },
-                                ),
-                              );
-                            }
+                            setState(() {
+                              selectedPaymentMethod = option.value;
+                              cardNumber.clear();
+                            });
                           },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                getFirstSelectionLabel(),
-                                style: const TextStyle(
-                                    color: AppColors.darkBlueText,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(height: 8),
-                              Container(
-                                height: 40,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(color: AppColors.grey200),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Visibility(
+                        visible: selectedPaymentMethod != null,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Account Information',
+                              style: TextStyle(
+                                  color: AppColors.darkBlueText,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(height: 16),
+                            InkWell(
+                              onTap: () {
+                                showAppBottomSheet(
+                                  context: context,
+                                  title: 'Mobile Money Provider',
+                                  child: SelectMobileMoneyProviderBottomSheet(
+                                    onButtonTap: (provider) {
+                                      setState(() {
+                                        selectedMomoProvider = provider;
+                                      });
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Visibility(
+                                visible: isMomo() == true,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Visibility(
-                                      visible:
-                                          showSelectedAccountName() != null,
-                                      replacement: const Text(
-                                        'Select',
-                                        style: TextStyle(
+                                    const Text(
+                                      'Mobile Money Provider',
+                                      style: TextStyle(
+                                          color: AppColors.darkBlueText,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Container(
+                                      height: 40,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(
+                                            color: AppColors.grey200),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Visibility(
+                                            visible:
+                                                showSelectedAccountName() !=
+                                                    null,
+                                            replacement: const Text(
+                                              'Select',
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            child: Text(
+                                              showSelectedAccountName() ?? '',
+                                              style: const TextStyle(
+                                                  color: AppColors.darkBlueText,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                          const Icon(
+                                            Icons.keyboard_arrow_down,
+                                            size: 17,
                                             color: Colors.grey,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      child: Text(
-                                        showSelectedAccountName() ?? '',
-                                        style: const TextStyle(
-                                            color: AppColors.darkBlueText,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    const Icon(
-                                      Icons.keyboard_arrow_down,
-                                      size: 17,
-                                      color: Colors.grey,
-                                    ),
+                                    const SizedBox(height: 24),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        PrimaryTextFormField(
-                          height: 36,
-                          labelText: getSecondSelectionLabel(),
-                          hintText: getHintText(),
-                          controller: cardNumber,
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.next,
-                          onChanged: (c) {
-                            setState(() {});
-                          },
-                        ),
-                        Visibility(
-                          visible: isMomo() == false,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: PrimaryTextFormField(
-                                  height: 36,
-                                  labelText: 'CVV',
-                                  // controller: cardNumber,
-                                  keyboardType: TextInputType.number,
-                                  textInputAction: TextInputAction.next,
-                                  onChanged: (c) {
-                                    setState(() {});
-                                  },
-                                ),
+                            ),
+                            PrimaryTextFormField(
+                              height: 36,
+                              labelText: getSecondSelectionLabel(),
+                              hintText: getHintText(),
+                              controller: cardNumber,
+                              keyboardType: TextInputType.number,
+                              textInputAction: isMomo()
+                                  ? TextInputAction.done
+                                  : TextInputAction.next,
+                              maxLength: isMomo() ? 10 : 16,
+                              onChanged: (c) {
+                                setState(() {});
+                              },
+                            ),
+                            Visibility(
+                              visible: isMomo() == false,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: PrimaryTextFormField(
+                                          height: 36,
+                                          labelText: 'CVV',
+                                          // controller: cardNumber,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
+                                          maxLength: 3,
+                                          onChanged: (c) {
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Expanded(
+                                        child: PrimaryTextFormField(
+                                          height: 36,
+                                          labelText: 'Expiry date',
+                                          // controller: cardNumber,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
+                                          onChanged: (c) {
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  PrimaryTextFormField(
+                                    height: 36,
+                                    labelText: 'Name on Card',
+                                    hintText: 'John Doe',
+                                    controller: cardName,
+                                    keyboardType: TextInputType.name,
+                                    textInputAction: TextInputAction.done,
+                                    textCapitalization: TextCapitalization.words,
+                                    onChanged: (c) {
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
                               ),
-                              const SizedBox(width: 20),
-                              Expanded(
-                                child: PrimaryTextFormField(
-                                  height: 36,
-                                  labelText: 'Expiry date',
-                                  // controller: cardNumber,
-                                  keyboardType: TextInputType.number,
-                                  textInputAction: TextInputAction.done,
-                                  onChanged: (c) {
-                                    setState(() {});
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
+                PrimaryButton(
+                  enabled: selectedMomoProvider != null || enableButton(),
+                  onTap: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
+
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    await Future.delayed(const Duration(seconds: 2));
+
+                    if (mounted) {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+
+                    Navigation.navigateToScreen(
+                        context: context,
+                        screen: const RequestPickupSuccessPage());
+                  },
+                  child: Text('Pay GH₵ ${widget.totalAmount}'),
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (isLoading)
+          Container(
+            color: Colors.black.withOpacity(0.5),
+            child: const Center(
+              child: SpinKitDoubleBounce(
+                color: AppColors.primaryColor,
+                size: 60,
               ),
             ),
-            PrimaryButton(
-              enabled: enableButton() && cardNumber.text.isNotEmpty,
-              onTap: () {},
-              child: const Text('Select'),
-            ),
-          ],
-        ),
-      ),
+          ),
+      ],
     );
   }
 
   bool enableButton() {
-    if (isMomo()) {
-      return selectedMomoProvider != null;
-    }
-    return selectedBank != null;
+    return cardNumber.text.isNotEmpty && cardName.text.isNotEmpty;
   }
 
   String? showSelectedAccountName() {
-    return isMomo() ? selectedMomoProvider?.text : selectedBank;
+    return selectedMomoProvider?.text;
   }
 
   bool isMomo() {
     return selectedPaymentMethod == PaymentMethod.mobileMoney.value;
-  }
-
-  String getFirstSelectionLabel() {
-    if (isMomo()) {
-      return 'Mobile Money Provider';
-    }
-    return 'Bank Name';
   }
 
   String getSecondSelectionLabel() {

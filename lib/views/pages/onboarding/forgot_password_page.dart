@@ -75,6 +75,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30.0),
                                   child: PrimaryTextFormField(
+                                    height: 36.0,
                                     hintText: AppStrings.enterYourPhoneNumber,
                                     keyboardType: TextInputType.phone,
                                     controller: phoneNumbercontroller,

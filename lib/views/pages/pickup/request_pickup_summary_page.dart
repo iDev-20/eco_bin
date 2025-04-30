@@ -192,7 +192,10 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
           ),
           BackAndNextButton(onNextButtonTap: () {
             Navigation.navigateToScreen(
-                context: context, screen: const SelectPaymentMethodPage());
+                context: context,
+                screen: SelectPaymentMethodPage(
+                  totalAmount: totalAmount.toStringAsFixed(2),
+                ));
           })
         ],
       ),

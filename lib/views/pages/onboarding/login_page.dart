@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Column(
                                     children: [
                                       PrimaryTextFormField(
+                                        height: 36.0,
                                         hintText:
                                             AppStrings.enterYourPhoneNumber,
                                         keyboardType: TextInputType.phone,

@@ -1,8 +1,11 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
+import 'package:waste_management_app/providers/transaction_provider.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,12 +19,13 @@ void main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isBinCreated = prefs.getBool('isBinCreated') ?? false;
 
-
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => BinProvider()..loadBins()),
-        ChangeNotifierProvider(create: (context) => AddressProvider()..loadAddresses())
+        ChangeNotifierProvider(
+            create: (context) => AddressProvider()..loadAddresses()),
+        ChangeNotifierProvider(create: (context) => TransactionProvider())
       ],
       child: const MyApp(),
     ),

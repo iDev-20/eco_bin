@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
@@ -25,7 +23,8 @@ void main() async {
         ChangeNotifierProvider(create: (context) => BinProvider()..loadBins()),
         ChangeNotifierProvider(
             create: (context) => AddressProvider()..loadAddresses()),
-        ChangeNotifierProvider(create: (context) => TransactionProvider())
+        ChangeNotifierProvider(
+            create: (context) => TransactionProvider()..loadTransactions())
       ],
       child: const MyApp(),
     ),

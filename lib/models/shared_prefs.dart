@@ -64,7 +64,29 @@ class SharedPrefs {
     //Remove address with matching address
     addresses.removeWhere((addr) => addr.address == address);
 
-    //Save updated lis back
+    //Save updated list back
     await savedAddresses(addresses);
+  }
+
+  //Transactions
+  static const String _transactionKey = 'transactions';
+
+  static Future<void> savedTransactions(
+      List<TransactionModel> transactions) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> transactionJson =
+        transactions.map((tx) => jsonEncode(tx.toMap())).toList();
+    await prefs.setStringList(_transactionKey, transactionJson);
+  }
+
+  static Future<List<TransactionModel>> loadTransactions() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? transactionJson = prefs.getStringList(_transactionKey);
+
+    if (transactionJson == null) return [];
+
+    return transactionJson
+        .map((json) => TransactionModel.fromMap(jsonDecode(json)))
+        .toList();
   }
 }

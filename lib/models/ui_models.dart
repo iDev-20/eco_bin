@@ -48,11 +48,12 @@ class RegisteredBins {
   }
 }
 
-class Transaction {
+class TransactionModel {
   final String binNumber;
   final String method;
   final String amount;
   final String status;
+  final DateTime date;
 
   Color statusColor() {
     if (status == 'Completed') {
@@ -65,12 +66,34 @@ class Transaction {
     return Colors.black;
   }
 
-  Transaction({
+  TransactionModel({
     required this.binNumber,
     required this.method,
     required this.amount,
     required this.status,
+    required this.date,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'binNumber': binNumber,
+      'method': method,
+      'amount': amount,
+      'status': status,
+      'date': date,
+    };
+  }
+
+  // Convert Map back to RegisteredBins object
+  factory TransactionModel.fromMap(Map<String, dynamic> map) {
+    return TransactionModel(
+      binNumber: map['binNumber'],
+      method: map['method'],
+      amount: map['amount'],
+      status: map['status'],
+      date: map['date'],
+    );
+  }
 }
 
 class TimePeriod {

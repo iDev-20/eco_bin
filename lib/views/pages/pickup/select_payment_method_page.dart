@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/transaction_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
@@ -245,17 +247,39 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                   onTap: () async {
                     FocusManager.instance.primaryFocus?.unfocus();
 
-                    if (isCash() == false) {
+                    if (isCash() == true) {
+                      Provider.of<TransactionProvider>(context, listen: false)
+                          .addTransaction(
+                        TransactionModel(
+                          binNumber: 'binNumber',
+                          method: 'Cash',
+                          amount: widget.totalAmount ?? '',
+                          status: 'Pending',
+                          date: DateTime.now(),
+                        ),
+                      );
+                    } else {
                       setState(() {
                         isLoading = true;
                       });
                       await Future.delayed(const Duration(seconds: 2));
-                    }
 
                     if (mounted) {
                       setState(() {
                         isLoading = false;
                       });
+                    }
+
+                    Provider.of<TransactionProvider>(context, listen: false)
+                        .addTransaction(
+                      TransactionModel(
+                        binNumber: 'binNumber',
+                        method: isMomo() ? 'Mobile Money' : 'Card',
+                        amount: widget.totalAmount ?? '',
+                        status: 'Completed',
+                        date: DateTime.now(),
+                      ),
+                    );
                     }
 
                     Navigation.navigateToScreen(

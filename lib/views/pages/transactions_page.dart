@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/extensions/date_time_extensions.dart';
 import 'package:waste_management_app/models/ui_models.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/transaction_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
 
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key, this.totalAmount});
@@ -15,92 +19,91 @@ class TransactionsPage extends StatefulWidget {
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
-  List<Transaction> transactions = [
-    Transaction(
-      binNumber: 'WXY123456',
-      method: 'MOMO',
-      amount: '10.00',
-      status: 'Completed',
-    ),
-    Transaction(
-      binNumber: 'WXY256743',
-      method: 'Card',
-      amount: '50.00',
-      status: 'Pending',
-    ),
-    Transaction(
-      binNumber: 'WXY128496',
-      method: 'Cash',
-      amount: '100.00',
-      status: 'Failed',
-    ),
-  ];
-
-  List<Transaction> transactionsPastWeek = [
-    Transaction(
-      binNumber: 'WXY123456',
-      method: 'MOMO',
-      amount: '10.00',
-      status: 'Completed',
-    ),
-    Transaction(
-      binNumber: 'WXY256743',
-      method: 'Card',
-      amount: '50.00',
-      status: 'Pending',
-    ),
-    Transaction(
-      binNumber: 'WXY128496',
-      method: 'Cash',
-      amount: '100.00',
-      status: 'Failed',
-    ),
-    Transaction(
-      binNumber: 'WXY357159',
-      method: 'Card',
-      amount: '150.50',
-      status: 'Completed',
-    ),
-    Transaction(
-      binNumber: 'WXY456852',
-      method: 'MOMO',
-      amount: '25.00',
-      status: 'Failed',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return AppPage(
       title: AppStrings.transactionsCaps,
-      body: Expanded(
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            const Text(
-              'Today',
-              style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
+      body: Consumer<TransactionProvider>(
+        builder: (context, txProvider, child) {
+          final transactions = txProvider.transactions.reversed.toList();
+
+          final today = transactions
+              .where((tx) =>
+                  tx.date.day == DateTime.now().day &&
+                  tx.date.month == DateTime.now().month &&
+                  tx.date.year == DateTime.now().year)
+              .toList();
+
+          final pastWeek = transactions
+              .where((tx) =>
+                  tx.date.isAfter(
+                      DateTime.now().subtract(const Duration(days: 7))) &&
+                  !(tx.date.day == DateTime.now().day &&
+                      tx.date.month == DateTime.now().month &&
+                      tx.date.year == DateTime.now().year))
+              .toList();
+
+          return Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                if (today.isNotEmpty) ...[
+                  const Text(
+                    'Today',
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ...today.map((e) => transactionCard(e)),
+                  const SizedBox(height: 16),
+                ],
+                if (pastWeek.isNotEmpty) ...[
+                  const Text(
+                    'Past Week',
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ...pastWeek.map((e) => transactionCard(e)),
+                ],
+                if (transactions.isEmpty)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'No transactions yet—',
+                        style: TextStyle(
+                            color: AppColors.darkBlueText,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigation.navigateToScreen(
+                              context: context,
+                              screen: const RequestPickupPage());
+                        },
+                        child: const Text(
+                          'get started',
+                          style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
             ),
-            ...transactions.map((e) => transactionCard(e)),
-            const SizedBox(height: 16),
-            const Text(
-              'Past Week',
-              style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            ...transactionsPastWeek.map((e) => transactionCard(e)),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 
-  Widget transactionCard(Transaction transaction) {
+  Widget transactionCard(TransactionModel transaction) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Container(
@@ -154,7 +157,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
       {required String title,
       required String detail,
       bool isStatus = false,
-      Transaction? transaction}) {
+      TransactionModel? transaction}) {
     return RichText(
       text: TextSpan(
         style: const TextStyle(

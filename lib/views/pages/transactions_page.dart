@@ -6,7 +6,9 @@ import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 
 class TransactionsPage extends StatefulWidget {
-  const TransactionsPage({super.key});
+  const TransactionsPage({super.key, this.totalAmount});
+
+  final String? totalAmount;
 
   @override
   State<TransactionsPage> createState() => _TransactionsPageState();

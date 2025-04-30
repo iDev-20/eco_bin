@@ -27,7 +27,8 @@ class SelectPaymentMethodPage extends StatefulWidget {
 class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   List<PaymentMethod> availablePaymentMethods = [
     PaymentMethod.mobileMoney,
-    PaymentMethod.bank
+    PaymentMethod.card,
+    PaymentMethod.cash
   ];
 
   String? selectedPaymentMethod;
@@ -84,7 +85,8 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       ),
                       const SizedBox(height: 12),
                       Visibility(
-                        visible: selectedPaymentMethod != null,
+                        visible:
+                            selectedPaymentMethod != null && isCash() == false,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -223,7 +225,8 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                                     controller: cardName,
                                     keyboardType: TextInputType.name,
                                     textInputAction: TextInputAction.done,
-                                    textCapitalization: TextCapitalization.words,
+                                    textCapitalization:
+                                        TextCapitalization.words,
                                     onChanged: (c) {
                                       setState(() {});
                                     },
@@ -238,15 +241,16 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                   ),
                 ),
                 PrimaryButton(
-                  enabled: selectedMomoProvider != null || enableButton(),
+                  enabled: enableButton(),
                   onTap: () async {
                     FocusManager.instance.primaryFocus?.unfocus();
 
-                    setState(() {
-                      isLoading = true;
-                    });
-
-                    await Future.delayed(const Duration(seconds: 2));
+                    if (isCash() == false) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await Future.delayed(const Duration(seconds: 2));
+                    }
 
                     if (mounted) {
                       setState(() {
@@ -258,7 +262,9 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                         context: context,
                         screen: const RequestPickupSuccessPage());
                   },
-                  child: Text('Pay GH₵ ${widget.totalAmount}'),
+                  child: Text(isCash()
+                      ? 'Confirm Payment'
+                      : 'Pay GH₵ ${widget.totalAmount}'),
                 ),
               ],
             ),
@@ -279,7 +285,9 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   }
 
   bool enableButton() {
-    return cardNumber.text.isNotEmpty && cardName.text.isNotEmpty;
+    return selectedMomoProvider != null ||
+        isCash() ||
+        cardNumber.text.isNotEmpty && cardName.text.isNotEmpty;
   }
 
   String? showSelectedAccountName() {
@@ -288,6 +296,10 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
 
   bool isMomo() {
     return selectedPaymentMethod == PaymentMethod.mobileMoney.value;
+  }
+
+  bool isCash() {
+    return selectedPaymentMethod == PaymentMethod.cash.value;
   }
 
   String getSecondSelectionLabel() {

@@ -138,10 +138,15 @@ class PaymentMethod {
       text: 'Mobile Money',
       value: 'mobilemoney');
 
-  static PaymentMethod bank = PaymentMethod(
+  static PaymentMethod card = PaymentMethod(
       icon: Icon(Iconsax.card, color: Colors.grey.shade600, size: 22),
       text: 'Card',
       value: 'card');
+
+  static PaymentMethod cash = PaymentMethod(
+      icon: Icon(Iconsax.money, color: Colors.grey.shade600, size: 22),
+      text: 'Cash',
+      value: 'cash');
 
   PaymentMethod({required this.icon, required this.text, required this.value});
 }

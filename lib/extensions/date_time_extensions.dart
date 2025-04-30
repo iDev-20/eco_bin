@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExtensions on DateTime {
-  
   String format(String pattern) {
     var format = DateFormat(pattern);
     return format.format(this);
@@ -49,12 +48,11 @@ extension DateTimeExtensions on DateTime {
     var format = DateFormat.yMMMMd();
     return format.format(this);
   }
-  
-   String fullFriendlyDateWithWeekDay() {
+
+  String fullFriendlyDateWithWeekDay() {
     var format = DateFormat.yMMMMEEEEd();
     return format.format(this);
   }
-
 
   String friendlyDateMonth() {
     var format = DateFormat.yMMM();
@@ -65,6 +63,7 @@ extension DateTimeExtensions on DateTime {
     var format = DateFormat.jm();
     return '${friendlyDate()}${newLine == true ? "\n" : " • "}${format.format(this)}';
   }
+
   String formatMediumDate() {
     var format = DateFormat('EE, dd MMM yyyy');
     return format.format(this);

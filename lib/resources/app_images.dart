@@ -16,6 +16,12 @@ class AppImages {
       const AssetImage('assets/images/profile_image.png');
   static AssetImage successLogo =
       const AssetImage('assets/images/success_logo.png');
+  static AssetImage mtnMomoLogo =
+      const AssetImage('assets/images/mtn_momo_logo.png');
+  static AssetImage atMoneyLogo =
+      const AssetImage('assets/images/at_money_logo.png');
+  static AssetImage telecelLogo =
+      const AssetImage('assets/images/telecel_logo.png');
 
   //Svgs
   static SvgPicture svgCloseBottomSheetIcon =
@@ -27,4 +33,5 @@ class AppImages {
   static SvgPicture svgLogoutIcon = SvgPicture.asset('assets/svgs/logout_icon.svg');
   static SvgPicture svgAddressIcon = SvgPicture.asset('assets/svgs/address_icon.svg');
   static SvgPicture svgProfileIcon = SvgPicture.asset('assets/svgs/profile_icon.svg');
+  static SvgPicture svgMobileMoneyIcon = SvgPicture.asset('assets/svgs/mobile_money_icon.svg');
 }

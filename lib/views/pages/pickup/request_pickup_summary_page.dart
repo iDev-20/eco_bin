@@ -5,7 +5,7 @@ import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:waste_management_app/views/pages/pickup/request_pickup_success_page.dart';
+import 'package:waste_management_app/views/pages/pickup/select_payment_method_page.dart';
 import 'package:waste_management_app/widgets/back_and_next_button.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 
@@ -28,8 +28,26 @@ class RequestPickupSummaryPage extends StatefulWidget {
 }
 
 class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
+  final Map<String, double> wasteTypePrices = {
+    'Recyclables': 2.5,
+    'Organic Waste': 2.5,
+    'General Waste': 2.5,
+  };
+
+  double calculateTotal(Map<String, int>? selectedItems) {
+    if (selectedItems == null) return 0.00;
+
+    double total = 0.00;
+    selectedItems.forEach((type, qty) {
+      final price = wasteTypePrices[type] ?? 0.00;
+      total += price * qty;
+    });
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final totalAmount = calculateTotal(widget.selectedItemsWithQuantity);
     return AppPageSecondary(
       title: 'Pickup Summary',
       body: Column(
@@ -150,15 +168,15 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                               color: Colors.grey.shade600,
                               fontWeight: FontWeight.w500)),
                       RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: 'GH₵ ',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColors.darkBlueText,
                               fontWeight: FontWeight.w600),
                           children: [
                             TextSpan(
-                              text: '20.00',
-                              style: TextStyle(
+                              text: totalAmount.toStringAsFixed(2),
+                              style: const TextStyle(
                                   color: AppColors.darkBlueText,
                                   fontSize: 24,
                                   fontWeight: FontWeight.w700),
@@ -174,7 +192,7 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
           ),
           BackAndNextButton(onNextButtonTap: () {
             Navigation.navigateToScreen(
-                context: context, screen: const RequestPickupSuccessPage());
+                context: context, screen: const SelectPaymentMethodPage());
           })
         ],
       ),

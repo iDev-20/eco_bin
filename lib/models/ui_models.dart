@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
+import 'package:waste_management_app/resources/app_images.dart';
 
 class LatestUpdates {
   final IconData icon;
@@ -124,4 +126,40 @@ class SavedAddress {
       addressDetail: map['addressDetail'],
     );
   }
+}
+
+class PaymentMethod {
+  final Widget icon;
+  final String text;
+  final String value;
+
+  static PaymentMethod mobileMoney = PaymentMethod(
+      icon: AppImages.svgMobileMoneyIcon,
+      text: 'Mobile Money',
+      value: 'mobilemoney');
+
+  static PaymentMethod bank = PaymentMethod(
+      icon: Icon(Iconsax.card, color: Colors.grey.shade600, size: 22),
+      text: 'Card',
+      value: 'card');
+
+  PaymentMethod({required this.icon, required this.text, required this.value});
+}
+
+class MobileMoneyProvider {
+  final AssetImage icon;
+  final String text;
+  final String value;
+
+  static MobileMoneyProvider mtnMomo = MobileMoneyProvider(
+      icon: AppImages.mtnMomoLogo, text: 'MTN Mobile Money', value: 'mtn');
+
+  static MobileMoneyProvider telecelCash = MobileMoneyProvider(
+      icon: AppImages.telecelLogo, text: 'Telecel Cash', value: 'telecel');
+
+  static MobileMoneyProvider atMoney = MobileMoneyProvider(
+      icon: AppImages.atMoneyLogo, text: 'AT Money', value: 'atmoney');
+
+  MobileMoneyProvider(
+      {required this.icon, required this.text, required this.value});
 }

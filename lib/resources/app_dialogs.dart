@@ -13,7 +13,7 @@ class AppDialogs {
       {required BuildContext context,
       required String message,
       String title = 'Confirm',
-      required VoidCallback? afterConfirmation,
+      required Function()? afterConfirmation,
       String confirmText = 'Confirm',
       bool barrierDismissible = true}) {
     return showDialog(
@@ -74,7 +74,7 @@ class AppDialogs {
   static Future showSuccessDialog(
       {required BuildContext context,
       required String message,
-      VoidCallback? action,
+      Function()? action,
       bool barrierDismissible = true}) {
     return showDialog(
       context: context,

@@ -70,7 +70,7 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
     required IconData icon,
     required String text,
     required bool isSelected,
-    required VoidCallback onPressed,
+    required Function() onPressed,
     double? iconSize,
   }) {
     return GestureDetector(

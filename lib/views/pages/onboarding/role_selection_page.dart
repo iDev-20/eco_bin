@@ -83,7 +83,7 @@ class RoleCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
-  final VoidCallback onTap;
+  final Function() onTap;
 
   const RoleCard(
       {super.key,

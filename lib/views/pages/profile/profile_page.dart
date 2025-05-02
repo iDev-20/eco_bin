@@ -120,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget profileCard(
       {required String title,
       required IconData icon,
-      required VoidCallback onTap,
+      required Function() onTap,
       Widget? trailingWidget,
       Color? titleColor}) {
     return Padding(

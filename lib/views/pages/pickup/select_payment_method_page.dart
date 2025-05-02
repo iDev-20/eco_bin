@@ -264,22 +264,22 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       });
                       await Future.delayed(const Duration(seconds: 2));
 
-                    if (mounted) {
-                      setState(() {
-                        isLoading = false;
-                      });
-                    }
+                      if (mounted) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
 
-                    Provider.of<TransactionProvider>(context, listen: false)
-                        .addTransaction(
-                      TransactionModel(
-                        binNumber: 'binNumber',
-                        method: isMomo() ? 'Mobile Money' : 'Card',
-                        amount: widget.totalAmount ?? '',
-                        status: 'Completed',
-                        date: DateTime.now(),
-                      ),
-                    );
+                      Provider.of<TransactionProvider>(context, listen: false)
+                          .addTransaction(
+                        TransactionModel(
+                          binNumber: 'binNumber',
+                          method: isMomo() ? 'Mobile Money' : 'Card',
+                          amount: widget.totalAmount ?? '',
+                          status: 'Completed',
+                          date: DateTime.now(),
+                        ),
+                      );
                     }
 
                     Navigation.navigateToScreen(
@@ -343,7 +343,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   Widget paymentType(
       {required PaymentMethod paymentMethod,
       required bool selected,
-      required VoidCallback onTap}) {
+      required Function() onTap}) {
     return Material(
       color: AppColors.transparent,
       child: InkWell(

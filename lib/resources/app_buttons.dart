@@ -3,7 +3,7 @@ import 'package:waste_management_app/resources/app_colors.dart';
 
 class PrimaryButton extends StatelessWidget {
   final Widget child;
-  final VoidCallback? onTap;
+  final Function()? onTap;
   final Color backgroundColor;
   final Color foregroundColor;
   final Color borderColor;
@@ -28,23 +28,23 @@ class PrimaryButton extends StatelessWidget {
   ButtonStyle getStyle() {
     return ButtonStyle(
       enableFeedback: true,
-      overlayColor: MaterialStateColor.resolveWith(
+      overlayColor: WidgetStateColor.resolveWith(
           (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.2)),
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         contentPadding ??
             const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         const TextStyle(
           fontFamily: 'Lato',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
@@ -52,16 +52,16 @@ class PrimaryButton extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return Colors.grey[300];
         }
         return backgroundColor; // Defer to the widget's default.
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return Colors.white;
         }
         return foregroundColor; // Defer to the widget's default.
@@ -101,7 +101,7 @@ class PrimaryButton extends StatelessWidget {
 
 class PrimaryOutlinedButton extends StatelessWidget {
   final Widget child;
-  final VoidCallback? onTap;
+  final Function()? onTap;
   final Color backgroundColor;
   final Color foregroundColor;
   final Color borderColor;
@@ -126,23 +126,23 @@ class PrimaryOutlinedButton extends StatelessWidget {
   ButtonStyle getStyle() {
     return ButtonStyle(
       enableFeedback: true,
-      overlayColor: MaterialStateColor.resolveWith(
+      overlayColor: WidgetStateColor.resolveWith(
           (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.2)),
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         contentPadding ??
             const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         const TextStyle(
           fontFamily: 'Lato',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
@@ -150,16 +150,16 @@ class PrimaryOutlinedButton extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return Colors.grey[300];
         }
         return backgroundColor; // Defer to the widget's default.
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return AppColors.white;
         }
         return foregroundColor; // Defer to the widget's default.
@@ -199,7 +199,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
 
 class SecondaryButton extends StatelessWidget {
   final Widget child;
-  final VoidCallback? onTap;
+  final Function()? onTap;
   final Color backgroundColor;
   final Color foregroundColor;
   final Color borderColor;
@@ -220,23 +220,23 @@ class SecondaryButton extends StatelessWidget {
   ButtonStyle getStyle() {
     return ButtonStyle(
       enableFeedback: true,
-      overlayColor: MaterialStateColor.resolveWith(
+      overlayColor: WidgetStateColor.resolveWith(
           (states) => overlayColor ?? const Color(0xFFF2F2F2).withOpacity(0.2)),
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         contentPadding ??
             const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 14,
             ),
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         const TextStyle(
           fontFamily: 'Lato',
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
           side: BorderSide(
@@ -244,16 +244,16 @@ class SecondaryButton extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return AppColors.primaryColor;
         }
         return backgroundColor; // Defer to the widget's default.
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>(
+          (Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
           return Colors.white;
         }
         return foregroundColor; // Defer to the widget's default.

@@ -9,8 +9,8 @@ class QuantitySelector extends StatelessWidget {
       required this.onMinusTap});
 
   final int value;
-  final VoidCallback onMinusTap;
-  final VoidCallback onAddTap;
+  final Function() onMinusTap;
+  final Function() onAddTap;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class QuantitySelector extends StatelessWidget {
   }
 
   Widget actionBox(
-      {required VoidCallback? onTap,
+      {required Function()? onTap,
       required IconData icon,
       required bool isMinus}) {
     return InkWell(

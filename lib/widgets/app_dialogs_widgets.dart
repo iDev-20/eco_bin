@@ -383,8 +383,8 @@ class AppAlertDialog extends StatelessWidget {
   final String? subDesc;
   final String firstOption;
   final String secondOption;
-  final VoidCallback onFirstOptionTap;
-  final VoidCallback onSecondOptionTap;
+  final Function() onFirstOptionTap;
+  final Function() onSecondOptionTap;
   final Color? backgroundColor;
   final Color? borderColor;
   final Color? textColor;

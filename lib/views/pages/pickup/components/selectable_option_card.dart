@@ -14,7 +14,7 @@ class SelectableOptionCard extends StatelessWidget {
   final String text;
   final Row? prefixWidgets;
   final bool selected;
-  final VoidCallback onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {

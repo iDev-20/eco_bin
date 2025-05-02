@@ -277,7 +277,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget singleButton({required String title, required VoidCallback onTap}) {
+  Widget singleButton({required String title, required Function() onTap}) {
     return Expanded(
       child: Material(
         elevation: 2,
@@ -334,7 +334,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget singleTip({required String title, required VoidCallback onTap}) {
+  Widget singleTip({required String title, required Function() onTap}) {
     return Expanded(
       child: Material(
         elevation: 2,

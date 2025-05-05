@@ -251,11 +251,11 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       Provider.of<TransactionProvider>(context, listen: false)
                           .addTransaction(
                         TransactionModel(
-                          binNumber: 'binNumber',
+                          // binNumber: 'binNumber',
                           method: 'Cash',
                           amount: widget.totalAmount ?? '',
                           status: 'Pending',
-                          date: DateTime.now(),
+                          createdAt: DateTime.now(),
                         ),
                       );
                     } else {
@@ -273,11 +273,11 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       Provider.of<TransactionProvider>(context, listen: false)
                           .addTransaction(
                         TransactionModel(
-                          binNumber: 'binNumber',
+                          // binNumber: 'binNumber',
                           method: isMomo() ? 'Mobile Money' : 'Card',
                           amount: widget.totalAmount ?? '',
                           status: 'Completed',
-                          date: DateTime.now(),
+                          createdAt: DateTime.now(),
                         ),
                       );
                     }

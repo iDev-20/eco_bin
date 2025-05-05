@@ -29,18 +29,27 @@ class _TransactionsPageState extends State<TransactionsPage> {
 
           final today = transactions
               .where((tx) =>
-                  tx.date.day == DateTime.now().day &&
-                  tx.date.month == DateTime.now().month &&
-                  tx.date.year == DateTime.now().year)
+                  tx.createdAt.day == DateTime.now().day &&
+                  tx.createdAt.month == DateTime.now().month &&
+                  tx.createdAt.year == DateTime.now().year)
               .toList();
 
-          final pastWeek = transactions
+          final yesterday = transactions
               .where((tx) =>
-                  tx.date.isAfter(
+                  tx.createdAt.isAfter(
+                      DateTime.now().subtract(const Duration(days: 1))) &&
+                  !(tx.createdAt.day == DateTime.now().day &&
+                      tx.createdAt.month == DateTime.now().month &&
+                      tx.createdAt.year == DateTime.now().year))
+              .toList();
+
+          final last7days = transactions
+              .where((tx) =>
+                  tx.createdAt.isAfter(
                       DateTime.now().subtract(const Duration(days: 7))) &&
-                  !(tx.date.day == DateTime.now().day &&
-                      tx.date.month == DateTime.now().month &&
-                      tx.date.year == DateTime.now().year))
+                  !(tx.createdAt.day == DateTime.now().day &&
+                      tx.createdAt.month == DateTime.now().month &&
+                      tx.createdAt.year == DateTime.now().year))
               .toList();
 
           return Expanded(
@@ -58,15 +67,25 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   ...today.map((e) => transactionCard(e)),
                   const SizedBox(height: 16),
                 ],
-                if (pastWeek.isNotEmpty) ...[
+                if (yesterday.isNotEmpty) ...[
                   const Text(
-                    'Past Week',
+                    'Yesterday',
                     style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  ...pastWeek.map((e) => transactionCard(e)),
+                  ...yesterday.map((e) => transactionCard(e)),
+                ],
+                if (last7days.isNotEmpty) ...[
+                  const Text(
+                    'Last 7 days',
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ...last7days.map((e) => transactionCard(e)),
                 ],
                 if (transactions.isEmpty)
                   Row(
@@ -125,13 +144,15 @@ class _TransactionsPageState extends State<TransactionsPage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                transactionDetail(
-                    title: 'Bin Number', detail: transaction.binNumber),
-                const SizedBox(height: 8),
+                // transactionDetail(
+                //     title: 'Bin Number', detail: transaction.binNumber),
+                // const SizedBox(height: 8),
                 transactionDetail(
                     title: 'Amount', detail: 'GH₵ ${transaction.amount}'),
                 const SizedBox(height: 8),
-                Text(DateTime.now().friendlySlashDate()),
+                transactionDetail(
+                    title: 'Created ', detail: transaction.createdAt.transactionDateTime()),
+                // Text(DateTime.now().friendlySlashDate()),
               ],
             ),
             Column(

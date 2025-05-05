@@ -64,6 +64,31 @@ extension DateTimeExtensions on DateTime {
     return '${friendlyDate()}${newLine == true ? "\n" : " • "}${format.format(this)}';
   }
 
+  //transaction dateTime
+
+  String transactionDateTime({bool? newLine}) {
+    final time = DateFormat.jm().format(this);
+    final date = _friendlyDayLabel();
+    return '$date${newLine == true ? "\n" : " • "}$time';
+  }
+
+  String _friendlyDayLabel() {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final dateOnly = DateTime(year, month, day);
+    final difference = today.difference(dateOnly).inDays;
+
+    if (difference == 0) {
+      return 'Today';
+    } else if (difference == 1) {
+      return 'Yesterday';
+    } else if (difference < 7) {
+      return '$difference days ago';
+    } else {
+      return DateFormat.yMMMd().format(this);
+    }
+  }
+
   String formatMediumDate() {
     var format = DateFormat('EE, dd MMM yyyy');
     return format.format(this);

@@ -12,8 +12,9 @@ class TransactionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTransaction(TransactionModel transactionModel) {
+  void addTransaction(TransactionModel transactionModel) async {
     _transactions.add(transactionModel);
+    await SharedPrefs.savedTransactions(_transactions);
     notifyListeners();
   }
 

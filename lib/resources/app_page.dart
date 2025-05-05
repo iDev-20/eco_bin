@@ -8,7 +8,6 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/views/pages/home/notifications_page.dart';
-import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
 class AppPage extends StatelessWidget {
@@ -74,21 +73,23 @@ class AppPage extends StatelessWidget {
   }
 
   Widget actionButton(String title, BuildContext context) {
-    final bool isBinsPage = title == AppStrings.binsCaps;
+    // final bool isBinsPage = title == AppStrings.binsCaps;
     final bool isHomePage = title == AppStrings.homeCaps;
     return GestureDetector(
       onTap: () async {
         if (isHomePage) {
           Navigation.navigateToScreen(
               context: context, screen: const NotificationsPage());
-        } else if (isBinsPage) {
-          await showAdaptiveDialog(
-            context: context,
-            builder: (context) {
-              return AddBinAlertDialog(addBin: addBin, context: context);
-            },
-          );
-        } else {
+        } 
+        // else if (isBinsPage) {
+        //   await showAdaptiveDialog(
+        //     context: context,
+        //     builder: (context) {
+        //       return AddBinAlertDialog(addBin: addBin, context: context);
+        //     },
+        //   );
+        // } 
+        else {
           Navigation.navigateToScreen(
               context: context, screen: const FAQPage());
         }
@@ -110,14 +111,17 @@ class AppPage extends StatelessWidget {
                 color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: Row(
+              child: const Row(
                 children: [
-                  Icon(isBinsPage ? Icons.add : Iconsax.message,
+                  Icon(
+                    // isBinsPage ? Icons.add : 
+                  Iconsax.message,
                       color: Colors.white, size: 20),
-                  const SizedBox(width: 4),
+                  SizedBox(width: 4),
                   Text(
-                    isBinsPage ? 'Add Bin' : AppStrings.gethelp,
-                    style: const TextStyle(
+                    // isBinsPage ? 'Add Bin' : 
+                    AppStrings.gethelp,
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 13,
                       fontWeight: FontWeight.w600,

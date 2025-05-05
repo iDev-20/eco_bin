@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/bins/bins_page.dart';
 import 'package:waste_management_app/views/pages/home/home_page.dart';
 import 'package:waste_management_app/views/pages/profile/profile_page.dart';
 import 'package:waste_management_app/views/pages/transactions_page.dart';
@@ -19,18 +18,18 @@ class _NavigationHostPageState extends State<NavigationHostPage> {
 
   final List<Widget> pages = const [
     HomePage(),
-    BinsPage(),
+    // BinsPage(),
     TransactionsPage(),
     ProfilePage(),
   ];
 
   final List<Map<String, dynamic>> navItems = [
     {'icon': Iconsax.home5, 'text': AppStrings.home},
-    {
-      'icon': Icons.restore_from_trash_rounded,
-      'size': 27.0,
-      'text': AppStrings.bins
-    },
+    // {
+    //   'icon': Icons.restore_from_trash_rounded,
+    //   'size': 27.0,
+    //   'text': AppStrings.bins
+    // },
     {'icon': Iconsax.receipt_2_15, 'text': AppStrings.transactions},
     {'icon': Icons.person_rounded, 'size': 27.0, 'text': AppStrings.profile},
   ];

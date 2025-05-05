@@ -195,6 +195,7 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                 context: context,
                 screen: SelectPaymentMethodPage(
                   totalAmount: totalAmount.toStringAsFixed(2),
+                  selectedItemsWithQuantity: widget.selectedItemsWithQuantity,
                 ));
           })
         ],

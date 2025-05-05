@@ -17,9 +17,11 @@ import 'package:waste_management_app/views/pages/pickup/request_pickup_success_p
 import 'package:waste_management_app/widgets/app_checkbox_widget.dart';
 
 class SelectPaymentMethodPage extends StatefulWidget {
-  const SelectPaymentMethodPage({super.key, this.totalAmount});
+  const SelectPaymentMethodPage(
+      {super.key, this.totalAmount, this.selectedItemsWithQuantity});
 
   final String? totalAmount;
+  final Map<String, int>? selectedItemsWithQuantity;
 
   @override
   State<SelectPaymentMethodPage> createState() =>
@@ -251,6 +253,8 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       Provider.of<TransactionProvider>(context, listen: false)
                           .addTransaction(
                         TransactionModel(
+                          selectedItemsWithQuantity:
+                              widget.selectedItemsWithQuantity ?? {},
                           // binNumber: 'binNumber',
                           method: 'Cash',
                           amount: widget.totalAmount ?? '',
@@ -273,6 +277,8 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                       Provider.of<TransactionProvider>(context, listen: false)
                           .addTransaction(
                         TransactionModel(
+                          selectedItemsWithQuantity:
+                              widget.selectedItemsWithQuantity ?? {},
                           // binNumber: 'binNumber',
                           method: isMomo() ? 'Mobile Money' : 'Card',
                           amount: widget.totalAmount ?? '',

@@ -50,6 +50,7 @@ class RegisteredBins {
 
 class TransactionModel {
   // final String binNumber;
+  final Map<String, int> selectedItemsWithQuantity;
   final String method;
   final String amount;
   final String status;
@@ -68,6 +69,7 @@ class TransactionModel {
 
   TransactionModel({
     // required this.binNumber,
+    required this.selectedItemsWithQuantity,
     required this.method,
     required this.amount,
     required this.status,
@@ -77,6 +79,7 @@ class TransactionModel {
   Map<String, dynamic> toMap() {
     return {
       // 'binNumber': binNumber,
+      'selectedItemsWithQuantity': selectedItemsWithQuantity,
       'method': method,
       'amount': amount,
       'status': status,
@@ -88,6 +91,10 @@ class TransactionModel {
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
       // binNumber: map['binNumber'],
+      selectedItemsWithQuantity: map['selectedItemsWithQuantity'] != null
+          ? Map<String, int>.from(map['selectedItemsWithQuantity'])
+          : <String, int>{},
+      // selectedItemsWithQuantity: Map<String, int>.from(map['selectedItemsWithQuantity']),
       method: map['method'],
       amount: map['amount'],
       status: map['status'],

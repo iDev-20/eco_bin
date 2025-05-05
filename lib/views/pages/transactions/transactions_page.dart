@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:waste_management_app/components/bottom_sheets.dart';
 import 'package:waste_management_app/extensions/date_time_extensions.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
@@ -8,6 +9,7 @@ import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
+import 'package:waste_management_app/views/pages/transactions/transaction_details_bottom_sheet.dart';
 
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key, this.totalAmount});
@@ -125,50 +127,64 @@ class _TransactionsPageState extends State<TransactionsPage> {
   Widget transactionCard(TransactionModel transaction) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              blurRadius: 4,
-              offset: const Offset(2, 3),
+      child: InkWell(
+        onTap: () {
+          showAppBottomSheet(
+            context: context,
+            title: 'Waste Types Collected',
+            child: TransactionDetailBottomSheet(
+              selectedWasteTypes: transaction.selectedItemsWithQuantity,
+              status: transaction.status,
+              statusColor: transaction.statusColor()
             ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // transactionDetail(
-                //     title: 'Bin Number', detail: transaction.binNumber),
-                // const SizedBox(height: 8),
-                transactionDetail(
-                    title: 'Amount', detail: 'GH₵ ${transaction.amount}'),
-                const SizedBox(height: 8),
-                transactionDetail(
-                    title: 'Created ', detail: transaction.createdAt.transactionDateTime()),
-                // Text(DateTime.now().friendlySlashDate()),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                transactionDetail(title: 'Method', detail: transaction.method),
-                const SizedBox(height: 8),
-                transactionDetail(
-                  title: 'Status',
-                  detail: transaction.status,
-                  isStatus: true,
-                  transaction: transaction,
-                ),
-              ],
-            ),
-          ],
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                blurRadius: 4,
+                offset: const Offset(2, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // transactionDetail(
+                  //     title: 'Bin Number', detail: transaction.binNumber),
+                  // const SizedBox(height: 8),
+                  transactionDetail(
+                      title: 'Amount', detail: 'GH₵ ${transaction.amount}'),
+                  const SizedBox(height: 8),
+                  transactionDetail(
+                      title: 'Created ',
+                      detail: transaction.createdAt.transactionDateTime()),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  transactionDetail(
+                      title: 'Method', detail: transaction.method),
+                  const SizedBox(height: 8),
+                  transactionDetail(
+                    title: 'Status',
+                    detail: transaction.status,
+                    isStatus: true,
+                    transaction: transaction,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -8,7 +8,7 @@ import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/transactions_page.dart';
+import 'package:waste_management_app/views/pages/transactions/transactions_page.dart';
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class BinDetailsBottomSheet extends StatefulWidget {

@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   singleButton(
-                    title: 'Request Pickup',
+                    title: 'Schedule Pickup',
                     onTap: () {
                       Navigation.navigateToScreen(
                           context: context, screen: const RequestPickupPage());

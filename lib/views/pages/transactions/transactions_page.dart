@@ -90,31 +90,36 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   ...last7days.map((e) => transactionCard(e)),
                 ],
                 if (transactions.isEmpty)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'No transactions yet—',
-                        style: TextStyle(
-                            color: AppColors.darkBlueText,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'No transactions yet—',
+                            style: TextStyle(
+                                color: AppColors.darkBlueText,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigation.navigateToScreen(
+                                  context: context,
+                                  screen: const RequestPickupPage());
+                            },
+                            child: const Text(
+                              'get started',
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigation.navigateToScreen(
-                              context: context,
-                              screen: const RequestPickupPage());
-                        },
-                        child: const Text(
-                          'get started',
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
               ],
             ),

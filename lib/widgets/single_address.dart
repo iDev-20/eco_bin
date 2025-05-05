@@ -14,7 +14,7 @@ class SingleAddress extends StatelessWidget {
 
   final SavedAddress savedAddress;
   final bool selected;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class SingleEditableAddress extends StatelessWidget {
   });
 
   final SavedAddress savedAddress;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

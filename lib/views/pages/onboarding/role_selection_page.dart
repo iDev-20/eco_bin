@@ -16,7 +16,7 @@ class RoleSelectionPage extends StatelessWidget {
           screen: SignUpPage(
             role: role,
           ));
-    } 
+    }
     //Coming later
     // else if (role == 'Business') {
     //   Navigation.navigateToScreen(
@@ -24,7 +24,7 @@ class RoleSelectionPage extends StatelessWidget {
     //       screen: SignUpPage(
     //         role: role,
     //       ));
-    // } 
+    // }
     else if (role == 'Collector') {
       Navigation.navigateToScreen(
           context: context,
@@ -83,7 +83,7 @@ class RoleCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   const RoleCard(
       {super.key,

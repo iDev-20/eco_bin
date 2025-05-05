@@ -59,7 +59,7 @@ class _SelectMobileMoneyProviderBottomSheetState
   Widget mobileMoneyCard(
       {required MobileMoneyProvider mobileMoneyProvider,
       required bool selected,
-      required Function() onTap}) {
+      required VoidCallback onTap}) {
     return SelectableOptionCard(
       text: mobileMoneyProvider.text,
       selected: selected,

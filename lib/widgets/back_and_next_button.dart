@@ -6,7 +6,7 @@ class BackAndNextButton extends StatelessWidget {
   const BackAndNextButton(
       {super.key, required this.onNextButtonTap, this.onNextButtonEnabled});
 
-  final Function() onNextButtonTap;
+  final VoidCallback onNextButtonTap;
   final bool? onNextButtonEnabled;
 
   @override

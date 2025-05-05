@@ -153,7 +153,7 @@ class _RequestPickupPageState extends State<RequestPickupPage> {
     required String icon,
     required String title,
     required bool selected,
-    required Function() onTap,
+    required VoidCallback onTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),

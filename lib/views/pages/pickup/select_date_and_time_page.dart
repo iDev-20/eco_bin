@@ -105,7 +105,7 @@ class _SelectTimeAndDatePageState extends State<SelectTimeAndDatePage> {
     required String labelText,
     Widget? labelWidget,
     required String hintText,
-    required Function() onTap,
+    required VoidCallback onTap,
     required String? value,
   }) {
     return Column(

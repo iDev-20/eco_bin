@@ -343,7 +343,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
   Widget paymentType(
       {required PaymentMethod paymentMethod,
       required bool selected,
-      required Function() onTap}) {
+      required VoidCallback onTap}) {
     return Material(
       color: AppColors.transparent,
       child: InkWell(

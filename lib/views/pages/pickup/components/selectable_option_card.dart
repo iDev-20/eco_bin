@@ -14,7 +14,7 @@ class SelectableOptionCard extends StatelessWidget {
   final String text;
   final Row? prefixWidgets;
   final bool selected;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,7 @@ class SelectableOptionCard extends StatelessWidget {
           onTap: onTap,
           child: Ink(
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 8
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               decoration: BoxDecoration(
                   color: selected ? AppColors.grey100 : null,
                   borderRadius: BorderRadius.circular(10)),

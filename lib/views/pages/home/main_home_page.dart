@@ -210,7 +210,7 @@ class _MainHomePageState extends State<MainHomePage> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 20),
                           // wasteContainerVertical(image: AppImages.slideshow6),
                           // const SizedBox(height: 8),
                           wasteContainerVertical(

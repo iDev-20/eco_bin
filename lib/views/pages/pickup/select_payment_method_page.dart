@@ -258,7 +258,7 @@ class _SelectPaymentMethodPageState extends State<SelectPaymentMethodPage> {
                           // binNumber: 'binNumber',
                           method: 'Cash',
                           amount: widget.totalAmount ?? '',
-                          status: 'Pending',
+                          status: 'Failed',
                           createdAt: DateTime.now(),
                         ),
                       );

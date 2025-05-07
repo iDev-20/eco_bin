@@ -149,32 +149,34 @@ class _MainHomePageState extends State<MainHomePage> {
                             ),
                           ),
                           const SizedBox(height: 24),
-                          DashboardMetricGridView(children: [
-                            singleCounter(
-                                title: 'Recycled \nplastic',
-                                count: '20',
-                                color: AppColors.boxColor1),
-                            singleCounter(
-                                title: 'Recycled \nmetals',
-                                count: '0',
-                                color: AppColors.boxColor2),
-                            singleCounter(
-                                title: 'Organic \nwaste',
-                                count: '13',
-                                color: AppColors.boxColor3),
-                            singleCounter(
-                                title: 'General \nwaste',
-                                count: '5',
-                                color: AppColors.boxColor4),
-                            singleCounter(
-                                title: 'General \nwaste',
-                                count: '1',
-                                color: AppColors.boxColor5),
-                            singleCounter(
-                                title: 'General \nwaste',
-                                count: '0',
-                                color: AppColors.boxColor6),
-                          ]),
+                          DashboardMetricGridView(
+                            children: [
+                              singleCounter(
+                                  title: 'Recycled \nplastic',
+                                  count: '20',
+                                  color: AppColors.boxColor1),
+                              singleCounter(
+                                  title: 'Recycled \nmetals',
+                                  count: '0',
+                                  color: AppColors.boxColor2),
+                              singleCounter(
+                                  title: 'Organic \nwaste',
+                                  count: '13',
+                                  color: AppColors.boxColor3),
+                              singleCounter(
+                                  title: 'General \nwaste',
+                                  count: '5',
+                                  color: AppColors.boxColor4),
+                              singleCounter(
+                                  title: 'General \nwaste',
+                                  count: '1',
+                                  color: AppColors.boxColor5),
+                              singleCounter(
+                                  title: 'General \nwaste',
+                                  count: '0',
+                                  color: AppColors.boxColor6),
+                            ],
+                          ),
                         ],
                       ),
                     ),

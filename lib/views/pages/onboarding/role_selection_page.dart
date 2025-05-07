@@ -10,7 +10,7 @@ class RoleSelectionPage extends StatelessWidget {
 
   void navigateToNextScreen(BuildContext context, String role) {
     // Navigate based on role
-    if (role == 'Household') {
+    if (role == 'User') {
       Navigation.navigateToScreen(
           context: context,
           screen: SignUpPage(
@@ -39,38 +39,93 @@ class RoleSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 60),
+            child: Text(
               'Select your role',
               style: TextStyle(
                   color: AppColors.darkBlueText,
                   fontSize: 24,
                   fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 16),
-            RoleCard(
-              icon: Icons.home,
-              title: "Household",
-              description: "Manage your waste pickups easily.",
-              onTap: () => navigateToNextScreen(context, "Household"),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 50.0, top: 30.0, right: 50.0, bottom: 100.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  roleContainer(
+                    role: 'User',
+                    onTap: () => navigateToNextScreen(context, 'User'),
+                  ),
+                  roleContainer(
+                    role: 'Collector',
+                    description: 'Coming Soon',
+                    onTap: () {},
+                  ),
+                  // RoleCard(
+                  //   icon: Icons.home,
+                  //   title: "Household",
+                  //   description: "Manage your waste pickups easily.",
+                  //   onTap: () => navigateToNextScreen(context, "Household"),
+                  // ),
+                  // //Coming later
+                  // // RoleCard(
+                  // //   icon: Icons.business,
+                  // //   title: "Business",
+                  // //   description: "Keep your workplace waste-free.",
+                  // //   onTap: () => navigateToNextScreen(context, "Business"),
+                  // // ),
+                  // RoleCard(
+                  //   icon: Icons.local_shipping,
+                  //   title: "Collector",
+                  //   description: "Pick up and manage waste requests.",
+                  //   onTap: () => navigateToNextScreen(context, "Collector"),
+                  // ),
+                ],
+              ),
             ),
-            //Coming later
-            // RoleCard(
-            //   icon: Icons.business,
-            //   title: "Business",
-            //   description: "Keep your workplace waste-free.",
-            //   onTap: () => navigateToNextScreen(context, "Business"),
-            // ),
-            RoleCard(
-              icon: Icons.local_shipping,
-              title: "Collector",
-              description: "Pick up and manage waste requests.",
-              onTap: () => navigateToNextScreen(context, "Collector"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget roleContainer(
+      {required String role,
+      required VoidCallback onTap,
+      String? description}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 110),
+        decoration: BoxDecoration(
+          color: AppColors.primary50,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.primaryColor),
+        ),
+        child: Column(
+          children: [
+            Text(
+              role,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: AppColors.darkBlueText,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w600),
+            ),
+            Text(
+              description ?? '',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
             ),
           ],
         ),

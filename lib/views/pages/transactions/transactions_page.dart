@@ -167,10 +167,10 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   //     title: 'Bin Number', detail: transaction.binNumber),
                   // const SizedBox(height: 8),
                   transactionDetail(
-                      title: 'Amount', detail: 'GH₵ ${transaction.amount}'),
+                      title: 'Amount: ', detail: 'GH₵ ${transaction.amount}'),
                   const SizedBox(height: 8),
                   transactionDetail(
-                      title: 'Created ',
+                      title: 'Created:\n',
                       detail: transaction.createdAt.transactionDateTime()),
                 ],
               ),
@@ -178,10 +178,10 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   transactionDetail(
-                      title: 'Method', detail: transaction.method),
+                      title: 'Method: ', detail: transaction.method),
                   const SizedBox(height: 8),
                   transactionDetail(
-                    title: 'Status',
+                    title: 'Status: ',
                     detail: transaction.status,
                     isStatus: true,
                     transaction: transaction,
@@ -208,7 +208,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
-        text: '$title: ',
+        text: '$title',
         children: <TextSpan>[
           TextSpan(
             style: TextStyle(

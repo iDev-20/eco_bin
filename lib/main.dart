@@ -7,7 +7,6 @@ import 'package:waste_management_app/providers/transaction_provider.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:waste_management_app/views/pages/onboarding/role_selection_page.dart';
 import 'package:waste_management_app/views/splash_screen.dart';
 
 bool isBinCreated = false;
@@ -59,7 +58,7 @@ class MyApp extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             height: 89),
       ),
-      home: const SplashScreen(),
+      home: const NavigationHostPage(),
     );
   }
 }

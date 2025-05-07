@@ -5,6 +5,7 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/views/pages/home/components/dashboard_metric_grid_view.dart';
 import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/views/pages/home/notifications_page.dart';
+import 'package:waste_management_app/views/pages/home/volunteer_page.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
 
 class MainHomePage extends StatefulWidget {
@@ -74,7 +75,6 @@ class _MainHomePageState extends State<MainHomePage> {
               right: 0,
               bottom: 0,
               child: Container(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.only(
@@ -86,8 +86,8 @@ class _MainHomePageState extends State<MainHomePage> {
                   children: [
                     Expanded(
                       child: ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        // padding: const EdgeInsets.all(0),
+                        padding:
+                            const EdgeInsets.only(left: 16, top: 34, right: 16),
                         children: [
                           const Text(
                             'Services',
@@ -134,22 +134,25 @@ class _MainHomePageState extends State<MainHomePage> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 20),
                           SizedBox(
                             height: 137,
                             child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: [
-                                wasteContainer(color: AppColors.boxColor6),
-                                wasteContainer(color: AppColors.boxColor5),
-                                wasteContainer(color: AppColors.primary100),
-                                wasteContainer(
-                                    color: AppColors.trialGreen,
+                                wasteContainerHorizontal(
+                                    image: AppImages.slideshow1),
+                                wasteContainerHorizontal(
+                                    image: AppImages.slideshow2),
+                                wasteContainerHorizontal(
+                                    image: AppImages.slideshow3),
+                                wasteContainerHorizontal(
+                                    image: AppImages.slideshow4,
                                     rightPadding: 0.0),
                               ],
                             ),
                           ),
-                          const SizedBox(height: 24),
+                          const SizedBox(height: 20),
                           DashboardMetricGridView(
                             children: [
                               singleCounter(
@@ -178,6 +181,40 @@ class _MainHomePageState extends State<MainHomePage> {
                                   color: AppColors.boxColor6),
                             ],
                           ),
+                          const SizedBox(height: 20),
+                          InkWell(
+                            onTap: () {
+                              Navigation.navigateToScreen(
+                                  context: context,
+                                  screen: const VolunteerPage());
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Become a Volunteer',
+                                  style: TextStyle(
+                                      color: AppColors.darkBlueText,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.primary50,
+                                      shape: BoxShape.circle),
+                                  child: const Icon(
+                                      Icons.keyboard_arrow_right_rounded),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          // wasteContainerVertical(image: AppImages.slideshow6),
+                          // const SizedBox(height: 8),
+                          wasteContainerVertical(
+                              image: AppImages.slideshow7, rightPadding: 0.0),
                         ],
                       ),
                     ),
@@ -222,14 +259,30 @@ class _MainHomePageState extends State<MainHomePage> {
     );
   }
 
-  Widget wasteContainer({required Color color, double? rightPadding}) {
+  Widget wasteContainerHorizontal(
+      {required ImageProvider image, double? rightPadding}) {
     return Padding(
       padding: EdgeInsets.only(right: rightPadding ?? 8.0),
       child: Container(
         height: 137,
         width: 273,
         decoration: BoxDecoration(
-            color: color, borderRadius: BorderRadius.circular(10)),
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(image: image, fit: BoxFit.cover)),
+      ),
+    );
+  }
+
+  Widget wasteContainerVertical(
+      {required ImageProvider image, double? rightPadding}) {
+    return Padding(
+      padding: EdgeInsets.only(right: rightPadding ?? 8.0),
+      child: Container(
+        height: 200,
+        // width: 273,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(image: image, fit: BoxFit.cover)),
       ),
     );
   }

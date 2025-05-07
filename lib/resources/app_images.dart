@@ -22,6 +22,20 @@ class AppImages {
       const AssetImage('assets/images/at_money_logo.png');
   static AssetImage telecelLogo =
       const AssetImage('assets/images/telecel_logo.png');
+  static AssetImage slideshow1 =
+      const AssetImage('assets/images/slideshow_1.jpg');
+  static AssetImage slideshow2 =
+      const AssetImage('assets/images/slideshow_2.jpg');
+  static AssetImage slideshow3 =
+      const AssetImage('assets/images/slideshow_3.jpg');
+  static AssetImage slideshow4 =
+      const AssetImage('assets/images/slideshow_4.jpg');
+  static AssetImage slideshow5 =
+      const AssetImage('assets/images/slideshow_5.jpg');
+  static AssetImage slideshow6 =
+      const AssetImage('assets/images/slideshow_6.jpg');
+  static AssetImage slideshow7 =
+      const AssetImage('assets/images/slideshow_7.jpg');
 
   //Svgs
   static SvgPicture svgCloseBottomSheetIcon =
@@ -29,9 +43,14 @@ class AppImages {
   static SvgPicture svgSuccessDialogIcon =
       SvgPicture.asset('assets/svgs/success_dialog_icon.svg');
   static SvgPicture svgChatIcon = SvgPicture.asset('assets/svgs/chat_icon.svg');
-  static SvgPicture svgLocationIcon = SvgPicture.asset('assets/svgs/location_icon.svg');
-  static SvgPicture svgLogoutIcon = SvgPicture.asset('assets/svgs/logout_icon.svg');
-  static SvgPicture svgAddressIcon = SvgPicture.asset('assets/svgs/address_icon.svg');
-  static SvgPicture svgProfileIcon = SvgPicture.asset('assets/svgs/profile_icon.svg');
-  static SvgPicture svgMobileMoneyIcon = SvgPicture.asset('assets/svgs/mobile_money_icon.svg');
+  static SvgPicture svgLocationIcon =
+      SvgPicture.asset('assets/svgs/location_icon.svg');
+  static SvgPicture svgLogoutIcon =
+      SvgPicture.asset('assets/svgs/logout_icon.svg');
+  static SvgPicture svgAddressIcon =
+      SvgPicture.asset('assets/svgs/address_icon.svg');
+  static SvgPicture svgProfileIcon =
+      SvgPicture.asset('assets/svgs/profile_icon.svg');
+  static SvgPicture svgMobileMoneyIcon =
+      SvgPicture.asset('assets/svgs/mobile_money_icon.svg');
 }

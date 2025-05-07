@@ -8,7 +8,9 @@ import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
 class AccountsPage extends StatefulWidget {
-  const AccountsPage({super.key});
+  const AccountsPage({super.key, required this.phoneNumber});
+
+  final String phoneNumber;
 
   @override
   State<AccountsPage> createState() => _AccountsPageState();
@@ -16,6 +18,8 @@ class AccountsPage extends StatefulWidget {
 
 class _AccountsPageState extends State<AccountsPage> {
   // bool hasProfilePhoto = false;
+
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,20 +49,23 @@ class _AccountsPageState extends State<AccountsPage> {
                       fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 16),
-                const PrimaryTextFormField(
+                PrimaryTextFormField(
                   bottomPadding: 8,
                   labelText: 'Name',
-                  hintText: 'Nana Kwame',
+                  hintText: 'E.g Nana Kwame',
+                  controller: nameController,
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.done,
-                  textCapitalization: TextCapitalization.sentences,
+                  textCapitalization: TextCapitalization.words,
+                  enabled: nameController.text.isEmpty,
                 ),
-                const PrimaryTextFormField(
+                PrimaryTextFormField(
                   bottomPadding: 8,
                   labelText: 'Phone Number',
-                  hintText: '0543571590',
+                  hintText: widget.phoneNumber,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
+                  enabled: false,
                 ),
                 const PrimaryTextFormField(
                   labelText: 'Email Address',
@@ -69,10 +76,11 @@ class _AccountsPageState extends State<AccountsPage> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16),
+          Padding(
+            padding: const EdgeInsets.all(16),
             child: PrimaryButton(
-              child: Text('Save Details'),
+              onTap: () {},
+              child: const Text('Save Details'),
             ),
           ),
         ],

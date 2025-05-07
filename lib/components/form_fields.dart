@@ -150,6 +150,7 @@ class PrimaryTextFormField extends StatelessWidget {
                   null,
               textInputAction: textInputAction,
               textCapitalization: textCapitalization ?? TextCapitalization.none,
+              enabled: enabled,
             ),
           ),
         ],

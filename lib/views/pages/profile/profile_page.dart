@@ -22,6 +22,23 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String _phoneNumber = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPhoneNumber();
+  }
+
+  void _loadPhoneNumber() async {
+    String phoneNumber = await SharedPrefs.getPhoneNumber();
+    setState(() {
+      _phoneNumber = phoneNumber;
+    });
+  }
+
+  String avatarUrl = 'https://api.dicebear.com/9.x/<lorelei>/svg';
+
   @override
   Widget build(BuildContext context) {
     return AppPage(
@@ -30,26 +47,26 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           children: [
-            const Row(
+            Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 25,
-                  // backgroundImage: AppImages.profileImage,
+                  // backgroundImage: NetworkImage(avatarUrl),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Jermaine Lamar Cole',
+                    const Text(
+                      'User123',
                       style: TextStyle(
                           color: AppColors.darkBlueText,
                           fontSize: 16,
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      '0543571590',
-                      style: TextStyle(
+                      _phoneNumber,
+                      style: const TextStyle(
                           color: Colors.grey, fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -67,7 +84,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onTap: () {
                 Navigation.navigateToScreen(
-                    context: context, screen: const AccountsPage());
+                    context: context,
+                    screen: AccountsPage(
+                      phoneNumber: _phoneNumber,
+                    ));
               },
             ),
             profileCard(

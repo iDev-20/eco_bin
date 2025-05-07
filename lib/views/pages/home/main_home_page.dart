@@ -38,7 +38,7 @@ class _MainHomePageState extends State<MainHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Hello, Jermaine 👋',
+                        'Hello, User123 👋',
                         style: TextStyle(
                             color: AppColors.primary50,
                             fontSize: 20,

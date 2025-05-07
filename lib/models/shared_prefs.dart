@@ -120,4 +120,9 @@ class SharedPrefs {
     await prefs.remove('isLoggedIn');
     await prefs.remove('loggedInUser');
   }
+
+  static Future<String> getPhoneNumber() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('phoneNumber') ?? '';
+  }
 }

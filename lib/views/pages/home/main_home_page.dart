@@ -74,151 +74,146 @@ class _MainHomePageState extends State<MainHomePage> {
               top: 140,
               right: 0,
               bottom: 0,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.only(
-                    // topLeft: Radius.circular(35),
-                    topRight: Radius.circular(40),
-                  ),
+              child: Material(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(40),
                 ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView(
-                        padding:
-                            const EdgeInsets.only(left: 16, top: 34, right: 16),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                  decoration: const BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                    ),
+                  ),
+                  child: ListView(
+                    padding: const EdgeInsets.all(0),
+                    children: [
+                      const Text(
+                        'Services',
+                        style: TextStyle(
+                            color: AppColors.darkBlueText,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            'Services',
-                            style: TextStyle(
-                                color: AppColors.darkBlueText,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              singleButton(
-                                title: 'Schedule Pickup',
-                                onTap: () {
-                                  Navigation.navigateToScreen(
-                                      context: context,
-                                      screen: const RequestPickupPage());
-                                },
-                              ),
-                              const SizedBox(width: 10),
-                              singleButton(
-                                title: 'Find Bin',
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              singleButton(
-                                title: 'Pickup History',
-                                onTap: () {},
-                              ),
-                              const SizedBox(width: 10),
-                              singleButton(
-                                title: 'Get Help',
-                                onTap: () {
-                                  Navigation.navigateToScreen(
-                                      context: context,
-                                      screen: const FAQPage());
-                                },
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          SizedBox(
-                            height: 137,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                wasteContainerHorizontal(
-                                    image: AppImages.slideshow1),
-                                wasteContainerHorizontal(
-                                    image: AppImages.slideshow2),
-                                wasteContainerHorizontal(
-                                    image: AppImages.slideshow3),
-                                wasteContainerHorizontal(
-                                    image: AppImages.slideshow4,
-                                    rightPadding: 0.0),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          DashboardMetricGridView(
-                            children: [
-                              singleCounter(
-                                  title: 'Recycled \nplastic',
-                                  count: '20',
-                                  color: AppColors.boxColor1),
-                              singleCounter(
-                                  title: 'Recycled \nmetals',
-                                  count: '0',
-                                  color: AppColors.boxColor2),
-                              singleCounter(
-                                  title: 'Organic \nwaste',
-                                  count: '13',
-                                  color: AppColors.boxColor3),
-                              singleCounter(
-                                  title: 'General \nwaste',
-                                  count: '5',
-                                  color: AppColors.boxColor4),
-                              singleCounter(
-                                  title: 'General \nwaste',
-                                  count: '1',
-                                  color: AppColors.boxColor5),
-                              singleCounter(
-                                  title: 'General \nwaste',
-                                  count: '0',
-                                  color: AppColors.boxColor6),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          InkWell(
+                          singleButton(
+                            title: 'Schedule Pickup',
                             onTap: () {
                               Navigation.navigateToScreen(
                                   context: context,
-                                  screen: const VolunteerPage());
+                                  screen: const RequestPickupPage());
                             },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Become a Volunteer',
-                                  style: TextStyle(
-                                      color: AppColors.darkBlueText,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: const BoxDecoration(
-                                      color: AppColors.primary50,
-                                      shape: BoxShape.circle),
-                                  child: const Icon(
-                                      Icons.keyboard_arrow_right_rounded),
-                                ),
-                              ],
-                            ),
                           ),
-                          const SizedBox(height: 20),
-                          // wasteContainerVertical(image: AppImages.slideshow6),
-                          // const SizedBox(height: 8),
-                          wasteContainerVertical(
-                              image: AppImages.slideshow7, rightPadding: 0.0),
+                          const SizedBox(width: 10),
+                          singleButton(
+                            title: 'Find Bin',
+                            onTap: () {},
+                          ),
                         ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          singleButton(
+                            title: 'Pickup History',
+                            onTap: () {},
+                          ),
+                          const SizedBox(width: 10),
+                          singleButton(
+                            title: 'Get Help',
+                            onTap: () {
+                              Navigation.navigateToScreen(
+                                  context: context, screen: const FAQPage());
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 137,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            wasteContainerHorizontal(
+                                image: AppImages.slideshow1),
+                            wasteContainerHorizontal(
+                                image: AppImages.slideshow2),
+                            wasteContainerHorizontal(
+                                image: AppImages.slideshow3),
+                            wasteContainerHorizontal(
+                                image: AppImages.slideshow4, rightPadding: 0.0),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      DashboardMetricGridView(
+                        children: [
+                          singleCounter(
+                              title: 'Recycled \nplastic',
+                              count: '20',
+                              color: AppColors.boxColor1),
+                          singleCounter(
+                              title: 'Recycled \nmetals',
+                              count: '0',
+                              color: AppColors.boxColor2),
+                          singleCounter(
+                              title: 'Organic \nwaste',
+                              count: '13',
+                              color: AppColors.boxColor3),
+                          singleCounter(
+                              title: 'General \nwaste',
+                              count: '5',
+                              color: AppColors.boxColor4),
+                          singleCounter(
+                              title: 'General \nwaste',
+                              count: '1',
+                              color: AppColors.boxColor5),
+                          singleCounter(
+                              title: 'General \nwaste',
+                              count: '0',
+                              color: AppColors.boxColor6),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      InkWell(
+                        onTap: () {
+                          Navigation.navigateToScreen(
+                              context: context, screen: const VolunteerPage());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Become a Volunteer',
+                              style: TextStyle(
+                                  color: AppColors.darkBlueText,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            Container(
+                              height: 30,
+                              width: 30,
+                              decoration: const BoxDecoration(
+                                  color: AppColors.primary50,
+                                  shape: BoxShape.circle),
+                              child: const Icon(
+                                  Icons.keyboard_arrow_right_rounded),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // wasteContainerVertical(image: AppImages.slideshow6),
+                      // const SizedBox(height: 8),
+                      wasteContainerVertical(
+                          image: AppImages.slideshow7, rightPadding: 0.0),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -293,7 +288,7 @@ class _MainHomePageState extends State<MainHomePage> {
       elevation: 2,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: 90,
+        // height: 98,
         padding:
             const EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 12),
         decoration: BoxDecoration(

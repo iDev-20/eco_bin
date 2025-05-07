@@ -15,7 +15,11 @@ import 'package:waste_management_app/views/pages/profile/report_issue_page.dart'
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({super.key, this.phoneNumber, this.userName, this.userEmail}); 
+
+  final String? phoneNumber;
+  final String? userName;
+  final String? userEmail;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -23,17 +27,30 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String _phoneNumber = '';
+  String _userName = '';
+  String _userEmail = '';
 
   @override
   void initState() {
     super.initState();
-    _loadPhoneNumber();
+    loadUserDetails();
+
   }
 
-  void _loadPhoneNumber() async {
+  void loadUserDetails() async {
     String phoneNumber = await SharedPrefs.getPhoneNumber();
     setState(() {
       _phoneNumber = phoneNumber;
+    });
+
+    String userName = await SharedPrefs.getUserName() ?? 'User123';
+    setState(() {
+      _userName = userName;
+    });
+
+    String userEmail = await SharedPrefs.getUserEmail() ?? '';
+    setState(() {
+      _userEmail = userEmail;
     });
   }
 
@@ -57,9 +74,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'User123',
-                      style: TextStyle(
+                     Text(
+                      widget.userName ?? _userName,
+                      style: const TextStyle(
                           color: AppColors.darkBlueText,
                           fontSize: 16,
                           fontWeight: FontWeight.w700),
@@ -86,6 +103,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigation.navigateToScreen(
                     context: context,
                     screen: AccountsPage(
+                      userName: _userName,
+                      userEmail: _userEmail,
                       phoneNumber: _phoneNumber,
                     ));
               },

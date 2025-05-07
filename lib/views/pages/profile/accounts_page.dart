@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:waste_management_app/components/form_fields.dart';
+import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
+import 'package:waste_management_app/views/pages/profile/profile_page.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
 class AccountsPage extends StatefulWidget {
-  const AccountsPage({super.key, required this.phoneNumber});
+  const AccountsPage(
+      {super.key,
+      required this.userName,
+      required this.userEmail,
+      required this.phoneNumber});
 
+  final String userName;
+  final String userEmail;
   final String phoneNumber;
 
   @override
@@ -20,6 +28,7 @@ class _AccountsPageState extends State<AccountsPage> {
   // bool hasProfilePhoto = false;
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +61,16 @@ class _AccountsPageState extends State<AccountsPage> {
                 PrimaryTextFormField(
                   bottomPadding: 8,
                   labelText: 'Name',
-                  hintText: 'E.g Nana Kwame',
+                  hintText: widget.userName,
                   controller: nameController,
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.done,
                   textCapitalization: TextCapitalization.words,
-                  enabled: nameController.text.isEmpty,
+                  onChanged: (value) {
+                    setState(() {
+                      nameController.text = value;
+                    });
+                  },
                 ),
                 PrimaryTextFormField(
                   bottomPadding: 8,
@@ -67,11 +80,17 @@ class _AccountsPageState extends State<AccountsPage> {
                   textInputAction: TextInputAction.done,
                   enabled: false,
                 ),
-                const PrimaryTextFormField(
+                PrimaryTextFormField(
                   labelText: 'Email Address',
                   hintText: 'Enter your email address',
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.done,
+                  onChanged: (value) {
+                    setState(() {
+                      emailController.text = value;
+                    });
+                  },
                 ),
               ],
             ),
@@ -79,7 +98,26 @@ class _AccountsPageState extends State<AccountsPage> {
           Padding(
             padding: const EdgeInsets.all(16),
             child: PrimaryButton(
-              onTap: () {},
+              onTap: () {
+                // Save the details
+
+                // You can add your save logic here
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Details saved successfully!'),
+                  ),
+                );
+                Navigation.navigateToScreen(
+                  context: context,
+                  screen: ProfilePage(
+                    userName: nameController.text.isNotEmpty
+                        ? nameController.text
+                        : widget.userName,
+                    userEmail: widget.userEmail,
+                    phoneNumber: widget.phoneNumber,
+                  ),
+                );
+              },
               child: const Text('Save Details'),
             ),
           ),

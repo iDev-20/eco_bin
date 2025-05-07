@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/providers/transaction_provider.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/home/home_page.dart';
 import 'package:waste_management_app/views/pages/home/main_home_page.dart';
 import 'package:waste_management_app/views/pages/profile/profile_page.dart';
 import 'package:waste_management_app/views/pages/transactions/transactions_page.dart';

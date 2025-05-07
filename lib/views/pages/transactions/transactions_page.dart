@@ -138,10 +138,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
             context: context,
             title: 'Waste Types Collected',
             child: TransactionDetailBottomSheet(
-              selectedWasteTypes: transaction.selectedItemsWithQuantity,
-              status: transaction.status,
-              statusColor: transaction.statusColor()
-            ),
+                selectedWasteTypes: transaction.selectedItemsWithQuantity,
+                status: transaction.status,
+                statusColor: transaction.statusColor()),
           );
         },
         child: Container(
@@ -208,7 +207,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
-        text: '$title',
+        text: title,
         children: <TextSpan>[
           TextSpan(
             style: TextStyle(

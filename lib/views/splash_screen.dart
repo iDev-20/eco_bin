@@ -26,11 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> checkUserStatus() async {
-    Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     bool isLoggedIn = await SharedPrefs.isLoggedIn();
     if (isLoggedIn) {
-      Navigation.navigateToScreen(
+      Navigation.navigateToScreenAndClearOnePrevious(
           context: context, screen: const NavigationHostPage());
     } else {
       final prefs = await SharedPreferences.getInstance();
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ? const LoginPage()
           : const RoleSelectionPage();
 
-      Navigation.navigateToScreen(context: context, screen: destination);
+      Navigation.navigateToScreenAndClearOnePrevious(context: context, screen: destination);
     }
   }
 

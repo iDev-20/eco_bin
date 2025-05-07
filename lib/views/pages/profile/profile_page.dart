@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_images.dart';
@@ -99,7 +102,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigation.back(context: context);
                       },
                       secondOption: 'Yes, log out',
-                      onSecondOptionTap: () {
+                      onSecondOptionTap: () async {
+                        await SharedPrefs.logout();
+
                         Navigation.navigateToScreenAndClearAllPrevious(
                             context: context, screen: const LoginPage());
                       },

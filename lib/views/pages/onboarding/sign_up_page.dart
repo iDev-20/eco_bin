@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
@@ -221,12 +224,25 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: PrimaryButton(
                       enabled: phoneNumberController.text.length == 10.0 &&
                           passwordController.text.isNotEmpty,
-                      onTap: () {
-                        Navigation.navigateToScreen(
-                            context: context,
-                            screen: const VerifyPhoneNumberPage(
-                              phoneNumber: '',
-                            ));
+                      onTap: () async {
+                        if (passwordController.text ==
+                            confirmPasswordController.text) {
+                          await SharedPrefs.saveUser(phoneNumberController.text,
+                              passwordController.text);
+
+                          Navigation.navigateToScreen(
+                              context: context,
+                              screen: VerifyPhoneNumberPage(
+                                phoneNumber: phoneNumberController.text,
+                              ));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Password and Confirm Paassword do not match. Please try again.'),
+                            ),
+                          );
+                        }
                       },
                       child: const Text(AppStrings.signUp),
                     ),

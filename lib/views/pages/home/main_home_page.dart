@@ -86,6 +86,7 @@ class _MainHomePageState extends State<MainHomePage> {
                   children: [
                     Expanded(
                       child: ListView(
+                        physics: const NeverScrollableScrollPhysics(),
                         // padding: const EdgeInsets.all(0),
                         children: [
                           const Text(

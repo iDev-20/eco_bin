@@ -53,17 +53,17 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
                     const SizedBox(
                       height: 8.0,
                     ),
-                    const Text.rich(
+                     Text.rich(
                       TextSpan(children: <TextSpan>[
-                        TextSpan(
+                        const TextSpan(
                           text: "Enter the verification code sent to ",
                           style: TextStyle(
                             color: Colors.grey,
                           ),
                         ),
                         TextSpan(
-                            text: "\n+23320621770",
-                            style: TextStyle(
+                            text: "\n${widget.phoneNumber}",
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: AppColors.darkBlueText,
                             ))

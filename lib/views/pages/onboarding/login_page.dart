@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/navigation/navigation_host_page.dart';
 import 'package:waste_management_app/resources/app_buttons.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
@@ -150,10 +154,29 @@ class _LoginPageState extends State<LoginPage> {
                     child: PrimaryButton(
                       enabled: phoneNumbercontroller.text.length == 10.0 &&
                           passwordController.text.isNotEmpty,
-                      onTap: () {
-                        Navigation.navigateToScreen(
-                            context: context,
-                            screen: const NavigationHostPage());
+                      onTap: () async {
+                        String inputPhone = phoneNumbercontroller.text;
+                        String inputPassword = passwordController.text;
+
+                        final user = await SharedPrefs.getUser();
+
+                        if (inputPhone == user['phoneNumber'] &&
+                            inputPassword == user['password']) {
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('isLoggedIn', true);
+                        await prefs.setString('loggedInUser', inputPhone);
+
+                          Navigation.navigateToScreen(
+                              context: context,
+                              screen: const NavigationHostPage());
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Invalid phone number or password.'),
+                            ),
+                          );
+                        }
                       },
                       child: const Text(AppStrings.login),
                     ),

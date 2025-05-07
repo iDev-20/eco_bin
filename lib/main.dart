@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             height: 89),
       ),
-      home: const NavigationHostPage(),
+      home: const SplashScreen(),
     );
   }
 }

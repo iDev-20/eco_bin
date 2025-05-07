@@ -89,4 +89,35 @@ class SharedPrefs {
         .map((json) => TransactionModel.fromMap(jsonDecode(json)))
         .toList();
   }
+
+  //SignUp & Login
+  static Future<void> saveUser(String phoneNumber, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('phoneNumber', phoneNumber);
+    await prefs.setString('password', password);
+  }
+
+  static Future<Map<String, String?>> getUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? phoneNumber = prefs.getString('phoneNumber');
+    String? password = prefs.getString('password');
+
+    return {'phoneNumber': phoneNumber, 'password': password};
+  }
+
+  static Future<void> signOut() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
+  static Future<bool> isLoggedIn() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('isLoggedIn') ?? false;
+  }
+
+  static Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('isLoggedIn');
+    await prefs.remove('loggedInUser');
+  }
 }

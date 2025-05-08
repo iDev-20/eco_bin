@@ -4,24 +4,38 @@ import 'package:waste_management_app/resources/app_buttons.dart';
 
 class BackAndNextButton extends StatelessWidget {
   const BackAndNextButton(
-      {super.key, required this.onNextButtonTap, this.onNextButtonEnabled});
+      {super.key,
+      required this.onNextButtonTap,
+      this.onBackButtonTap,
+      this.onNextButtonEnabled,
+      this.onBackButtonEnabled,
+      this.firstText,
+      this.secondText,
+      this.padding});
 
   final VoidCallback onNextButtonTap;
+  final VoidCallback? onBackButtonTap;
   final bool? onNextButtonEnabled;
+  final bool? onBackButtonEnabled;
+  final String? firstText;
+  final String? secondText;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: padding ?? const EdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: PrimaryOutlinedButton(
-              onTap: () {
-                Navigation.back(context: context);
-              },
-              child: const Text('Back'),
+              enabled: onBackButtonEnabled ?? true,
+              onTap: onBackButtonTap ??
+                  () {
+                    Navigation.back(context: context);
+                  },
+              child: Text(firstText ?? 'Back'),
             ),
           ),
           const SizedBox(width: 10),
@@ -29,7 +43,7 @@ class BackAndNextButton extends StatelessWidget {
             child: PrimaryButton(
               enabled: onNextButtonEnabled ?? true,
               onTap: onNextButtonTap,
-              child: const Text('Next'),
+              child: Text(secondText ?? 'Next'),
             ),
           ),
         ],

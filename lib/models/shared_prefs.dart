@@ -126,27 +126,35 @@ class SharedPrefs {
     return prefs.getString('phoneNumber') ?? '';
   }
 
+  static Future<void> setPhoneNumber(String? phoneNumber) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('phoneNumber', phoneNumber ?? '');
+  }
+
   //User
   static const String _userNameKey = 'userName';
   static const String _userEmailKey = 'userEmail';
 
-  
   static Future<void> setUserName(String? name) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userNameKey, name ?? '');
   }
+
   static Future<String?> getUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(_userNameKey);
   }
+
   static Future<void> setUserEmail(String? email) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userEmailKey, email ?? '');
   }
+
   static Future<String?> getUserEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(_userEmailKey);
   }
+
   static Future<void> clearUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userNameKey);

@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                                   AppStrings.loginWithYourGhanaMobileNumber,
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
-                                      fontSize: 16.0,
+                                      fontSize: 19,
                                       fontWeight: FontWeight.w700),
                                   textAlign: TextAlign.center,
                                 ),
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                                         .yourMobileNumberMayBeVerifiedAgainstGHCard,
                                     style: TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 13.0,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   ),
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Column(
                                     children: [
                                       PrimaryTextFormField(
-                                        height: 36.0,
+                                        // height: 36.0,
                                         hintText:
                                             AppStrings.enterYourPhoneNumber,
                                         keyboardType: TextInputType.phone,
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                         },
                                       ),
                                       PrimaryTextFormField(
-                                        height: 36.0,
+                                        // height: 36.0,
                                         hintText:
                                             AppStrings.enterYourPhonePassword,
                                         keyboardType:
@@ -138,8 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                                     AppStrings.forgotPassword,
                                     style: TextStyle(
                                         color: AppColors.primaryColor,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w700),
-                                    textAlign: TextAlign.left,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
                               ],
@@ -189,10 +190,10 @@ class _LoginPageState extends State<LoginPage> {
                         "Don't have an account? ",
                         style: TextStyle(
                             color: AppColors.darkBlueText,
-                            fontSize: 15.0,
+                            fontSize: 17,
                             fontWeight: FontWeight.w500),
                       ),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           Navigation.navigateToScreen(
                               context: context,
@@ -204,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                           AppStrings.signUp,
                           style: TextStyle(
                               color: AppColors.primaryColor,
-                              fontSize: 15.0,
+                              fontSize: 17,
                               fontWeight: FontWeight.w700),
                         ),
                       ),

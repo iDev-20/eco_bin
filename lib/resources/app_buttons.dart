@@ -146,7 +146,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color: borderColor,
+            color: enabled ? borderColor : AppColors.transparent,
           ),
         ),
       ),

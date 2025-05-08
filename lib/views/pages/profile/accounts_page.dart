@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/form_fields.dart';
-import 'package:waste_management_app/navigation/navigation.dart';
-import 'package:waste_management_app/resources/app_buttons.dart';
+import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
-import 'package:waste_management_app/views/pages/profile/profile_page.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
+import 'package:waste_management_app/widgets/back_and_next_button.dart';
 import 'package:waste_management_app/widgets/page_divider.dart';
 
 class AccountsPage extends StatefulWidget {
@@ -26,9 +27,19 @@ class AccountsPage extends StatefulWidget {
 
 class _AccountsPageState extends State<AccountsPage> {
   // bool hasProfilePhoto = false;
+  bool isEditing = false;
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.userName;
+    phoneNumberController.text = widget.phoneNumber;
+    emailController.text = widget.userEmail;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,24 +72,26 @@ class _AccountsPageState extends State<AccountsPage> {
                 PrimaryTextFormField(
                   bottomPadding: 8,
                   labelText: 'Name',
-                  hintText: widget.userName,
+                  hintText: 'Nana Kwame',
                   controller: nameController,
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.done,
                   textCapitalization: TextCapitalization.words,
-                  onChanged: (value) {
-                    setState(() {
-                      nameController.text = value;
-                    });
-                  },
+                  enabled: isEditing,
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     nameController.text = value;
+                  //   });
+                  // },
                 ),
                 PrimaryTextFormField(
                   bottomPadding: 8,
                   labelText: 'Phone Number',
-                  hintText: widget.phoneNumber,
+                  hintText: '020357159',
+                  controller: phoneNumberController,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
-                  enabled: false,
+                  enabled: isEditing,
                 ),
                 PrimaryTextFormField(
                   labelText: 'Email Address',
@@ -86,39 +99,74 @@ class _AccountsPageState extends State<AccountsPage> {
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.done,
-                  onChanged: (value) {
-                    setState(() {
-                      emailController.text = value;
-                    });
-                  },
+                  enabled: isEditing,
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     emailController.text = value;
+                  //   });
+                  // },
                 ),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: PrimaryButton(
-              onTap: () {
-                // Save the details
+            child: BackAndNextButton(
+              onNextButtonTap: () {
+                final newName = nameController.text.trim();
+                final newPhone = phoneNumberController.text.trim();
+                final newEmail = emailController.text.trim();
 
-                // You can add your save logic here
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Details saved successfully!'),
-                  ),
-                );
-                Navigation.navigateToScreen(
-                  context: context,
-                  screen: ProfilePage(
-                    userName: nameController.text.isNotEmpty
-                        ? nameController.text
-                        : widget.userName,
-                    userEmail: widget.userEmail,
-                    phoneNumber: widget.phoneNumber,
-                  ),
-                );
+                if (newName.isEmpty || newEmail.isEmpty || newPhone.isEmpty) {
+                  showAlert(
+                      context: context,
+                      title: 'Incomplete Information',
+                      desc:
+                          'Please fill in all the fields before saving your details.');
+                  return;
+                }
+
+                if (newName == widget.userName &&
+                    newPhone == widget.phoneNumber &&
+                    newEmail == widget.userEmail) {
+                  showAlert(
+                      context: context,
+                      title: 'No Changes Detected',
+                      desc: "You haven't made any updates to your profile");
+                  setState(() => isEditing = false);
+                  return;
+                }
+
+                final userProvider =
+                    Provider.of<UserProvider>(context, listen: false);
+                userProvider.userName = newName;
+                userProvider.userPhoneNumber = newPhone;
+                userProvider.userEmail = newEmail;
+
+                showAlert(
+                    context: context,
+                    title: 'Profile Updated',
+                    desc: 'Your account details have been saved successfully!');
+
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   const SnackBar(content: Text('Details saved successfully!')),
+                // );
+
+                // Exit edit mode
+                setState(() {
+                  isEditing = false;
+                });
               },
-              child: const Text('Save Details'),
+              onNextButtonEnabled: isEditing,
+              secondText: 'Save Details',
+              onBackButtonTap: () {
+                setState(() {
+                  isEditing = !isEditing;
+                });
+              },
+              onBackButtonEnabled: !isEditing,
+              firstText: 'Edit Details',
+              padding: const EdgeInsets.all(0.0),
             ),
           ),
         ],

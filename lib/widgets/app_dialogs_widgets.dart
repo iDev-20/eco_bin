@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/models/ui_models.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
@@ -85,7 +86,7 @@ class AppSuccessDialogWidget extends StatelessWidget {
 
   final String message;
   final String? title;
-  final Function? action;
+  final VoidCallback? action;
   final bool hasTitle;
 
   @override
@@ -473,4 +474,45 @@ class AppAlertDialog extends StatelessWidget {
       ),
     );
   }
+}
+
+void showAlert(
+    {required BuildContext context,
+    required String title,
+    required String desc,
+    String? buttonText}) {
+  Alert(
+    style: AlertStyle(
+      alertBorder: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      isCloseButton: false,
+      overlayColor: Colors.black.withOpacity(0.5),
+      titleStyle: const TextStyle(
+          color: AppColors.darkBlueText,
+          fontSize: 18,
+          fontWeight: FontWeight.w700),
+      descStyle: const TextStyle(color: Colors.grey, fontSize: 16),
+      alertPadding: const EdgeInsets.all(65),
+    ),
+    context: context,
+    title: title,
+    desc: desc,
+    buttons: [
+      DialogButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        // width: 200,
+        color: AppColors.primaryColor,
+        radius: BorderRadius.circular(20),
+        child: Text(
+          buttonText ?? 'Okay',
+          style: const TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+    ],
+  ).show();
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:waste_management_app/providers/address_provider.dart';
 import 'package:waste_management_app/providers/bin_provider.dart';
 import 'package:waste_management_app/providers/transaction_provider.dart';
+import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/resources/app_strings.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +24,9 @@ void main() async {
         ChangeNotifierProvider(
             create: (context) => AddressProvider()..loadAddresses()),
         ChangeNotifierProvider(
-            create: (context) => TransactionProvider()..loadTransactions())
+            create: (context) => TransactionProvider()..loadTransactions()),
+        ChangeNotifierProvider(
+            create: (context) => UserProvider())
       ],
       child: const MyApp(),
     ),

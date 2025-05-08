@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/models/shared_prefs.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 // import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/resources/app_page.dart';
@@ -15,11 +17,9 @@ import 'package:waste_management_app/views/pages/profile/report_issue_page.dart'
 import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, this.phoneNumber, this.userName, this.userEmail}); 
+  const ProfilePage({super.key, this.phoneNumber});
 
   final String? phoneNumber;
-  final String? userName;
-  final String? userEmail;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -27,30 +27,17 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   String _phoneNumber = '';
-  String _userName = '';
-  String _userEmail = '';
 
   @override
   void initState() {
     super.initState();
-    loadUserDetails();
-
+    loadPhoneNumber();
   }
 
-  void loadUserDetails() async {
+  void loadPhoneNumber() async {
     String phoneNumber = await SharedPrefs.getPhoneNumber();
     setState(() {
       _phoneNumber = phoneNumber;
-    });
-
-    String userName = await SharedPrefs.getUserName() ?? 'User123';
-    setState(() {
-      _userName = userName;
-    });
-
-    String userEmail = await SharedPrefs.getUserEmail() ?? '';
-    setState(() {
-      _userEmail = userEmail;
     });
   }
 
@@ -58,6 +45,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final userName = userProvider.userName ?? '';
+    final userEmail = userProvider.userEmail ?? '';
+
     return AppPage(
       title: AppStrings.profileCaps,
       body: Padding(
@@ -74,8 +65,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
-                      widget.userName ?? _userName,
+                    Text(
+                      userName,
                       style: const TextStyle(
                           color: AppColors.darkBlueText,
                           fontSize: 16,
@@ -103,8 +94,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigation.navigateToScreen(
                     context: context,
                     screen: AccountsPage(
-                      userName: _userName,
-                      userEmail: _userEmail,
+                      userName: userName,
+                      userEmail: userEmail,
                       phoneNumber: _phoneNumber,
                     ));
               },

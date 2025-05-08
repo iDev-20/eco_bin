@@ -103,8 +103,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             // AppStrings.signUpWithYourGhanaMobileNumber,
                             style: const TextStyle(
                                 color: AppColors.darkBlueText,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 5.0),
@@ -115,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   .yourMobileNumberMayBeVerifiedAgainstGHCard,
                               style: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 13.0,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                             ),
@@ -127,7 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             child: Column(
                               children: [
                                 PrimaryTextFormField(
-                                  height: 36.0,
+                                  // height: 36.0,
                                   hintText: AppStrings.enterYourPhoneNumber,
                                   keyboardType: TextInputType.phone,
                                   // prefixText: '+233 ',
@@ -138,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   },
                                 ),
                                 PrimaryTextFormField(
-                                  height: 36.0,
+                                  // height: 36.0,
                                   hintText: AppStrings.createPassword,
                                   keyboardType: TextInputType.visiblePassword,
                                   textInputAction: TextInputAction.done,
@@ -158,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   },
                                 ),
                                 PrimaryTextFormField(
-                                  height: 36.0,
+                                  // height: 36.0,
                                   hintText: AppStrings.confirmPassword,
                                   keyboardType: TextInputType.visiblePassword,
                                   textInputAction: TextInputAction.done,
@@ -255,10 +255,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         "Already have an account? ",
                         style: TextStyle(
                             color: AppColors.darkBlueText,
-                            fontSize: 15.0,
+                            fontSize: 17,
                             fontWeight: FontWeight.w500),
                       ),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           Navigation.navigateToScreen(
                               context: context,
@@ -270,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           AppStrings.login,
                           style: TextStyle(
                               color: AppColors.primaryColor,
-                              fontSize: 15.0,
+                              fontSize: 17,
                               fontWeight: FontWeight.w700),
                         ),
                       ),

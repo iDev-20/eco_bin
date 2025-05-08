@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_images.dart';
@@ -6,6 +7,7 @@ import 'package:waste_management_app/views/pages/home/components/dashboard_metri
 import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/views/pages/home/notifications_page.dart';
 import 'package:waste_management_app/views/pages/home/volunteer_page.dart';
+import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
 
 class MainHomePage extends StatefulWidget {
@@ -18,6 +20,9 @@ class MainHomePage extends StatefulWidget {
 class _MainHomePageState extends State<MainHomePage> {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final userName = userProvider.userName ?? 'User123';
+
     return Scaffold(
       body: SizedBox.expand(
         child: Stack(
@@ -34,17 +39,17 @@ class _MainHomePageState extends State<MainHomePage> {
                       height: 36.0,
                       width: 36.0,
                       child: Image(image: AppImages.appLogo)),
-                  const Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Hello, User123 👋',
-                        style: TextStyle(
+                        'Hello, $userName 👋',
+                        style: const TextStyle(
                             color: AppColors.primary50,
                             fontSize: 20,
                             fontWeight: FontWeight.w600),
                       ),
-                      Text(
+                      const Text(
                         'Ready to keep your space clean today?',
                         style: TextStyle(color: AppColors.primary50),
                       ),

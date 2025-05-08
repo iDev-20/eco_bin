@@ -69,7 +69,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                   AppStrings.setNewPassword,
                                   style: TextStyle(
                                       color: AppColors.darkBlueText,
-                                      fontSize: 16.0,
+                                      fontSize: 19,
                                       fontWeight: FontWeight.w700),
                                   textAlign: TextAlign.center,
                                 ),
@@ -80,7 +80,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                     "Set a password you won't lose this time",
                                     style: TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 13.0,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   ),
@@ -92,7 +92,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                   child: Column(
                                     children: [
                                       PrimaryTextFormField(
-                                        height: 36.0,
+                                        // height: 36.0,
                                         hintText: AppStrings.enterNewPassword,
                                         keyboardType:
                                             TextInputType.visiblePassword,
@@ -113,7 +113,7 @@ class _SetNewPasswordPageState extends State<SetNewPasswordPage> {
                                         },
                                       ),
                                       PrimaryTextFormField(
-                                        height: 36.0,
+                                        // height: 36.0,
                                         hintText: AppStrings.confirmPassword,
                                         keyboardType:
                                             TextInputType.visiblePassword,

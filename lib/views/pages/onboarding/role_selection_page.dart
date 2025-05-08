@@ -54,7 +54,7 @@ class RoleSelectionPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(
-                  left: 50.0, top: 30.0, right: 50.0, bottom: 100.0),
+                  left: 45.0, top: 20.0, right: 45.0, bottom: 100.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +103,7 @@ class RoleSelectionPage extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 110),
+        padding: const EdgeInsets.symmetric(vertical: 100),
         decoration: BoxDecoration(
           color: AppColors.primary50,
           borderRadius: BorderRadius.circular(12),

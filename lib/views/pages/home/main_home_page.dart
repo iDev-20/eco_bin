@@ -84,7 +84,7 @@ class _MainHomePageState extends State<MainHomePage> {
                   topRight: Radius.circular(40),
                 ),
                 child: Container(
-                  padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                  padding: const EdgeInsets.only(left: 16, top: 40, right: 16),
                   decoration: const BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.only(

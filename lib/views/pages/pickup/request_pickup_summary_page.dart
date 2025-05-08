@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:waste_management_app/components/page_indicator.dart';
 import 'package:waste_management_app/extensions/date_time_extensions.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
+import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/resources/app_colors.dart';
 import 'package:waste_management_app/resources/app_page.dart';
 import 'package:iconsax/iconsax.dart';
@@ -48,6 +50,9 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
   @override
   Widget build(BuildContext context) {
     final totalAmount = calculateTotal(widget.selectedItemsWithQuantity);
+    final userProvider = Provider.of<UserProvider>(context);
+    final userName = userProvider.userName ?? 'User123';
+    final userPhoneNumber = userProvider.userPhoneNumber ?? '';
     return AppPageSecondary(
       title: 'Pickup Summary',
       body: Column(
@@ -117,9 +122,8 @@ class _RequestPickupSummaryPageState extends State<RequestPickupSummaryPage> {
                       ),
                       const SizedBox(height: 12),
                       singleDetail(
-                          icon: Iconsax.profile_circle,
-                          detail: 'Jermaine Lamar'),
-                      singleDetail(icon: Iconsax.call, detail: '0539424541'),
+                          icon: Iconsax.profile_circle, detail: userName),
+                      singleDetail(icon: Iconsax.call, detail: userPhoneNumber),
                       singleDetail(
                           icon: Iconsax.trash,
                           detail: 'Waste Type(s):',

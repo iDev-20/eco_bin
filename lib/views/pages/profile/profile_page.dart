@@ -46,105 +46,126 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
-    final userName = userProvider.userName ?? '';
+    final userName = userProvider.userName ?? 'User123';
     final userEmail = userProvider.userEmail ?? '';
 
     return AppPage(
       title: AppStrings.profileCaps,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: Column(
+      body: Expanded(
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
           children: [
-            Row(
-              children: [
-                const CircleAvatar(
-                  radius: 25,
-                  // backgroundImage: NetworkImage(avatarUrl),
-                ),
-                const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      userName,
-                      style: const TextStyle(
-                          color: AppColors.darkBlueText,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 25,
+                        // backgroundImage: NetworkImage(avatarUrl),
+                      ),
+                      const SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            userName,
+                            style: const TextStyle(
+                                color: AppColors.darkBlueText,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Text(
+                            _phoneNumber,
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  profileCard(
+                    title: 'Account',
+                    icon: Iconsax.profile_circle,
+                    trailingWidget: const Text(
+                      'Set your email',
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w500),
                     ),
-                    Text(
-                      _phoneNumber,
-                      style: const TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            profileCard(
-              title: 'Account',
-              icon: Iconsax.profile_circle,
-              trailingWidget: const Text(
-                'Set your email',
-                style: TextStyle(
-                    color: AppColors.primaryColor, fontWeight: FontWeight.w500),
-              ),
-              onTap: () {
-                Navigation.navigateToScreen(
-                    context: context,
-                    screen: AccountsPage(
-                      userName: userName,
-                      userEmail: userEmail,
-                      phoneNumber: _phoneNumber,
-                    ));
-              },
-            ),
-            profileCard(
-              title: 'Addresses',
-              icon: Iconsax.location,
-              onTap: () {
-                Navigation.navigateToScreen(
-                    context: context, screen: const AddressPage());
-              },
-            ),
-            profileCard(
-              title: 'Report an Isuue',
-              icon: Iconsax.message,
-              onTap: () {
-                Navigation.navigateToScreen(
-                    context: context, screen: const ReportIssuePage());
-              },
-            ),
-            profileCard(
-              title: 'Log out',
-              icon: Iconsax.logout,
-              titleColor: Colors.red,
-              onTap: () async {
-                await showAdaptiveDialog(
-                  context: context,
-                  builder: (context) {
-                    return AppAlertDialog(
-                      title: 'Log Out',
-                      desc: 'Are you sure you want to log out?',
-                      firstOption: 'No',
-                      onFirstOptionTap: () {
-                        Navigation.back(context: context);
-                      },
-                      secondOption: 'Yes, log out',
-                      onSecondOptionTap: () async {
-                        await SharedPrefs.logout();
+                    onTap: () {
+                      Navigation.navigateToScreen(
+                          context: context,
+                          screen: AccountsPage(
+                            userName: userName,
+                            userEmail: userEmail,
+                            phoneNumber: _phoneNumber,
+                          ));
+                    },
+                  ),
+                  profileCard(
+                    title: 'Addresses',
+                    icon: Iconsax.location,
+                    onTap: () {
+                      Navigation.navigateToScreen(
+                          context: context, screen: const AddressPage());
+                    },
+                  ),
+                  profileCard(
+                    title: 'Report an Isuue',
+                    icon: Iconsax.message,
+                    onTap: () {
+                      Navigation.navigateToScreen(
+                          context: context, screen: const ReportIssuePage());
+                    },
+                  ),
+                  profileCard(
+                    title: 'Log out',
+                    icon: Iconsax.logout,
+                    titleColor: Colors.red,
+                    onTap: () async {
+                      await showAdaptiveDialog(
+                        context: context,
+                        builder: (context) {
+                          return AppAlertDialog(
+                            title: 'Log Out',
+                            desc: 'Are you sure you want to log out?',
+                            firstOption: 'No',
+                            onFirstOptionTap: () {
+                              Navigation.back(context: context);
+                            },
+                            secondOption: 'Yes, log out',
+                            onSecondOptionTap: () async {
+                              await SharedPrefs.logout();
 
-                        Navigation.navigateToScreenAndClearAllPrevious(
-                            context: context, screen: const LoginPage());
-                      },
-                      borderColor: Colors.red,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.red,
-                    );
-                  },
-                );
-              },
+                              Navigation.navigateToScreenAndClearAllPrevious(
+                                  context: context, screen: const LoginPage());
+                            },
+                            borderColor: Colors.red,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.red,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  // const SizedBox(height: 100),
+                  // profileCard(
+                  //   title: 'Sign Out',
+                  //   icon: Iconsax.logout,
+                  //   titleColor: Colors.red,
+                  //   onTap: () async {
+                  //     await SharedPrefs.signOut();
+
+                  //     Navigation.navigateToScreenAndClearAllPrevious(
+                  //         context: context, screen: const RoleSelectionPage());
+                  //   },
+                  // ),
+                ],
+              ),
             ),
           ],
         ),

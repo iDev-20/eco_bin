@@ -147,12 +147,6 @@ class _AccountsPageState extends State<AccountsPage> {
                     context: context,
                     title: 'Profile Updated',
                     desc: 'Your account details have been saved successfully!');
-
-                // ScaffoldMessenger.of(context).showSnackBar(
-                //   const SnackBar(content: Text('Details saved successfully!')),
-                // );
-
-                // Exit edit mode
                 setState(() {
                   isEditing = false;
                 });

@@ -6,6 +6,7 @@ import 'package:waste_management_app/resources/app_images.dart';
 import 'package:waste_management_app/views/pages/home/components/dashboard_metric_grid_view.dart';
 import 'package:waste_management_app/views/pages/home/faq_page.dart';
 import 'package:waste_management_app/views/pages/home/notifications_page.dart';
+import 'package:waste_management_app/views/pages/home/videos_page.dart';
 import 'package:waste_management_app/views/pages/home/volunteer_page.dart';
 import 'package:waste_management_app/providers/user_provider.dart';
 import 'package:waste_management_app/views/pages/pickup/request_pickup_page.dart';
@@ -116,7 +117,9 @@ class _MainHomePageState extends State<MainHomePage> {
                           const SizedBox(width: 10),
                           singleButton(
                             title: 'Find Bin',
-                            onTap: () {},
+                            onTap: () {
+                              Navigation.navigateToScreen(context: context, screen: const VideosPage());
+                            },
                           ),
                         ],
                       ),

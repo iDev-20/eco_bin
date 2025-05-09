@@ -60,7 +60,7 @@ class AppStrings {
   static const sampleNoCollectionUpdate =
       'There will  be no waste collection today due to the public holiday';
   static const chatWithSupport = 'Chat with Support';
-  
+
   //Bins
   static const binDetails = 'Bin details';
   static const youCannotRemoveThisBin =
@@ -83,5 +83,9 @@ class AppStrings {
 
   //Pickup
   static const wasteType = 'Waste Type';
-  static const youHaveNoSavedAddressesATM = 'You have no saved addresses at the moment';
+  static const youHaveNoSavedAddressesATM =
+      'You have no saved addresses at the moment';
+
+  static const invalidPhoneNumberOrPassword =
+      'Invalid phone number or password. Please check your credentials and try again.';
 }

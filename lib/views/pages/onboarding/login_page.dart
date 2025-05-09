@@ -12,6 +12,7 @@ import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/forgot_password_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/sign_up_page.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class LoginPage extends StatefulWidget {
   final String? role;
@@ -163,20 +164,18 @@ class _LoginPageState extends State<LoginPage> {
 
                         if (inputPhone == user['phoneNumber'] &&
                             inputPassword == user['password']) {
-                        final prefs = await SharedPreferences.getInstance();
-                        await prefs.setBool('isLoggedIn', true);
-                        await prefs.setString('loggedInUser', inputPhone);
+                          final prefs = await SharedPreferences.getInstance();
+                          await prefs.setBool('isLoggedIn', true);
+                          await prefs.setString('loggedInUser', inputPhone);
 
                           Navigation.navigateToScreen(
                               context: context,
                               screen: const NavigationHostPage());
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('Invalid phone number or password.'),
-                            ),
-                          );
+                          showAlert(
+                              context: context,
+                              title: 'Login failed',
+                              desc: AppStrings.invalidPhoneNumberOrPassword);
                         }
                       },
                       child: const Text(AppStrings.login),

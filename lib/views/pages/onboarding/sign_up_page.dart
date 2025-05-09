@@ -10,6 +10,7 @@ import 'package:waste_management_app/components/form_fields.dart';
 import 'package:waste_management_app/navigation/navigation.dart';
 import 'package:waste_management_app/views/pages/onboarding/login_page.dart';
 import 'package:waste_management_app/views/pages/onboarding/verify_phone_number_page.dart';
+import 'package:waste_management_app/widgets/app_dialogs_widgets.dart';
 
 class SignUpPage extends StatefulWidget {
   final String role;
@@ -236,12 +237,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 phoneNumber: phoneNumberController.text,
                               ));
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                  'Password and Confirm Paassword do not match. Please try again.'),
-                            ),
-                          );
+                          showAlert(
+                              context: context,
+                              title: 'Password Mismatch',
+                              desc:
+                                  'The password and confirm password fields do not match. Please re-enter them carefully.');
                         }
                       },
                       child: const Text(AppStrings.signUp),

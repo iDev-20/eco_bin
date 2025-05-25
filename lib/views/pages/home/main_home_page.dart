@@ -116,7 +116,7 @@ class _MainHomePageState extends State<MainHomePage> {
                           ),
                           const SizedBox(width: 10),
                           singleButton(
-                            title: 'Find Bin',
+                            title: 'Videos',
                             onTap: () {
                               Navigation.navigateToScreen(context: context, screen: const VideosPage());
                             },

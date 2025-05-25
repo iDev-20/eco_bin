@@ -36,6 +36,12 @@ class AppImages {
       const AssetImage('assets/images/slideshow_6.jpg');
   static AssetImage slideshow7 =
       const AssetImage('assets/images/slideshow_7.jpg');
+  static AssetImage firstYoutubeVideoImage =
+      const AssetImage('assets/images/first_youtube_video_image.png');
+  static AssetImage secondYoutubeVideoImage =
+      const AssetImage('assets/images/second_youtube_video_image.png');
+  static AssetImage thirdYoutubeVideoImage =
+      const AssetImage('assets/images/third_youtube_video_image.png');
 
   //Svgs
   static SvgPicture svgCloseBottomSheetIcon =
